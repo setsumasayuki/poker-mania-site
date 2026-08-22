@@ -1,0 +1,90 @@
+---
+permalink: /blog/index.html
+eleventyExcludeFromCollections: true
+---
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1294748320155117"
+     crossorigin="anonymous"></script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ブログ｜海外遠征記・プレイ日記 | Poker MANIA</title>
+<meta name="description" content="Poker MANIA運営のポーカーブログ。海外トーナメントの遠征記、実戦のプレイ日記、ポーカーを楽しむ雑記を綴っています。">
+<link rel="canonical" href="https://poker-mania.jp/blog/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://poker-mania.jp/blog/">
+<meta property="og:title" content="ブログ｜海外遠征記・プレイ日記 | Poker MANIA">
+<meta property="og:site_name" content="Poker MANIA">
+<meta property="og:locale" content="ja_JP">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:#ffffff;font-family:-apple-system,"Hiragino Kaku Gothic ProN",Meiryo,sans-serif;color:#33333a;min-height:100vh;line-height:1.9;}
+.header{position:sticky;top:0;z-index:50;background:#ffffff;border-bottom:1px solid #e5ece8;padding:12px 16px;display:flex;align-items:center;gap:10px;}
+.header-title{font-size:16px;font-weight:700;color:#1b5e3f;}
+.back-link{background:#edf3ef;border-radius:8px;color:#77726a;font-size:12px;padding:6px 10px;text-decoration:none;}
+.hero{padding:28px 16px 22px;border-bottom:1px solid #edf3ef;}
+.hero-badge{display:inline-block;background:#e7f1eb;border:1px solid #bfdccc;border-radius:20px;font-size:11px;font-weight:700;color:#1b5e3f;padding:4px 12px;letter-spacing:0.1em;margin-bottom:12px;}
+.hero-title{font-size:24px;font-weight:800;color:#2b2b30;margin-bottom:8px;line-height:1.3;}
+.hero-title span{color:#1b5e3f;}
+.hero-sub{font-size:13px;color:#8a857c;line-height:1.7;}
+.content{max-width:720px;margin:0 auto;padding:8px 16px 40px;}
+.intro{font-size:14.5px;color:#44444c;line-height:1.95;margin:14px 0 8px;}
+.post-list{display:flex;flex-direction:column;gap:12px;margin-top:20px;}
+.post-card{display:block;background:#ffffff;border-radius:12px;padding:16px;border:1px solid #e9e5da;text-decoration:none;transition:border-color .15s,box-shadow .15s;}
+.post-card:hover{border-color:#a8ccb8;box-shadow:0 2px 12px rgba(27,94,63,0.08);}
+.post-meta{display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap;}
+.post-date{font-size:11px;color:#9a958c;letter-spacing:0.05em;}
+.post-tag{font-size:10px;font-weight:700;color:#1b5e3f;background:#e7f1eb;border:1px solid #bfdccc;border-radius:12px;padding:2px 9px;}
+.post-title{font-size:16px;font-weight:800;color:#2b2b30;margin-bottom:6px;line-height:1.4;}
+.post-excerpt{font-size:12.5px;color:#6f6a61;line-height:1.7;}
+.empty-note{background:#f1f7f3;border:1px dashed #bfdccc;border-radius:12px;padding:20px;text-align:center;color:#6f6a61;font-size:13px;}
+.site-footer{border-top:1px solid #e5ece8;margin-top:16px;padding:24px 16px 40px;text-align:center;}
+.site-footer a{color:#1b5e3f;font-size:12px;text-decoration:none;margin:0 6px;}
+.site-footer .copy{display:block;margin-top:12px;font-size:11px;color:#b3aea3;}
+</style>
+</head>
+<body>
+<div class="header">
+  <a href="/index.html" class="back-link">← Poker MANIA</a>
+  <div class="header-title">📝 ブログ</div>
+</div>
+
+<div class="hero">
+  <div class="hero-badge">BLOG</div>
+  <h1 class="hero-title">ポーカー<span>ブログ</span></h1>
+  <p class="hero-sub">海外トーナメントの遠征記、実戦のプレイ日記、ポーカーを楽しむ日々の雑記。運営者の目線でリアルに綴っていきます。</p>
+</div>
+
+<div class="content">
+
+  <p class="intro">Poker MANIA運営が、実際にプレイして感じたことや、海外への遠征で見てきた景色を記録していくブログです。ツールや講座では書ききれない「現場のリアル」を、少しずつ更新していきます。</p>
+
+  <div class="post-list">
+    {% if collections.posts | length %}
+      {% for post in collections.posts %}
+      <a class="post-card" href="/blog/{{ post.data.slug }}/">
+        <div class="post-meta">
+          <span class="post-date">{{ post.data.date | ymd }}</span>
+          <span class="post-tag">{{ post.data.tag }}</span>
+        </div>
+        <div class="post-title">{{ post.data.title }}</div>
+        <div class="post-excerpt">{{ post.data.description }}</div>
+      </a>
+      {% endfor %}
+    {% else %}
+      <div class="empty-note">最初の記事を準備中です。近日公開予定です。</div>
+    {% endif %}
+  </div>
+
+</div>
+
+<footer class="site-footer">
+  <a href="/index.html">ホーム</a>·<a href="/guide.html">ポーカー講座</a>·<a href="/blog/">ブログ</a>·<a href="/privacy.html">プライバシーポリシー</a>·<a href="/contact.html">お問い合わせ</a>·<a href="/about.html">運営者情報</a>
+  <span class="copy">© 2026 Poker MANIA</span>
+</footer>
+
+</body>
+</html>

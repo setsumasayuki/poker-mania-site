@@ -1,0 +1,31 @@
+---
+permalink: /sitemap.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://poker-mania.jp/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://poker-mania.jp/guide.html</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://poker-mania.jp/blog/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://poker-mania.jp/holdem_rules.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://poker-mania.jp/hand_rankings.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://poker-mania.jp/starting_hands.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://poker-mania.jp/position.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://poker-mania.jp/pot_odds.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://poker-mania.jp/glossary.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://poker-mania.jp/hand_history.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://poker-mania.jp/schedule.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://poker-mania.jp/mixed.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://poker-mania.jp/mixed_27td.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://poker-mania.jp/mixed_razz.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://poker-mania.jp/mixed_stud.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://poker-mania.jp/mixed_badugi.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://poker-mania.jp/mixed_a5.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://poker-mania.jp/quest/</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://poker-mania.jp/about.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://poker-mania.jp/privacy.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://poker-mania.jp/contact.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+{%- for post in collections.posts %}
+  <url><loc>https://poker-mania.jp/blog/{{ post.data.slug }}/</loc><lastmod>{{ post.data.date | ymd | replace(".", "-") }}</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+{%- endfor %}
+</urlset>

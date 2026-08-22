@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1294748320155117"
+     crossorigin="anonymous"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>スターティングハンド表と選び方｜プリフロップ戦略の基礎 | Poker MANIA</title>
+<meta name="description" content="テキサスホールデムのスターティングハンド（最初の2枚）の選び方を初心者向けに徹底解説。ハンドの表記法、ティア別のハンド表、ポジションによる基準、スーテッドとオフスーツの価値差、セットマイニングの考え方、よくあるミスまで実用的にまとめました。">
+<meta name="keywords" content="スターティングハンド 表, ポーカー, プリフロップ, ハンドレンジ, スーテッド, オフスーツ, ポケットペア, テキサスホールデム, 初心者">
+<link rel="canonical" href="https://poker-mania.jp/starting_hands.html">
+<meta property="og:site_name" content="Poker MANIA">
+<meta property="og:type" content="article">
+<meta property="og:title" content="スターティングハンド表と選び方｜プリフロップ戦略の基礎">
+<meta property="og:description" content="最初の2枚をどう選ぶか。ハンドの表記法からティア別の一覧表、ポジション別の基準、よくあるミスまで実用的に解説します。">
+<meta property="og:url" content="https://poker-mania.jp/starting_hands.html">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:#1c1c2e;font-family:-apple-system,sans-serif;color:#e8e0d0;min-height:100vh;line-height:1.7;}
+.header{position:sticky;top:0;z-index:50;background:#1c1c2e;border-bottom:1px solid rgba(201,168,76,0.2);padding:12px 16px;display:flex;align-items:center;gap:10px;}
+.header-title{font-size:16px;font-weight:700;color:#c9a84c;}
+.back-link{background:rgba(255,255,255,0.08);border-radius:8px;color:rgba(255,255,255,0.6);font-size:12px;padding:6px 10px;text-decoration:none;}
+.hero{padding:32px 16px 24px;border-bottom:1px solid rgba(255,255,255,0.06);}
+.hero-badge{display:inline-block;background:rgba(201,168,76,0.15);border:1px solid rgba(201,168,76,0.4);border-radius:20px;font-size:11px;font-weight:700;color:#c9a84c;padding:4px 12px;letter-spacing:0.1em;margin-bottom:12px;}
+.hero-title{font-size:24px;font-weight:800;color:#e8e0d0;margin-bottom:8px;line-height:1.3;}
+.hero-title span{color:#c9a84c;}
+.hero-sub{font-size:13px;color:rgba(255,255,255,0.45);line-height:1.6;}
+.toc{margin:16px 16px;background:#252540;border-radius:12px;padding:14px 16px;border:1px solid rgba(255,255,255,0.08);max-width:760px;}
+.toc-title{font-size:11px;font-weight:700;color:rgba(201,168,76,0.7);letter-spacing:0.12em;margin-bottom:10px;}
+.toc-list{display:flex;flex-direction:column;gap:6px;}
+.toc-item{font-size:13px;color:rgba(201,168,76,0.8);text-decoration:none;display:flex;align-items:center;gap:8px;}
+.toc-item::before{content:'›';color:#c9a84c;font-size:16px;}
+.content{max-width:760px;margin:0 auto;padding:0 16px 40px;}
+.section{margin-top:28px;}
+.section-title{font-size:17px;font-weight:800;color:#c9a84c;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid rgba(201,168,76,0.2);display:flex;align-items:center;gap:8px;}
+.prose{font-size:14px;color:rgba(255,255,255,0.75);line-height:1.9;margin-bottom:12px;}
+.prose strong{color:#e8e0d0;font-weight:700;}
+.prose a{color:#c9a84c;text-decoration:underline;}
+.hand-table{width:100%;border-collapse:collapse;margin:12px 0;}
+.hand-table th{background:rgba(201,168,76,0.1);color:#c9a84c;font-size:11px;font-weight:700;padding:8px 10px;text-align:left;}
+.hand-table td{padding:10px 10px;font-size:13px;border-bottom:1px solid rgba(255,255,255,0.06);color:rgba(255,255,255,0.75);}
+.hand-table tr:last-child td{border-bottom:none;}
+.hand-table .rank{color:#c9a84c;font-weight:700;}
+.hand-table .best{background:rgba(201,168,76,0.06);}
+.point-box{background:#252540;border-radius:12px;padding:14px 16px;margin:12px 0;border-left:3px solid #c9a84c;}
+.point-box-title{font-size:12px;font-weight:700;color:#c9a84c;margin-bottom:8px;}
+.point-list{display:flex;flex-direction:column;gap:7px;}
+.point-item{font-size:13px;color:rgba(255,255,255,0.7);display:flex;gap:8px;line-height:1.5;}
+.point-item::before{content:'▸';color:#c9a84c;flex-shrink:0;margin-top:1px;}
+.warn-box{background:rgba(255,80,80,0.08);border-radius:12px;padding:14px 16px;margin:12px 0;border-left:3px solid #e85555;}
+.warn-box-title{font-size:12px;font-weight:700;color:#e85555;margin-bottom:8px;}
+.warn-list{display:flex;flex-direction:column;gap:7px;}
+.warn-item{font-size:13px;color:rgba(255,255,255,0.7);display:flex;gap:8px;line-height:1.5;}
+.warn-item::before{content:'✕';color:#e85555;flex-shrink:0;}
+.flow{display:flex;flex-direction:column;gap:0;}
+.flow-step{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.05);}
+.flow-step:last-child{border-bottom:none;}
+.flow-num{width:28px;height:28px;border-radius:50%;background:#c9a84c;color:#1c1c2e;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;}
+.flow-title{font-size:14px;font-weight:700;color:#e8e0d0;margin-bottom:4px;}
+.flow-desc{font-size:13px;color:rgba(255,255,255,0.55);line-height:1.6;}
+.divider{height:1px;background:rgba(255,255,255,0.06);margin:24px 0;}
+.next-games{margin-top:28px;background:#252540;border-radius:12px;padding:16px;border:1px solid rgba(255,255,255,0.08);}
+.next-games-title{font-size:12px;font-weight:700;color:rgba(201,168,76,0.7);letter-spacing:0.1em;margin-bottom:12px;}
+.game-chips{display:flex;flex-wrap:wrap;gap:8px;}
+.game-chip{padding:8px 14px;border-radius:20px;font-size:12px;font-weight:700;border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.4);text-decoration:none;display:inline-block;}
+.game-chip.current{border-color:#c9a84c;color:#c9a84c;background:rgba(201,168,76,0.1);}
+.faq-q{font-size:14px;font-weight:700;color:#e8e0d0;margin-top:16px;margin-bottom:6px;}
+.faq-q::before{content:'Q. ';color:#c9a84c;}
+.faq-a{font-size:14px;color:rgba(255,255,255,0.72);line-height:1.85;}
+.faq-a::before{content:'A. ';color:rgba(201,168,76,0.7);font-weight:700;}
+.cta-box{background:linear-gradient(135deg,rgba(201,168,76,0.14),rgba(201,168,76,0.04));border:1px solid rgba(201,168,76,0.3);border-radius:12px;padding:16px;margin:20px 0;text-align:center;}
+.cta-box a{display:inline-block;margin-top:8px;background:#c9a84c;color:#1c1c2e;border-radius:9px;font-size:13px;font-weight:800;padding:10px 20px;text-decoration:none;}
+.site-footer{border-top:1px solid rgba(201,168,76,0.2);margin-top:8px;padding:24px 16px 40px;text-align:center;}
+.site-footer a{color:rgba(201,168,76,0.85);font-size:12px;text-decoration:none;margin:0 6px;}
+.site-footer .copy{display:block;margin-top:12px;font-size:11px;color:rgba(255,255,255,0.3);}
+</style>
+</head>
+<body>
+<header class="header">
+  <a href="guide.html" class="back-link">← 講座トップ</a>
+  <span class="header-title">🂡 スターティングハンド</span>
+</header>
+
+<section class="hero">
+  <span class="hero-badge">STARTING HANDS</span>
+  <h1 class="hero-title">スターティングハンド表と<span>選び方</span></h1>
+  <p class="hero-sub">配られた最初の2枚をどう扱うか。プリフロップ戦略の土台となる「ハンド選び」を、表記法・ティア別一覧・ポジション基準まで実用重視で解説します。</p>
+</section>
+
+<nav class="toc">
+  <div class="toc-title">目次</div>
+  <div class="toc-list">
+    <a href="#s1" class="toc-item">スターティングハンドとは</a>
+    <a href="#s2" class="toc-item">ハンドの表記法（sとoの意味）</a>
+    <a href="#s3" class="toc-item">ティア別ハンド分類表</a>
+    <a href="#s4" class="toc-item">ポジションによる選び方</a>
+    <a href="#s5" class="toc-item">スーテッド・コネクター・ペアの価値</a>
+    <a href="#s6" class="toc-item">実践方針とよくあるミス</a>
+    <a href="#s7" class="toc-item">よくある質問（FAQ）</a>
+  </div>
+</nav>
+
+<main class="content">
+
+  <section class="section" id="s1">
+    <h2 class="section-title">スターティングハンドとは</h2>
+    <p class="prose"><strong>スターティングハンド</strong>とは、テキサスホールデムで各プレイヤーに最初に配られる2枚のホールカード（手札）のことです。フロップ以降のコミュニティカードが場に出る前、つまり<strong>プリフロップ</strong>の段階で、この2枚だけを見て「参加するか、降りるか」を決めることになります。</p>
+    <p class="prose">なぜ最初の2枚がそれほど重要なのでしょうか。理由はシンプルで、<strong>その後の展開のすべてがこの2枚から始まる</strong>からです。強いハンドで参加すれば、フロップで強い役を作れる確率が高く、相手より優位なポジションからゲームを進められます。逆に弱いハンドで無理に参加すると、勝てる見込みが薄いままチップを削られ続けることになります。</p>
+    <p class="prose">プロと初心者の成績差の多くは、実は派手なブラフやリードではなく、この<strong>「どのハンドで参加し、どのハンドを捨てるか」という地味な判断の積み重ね</strong>から生まれています。良いハンド選びは、負けにくいプレイの最初の一歩です。テキサスホールデム全体の流れは<a href="holdem_rules.html">ルール解説</a>で、完成する役の強さは<a href="hand_rankings.html">役の強さ</a>で確認しておくと理解が深まります。</p>
+  </section>
+
+  <section class="section" id="s2">
+    <h2 class="section-title">ハンドの表記法（sとoの意味）</h2>
+    <p class="prose">スターティングハンドを効率よく語るために、ポーカーには共通の略記があります。まずカードのランクはA（エース）・K・Q・J・T（10）・9〜2で表します。10を「T」と書くのは、2文字の略記を揃えるためです。</p>
+    <div class="point-box">
+      <div class="point-box-title">表記のルール</div>
+      <div class="point-list">
+        <div class="point-item"><strong>AKs</strong>＝末尾の「s」はスーテッド（suited）。2枚が同じスート（絵柄）であることを意味します。例：スペードのAとスペードのK。</div>
+        <div class="point-item"><strong>AKo</strong>＝末尾の「o」はオフスーツ（offsuit）。2枚のスートが異なることを意味します。例：スペードのAとハートのK。</div>
+        <div class="point-item"><strong>AA・KK・77</strong>＝同じランクが2枚揃った<strong>ポケットペア</strong>。ペアにはスートの組み合わせが最初から1種類しかないため、sやoは付けません。</div>
+        <div class="point-item"><strong>AKやKQ</strong>のようにsもoも付けない書き方は、スーテッドとオフスーツの両方をまとめて指すときに使います。</div>
+      </div>
+    </div>
+    <p class="prose">この表記に慣れると、「AKsとAKoでは価値が違う」といった議論が一目で理解できるようになります。全169通りのスターティングハンド（13ペア＋78スーテッド＋78オフスーツ）は、すべてこの2〜3文字で表現できます。</p>
+  </section>
+
+  <div style="max-width:728px;margin:28px auto;padding:0 4px;box-sizing:border-box;text-align:center;">
+    <div style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:1px;margin-bottom:4px;">スポンサーリンク</div>
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1294748320155117" data-ad-slot="2184231625" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <section class="section" id="s3">
+    <h2 class="section-title">ティア別ハンド分類表</h2>
+    <p class="prose">169通りのハンドは、おおまかに4つの層（ティア）に分けて考えると扱いやすくなります。下の表は代表的なハンドと、推奨アクションの目安をまとめたものです。あくまで一般的な指針であり、テーブルの状況やポジションで最適解は変わります。</p>
+    <table class="hand-table">
+      <thead>
+        <tr><th>ティア</th><th>代表ハンド</th><th>推奨アクションの目安</th></tr>
+      </thead>
+      <tbody>
+        <tr class="best"><td class="rank">プレミアム</td><td>AA, KK, QQ, JJ, AKs, AKo</td><td>積極的にレイズ。どのポジションからでも参加できる最上位。</td></tr>
+        <tr><td class="rank">強いハンド</td><td>TT, 99, AQs, AJs, KQs, AQo</td><td>基本はレイズで参加。相手の強いアクションには慎重に。</td></tr>
+        <tr><td class="rank">投機的</td><td>小ペア(22〜88), スーテッドコネクター(87s, 76s), ATs, KJs</td><td>安く見られるなら参加。当たれば大きい「伸びしろ型」。</td></tr>
+        <tr><td class="rank">避けたい</td><td>K3o, Q7o, J4o, 弱いオフスーツA(A6o等)</td><td>原則フォールド。参加しても勝ちにくく損に繋がりやすい。</td></tr>
+      </tbody>
+    </table>
+    <p class="prose"><strong>プレミアムハンド</strong>は、それ単体でも相手より強いことが多く、プリフロップから主導権を握れます。<strong>投機的なハンド</strong>は普段は弱いものの、フロップでストレートやフラッシュ、セット（スリーカード）に化けると大きな利益を生む点が魅力です。一方<strong>避けたいハンド</strong>は、ペアになっても相手に負けやすく（キッカー負け）、長期的にチップを失う原因になります。</p>
+  </section>
+
+  <section class="section" id="s4">
+    <h2 class="section-title">ポジションによる選び方</h2>
+    <p class="prose">ハンド選びで表と同じくらい大切なのが<strong>ポジション</strong>です。自分がどの順番で行動するかによって、参加すべきハンドの範囲（レンジ）は大きく変わります。行動が早い席ほど、後ろに控える人数が多く、強いハンドで割り込まれるリスクが高いためです。</p>
+    <div class="flow">
+      <div class="flow-step">
+        <div class="flow-num">E</div>
+        <div>
+          <div class="flow-title">アーリーポジション（最初に動く席）</div>
+          <div class="flow-desc">後ろに多くの相手が残っているため、レンジは<strong>狭く</strong>する。プレミアムと強いハンドが中心。弱いハンドは思い切って捨てる。</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">M</div>
+        <div>
+          <div class="flow-title">ミドルポジション（中間の席）</div>
+          <div class="flow-desc">アーリーより少し広げてよい。中位のスーテッドや中ペアも状況次第で参加候補に入る。</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">L</div>
+        <div>
+          <div class="flow-title">レイトポジション（後に動く席・ボタン）</div>
+          <div class="flow-desc">相手の行動を見てから決められる最も有利な席。レンジを<strong>広く</strong>取れ、投機的なハンドでも積極的に参加できる。</div>
+        </div>
+      </div>
+    </div>
+    <p class="prose">「アーリーは狭く、レイトは広く」——これがハンドレンジの基本原則です。同じK10sでも、アーリーでは降り、ボタンではレイズ、という判断の違いが生まれます。各ポジションの名前と特徴は<a href="position.html">ポジション解説</a>で詳しく確認できます。</p>
+  </section>
+
+  <section class="section" id="s5">
+    <h2 class="section-title">スーテッド・コネクター・ペアの価値</h2>
+    <p class="prose">同じランクの組み合わせでも、スートやランクの並びで価値は変わります。ここでは3つの重要な概念を押さえておきましょう。</p>
+    <p class="prose"><strong>スーテッドとオフスーツの差</strong>：2枚が同じスートだと、フラッシュ（同じスート5枚）の可能性が加わります。ただしその勝率差はよく誤解されがちで、実際にフラッシュまで完成する確率は限られるため、AKsとAKoの勝率差は通常わずか数パーセント程度です。過大評価は禁物ですが、追加の勝ち筋がある分、スーテッドの方が確実に価値は高いといえます。</p>
+    <p class="prose"><strong>コネクター</strong>：87sや65sのように、ランクが連続した2枚を指します。ストレートを作りやすいのが強みで、特にスート付きの「スーテッドコネクター」は、フラッシュとストレートの両方を狙える伸びしろ豊富なハンドです。ただし完成しないと弱いため、安く参加できる場面向きです。</p>
+    <div class="point-box">
+      <div class="point-box-title">ポケットペアとセットマイニング</div>
+      <div class="point-list">
+        <div class="point-item">22〜88のような小さいペアは、そのままでは強くないが、フロップで3枚目が落ちて<strong>セット（スリーカード）</strong>になると一気に最強クラスになる。</div>
+        <div class="point-item">このセット完成を狙って安くフロップを見に行く戦略を<strong>セットマイニング</strong>と呼ぶ。</div>
+        <div class="point-item">フロップでセットになる確率は約8分の1（約11.8%）。当たれば大きいので、コストが小さいときに狙うのがセオリー。</div>
+      </div>
+    </div>
+    <p class="prose">セットが完成したときに相手から十分なチップを引き出せるか、という<strong>期待値の視点</strong>も大切です。参加コストと見込みリターンのバランスを考える習慣は、<a href="pot_odds.html">ポットオッズ</a>の考え方にも直結します。</p>
+  </section>
+
+  <div style="max-width:728px;margin:28px auto;padding:0 4px;box-sizing:border-box;text-align:center;">
+    <div style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:1px;margin-bottom:4px;">スポンサーリンク</div>
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1294748320155117" data-ad-slot="2184231625" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <section class="section" id="s6">
+    <h2 class="section-title">実践方針とよくあるミス</h2>
+    <p class="prose">理屈が分かっても、実戦では迷いが出るものです。まずはシンプルな方針から始めましょう。</p>
+    <div class="point-box">
+      <div class="point-box-title">初心者向け・最初の実践方針</div>
+      <div class="point-list">
+        <div class="point-item"><strong>タイトに始める</strong>：参加ハンドを絞り、強いハンドが来たときだけプレイする。多くのハンドを捨てる勇気が長期的な安定につながる。</div>
+        <div class="point-item"><strong>迷ったら降りる</strong>：参加するか迷うハンドは、たいてい参加しない方が損が小さい。</div>
+        <div class="point-item"><strong>参加するならレイズ中心</strong>：弱気なコールで受け身に入るより、主導権を持てるレイズを基本にする。</div>
+        <div class="point-item"><strong>ポジションを意識する</strong>：早い席では厳しく、遅い席では少し緩める。同じハンドでも席で判断を変える。</div>
+      </div>
+    </div>
+    <div class="warn-box">
+      <div class="warn-box-title">初心者が陥りやすいミス</div>
+      <div class="warn-list">
+        <div class="warn-item"><strong>弱いA（Ax）で参加しすぎる</strong>：A7oのようなハンドは、相手もAを持つとキッカーで負けやすく、見た目ほど強くない。</div>
+        <div class="warn-item"><strong>絵札（KやQ）が2枚あるだけで参加</strong>：Q9oのような「なんとなく強そう」なハンドは、実は勝ちにくい典型。</div>
+        <div class="warn-item"><strong>スーテッドを過大評価</strong>：同じスートというだけで弱いハンドまで参加すると、フラッシュは滅多に完成せず損をする。</div>
+        <div class="warn-item"><strong>ポジションを無視する</strong>：どの席でも同じ基準で参加してしまい、不利な席で厳しい状況に追い込まれる。</div>
+      </div>
+    </div>
+    <div class="cta-box">
+      <p class="prose" style="margin-bottom:0;">実際のハンドの勝率を計算してみよう。2枚のカードを入力すれば、相手ハンドや状況ごとの勝率がその場で分かります。</p>
+      <a href="index.html">勝率計算ツールを使う</a>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="section" id="s7">
+    <h2 class="section-title">よくある質問（FAQ）</h2>
+    <div class="faq-q">一番強いスターティングハンドは何ですか？</div>
+    <p class="faq-a">AA（ポケットエース、通称ポケットロケット）です。プリフロップの段階では、他のどのハンドに対しても勝率で優位に立ちます。次いでKK、QQ、AKsと続きますが、絶対的な安心ハンドは存在しないため、AAでもフロップ以降の状況次第で降りる判断が必要になることもあります。</p>
+    <div class="faq-q">スーテッドはオフスーツよりどれくらい有利ですか？</div>
+    <p class="faq-a">思われているほど大きな差はありません。たとえばAKsとAKoの勝率差は、対戦相手にもよりますがおおむね数パーセント程度です。フラッシュという追加の勝ち筋がある分スーテッドは確実に価値が高いものの、「同じスートだから」という理由だけで弱いハンドまで参加するのは禁物です。</p>
+    <div class="faq-q">小さいペア（22〜66など）はどうプレイすべきですか？</div>
+    <p class="faq-a">基本は「安く参加してセットを狙う」セットマイニングが有効です。フロップで3枚目が落ちてセットになる確率は約12%。当たれば非常に強く相手から大きく取れる可能性がある一方、外れたら深追いしないのがコツです。参加コストが高い場面では無理をせず降りる判断も大切です。</p>
+    <div class="faq-q">初心者は何ハンドくらいで参加すべきですか？</div>
+    <p class="faq-a">最初はタイトに、上位10〜15%程度のハンドに絞るのがおすすめです。具体的にはプレミアムと強いハンドを中心に、投機的ハンドはレイトポジションで安く入れるときだけ。参加ハンドを絞るほど、判断のブレが減り、負けにくいプレイに近づきます。慣れてきたら少しずつレンジを広げていきましょう。</p>
+    <div class="faq-q">同じハンドでも降りるべきときと参加すべきときがあるのですか？</div>
+    <p class="faq-a">はい。ポジション、相手の行動、テーブルの雰囲気によって最適な判断は変わります。同じKJsでも、アーリーポジションで前の人がレイズしていれば降り、自分がボタンで先頭なら参加、といった使い分けが必要です。「このハンドは常に参加」と固定せず、状況に応じて柔軟に考えることが上達の鍵です。</p>
+  </section>
+
+  <div class="next-games">
+    <div class="next-games-title">関連記事</div>
+    <div class="game-chips">
+      <a href="holdem_rules.html" class="game-chip">ルール</a>
+      <a href="hand_rankings.html" class="game-chip">役の強さ</a>
+      <a href="position.html" class="game-chip">ポジション</a>
+      <a href="pot_odds.html" class="game-chip">ポットオッズ</a>
+      <a href="glossary.html" class="game-chip">用語集</a>
+      <a href="guide.html" class="game-chip">講座トップ</a>
+    </div>
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <a href="index.html">ホーム</a>·<a href="guide.html">ポーカー講座</a>·<a href="privacy.html">プライバシーポリシー</a>·<a href="contact.html">お問い合わせ</a>·<a href="about.html">運営者情報</a>
+  <span class="copy">© 2026 Poker MANIA</span>
+</footer>
+</body>
+</html>

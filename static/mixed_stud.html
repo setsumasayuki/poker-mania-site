@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1294748320155117"
+     crossorigin="anonymous"></script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>セブンカードスタッド（7 Card Stud）のルールと戦略を解説 | ポーカー ミックスゲーム</title>
+<meta name="description" content="セブンカードスタッド（スタッド ポーカー）のルールを日本語で徹底解説。ライブカードの重要性・アップカードの読み方・ストリート別戦略まで。スタッドポーカーを始めるならこのページ。">
+<meta name="keywords" content="スタッド ポーカー ルール,7カードスタッド,Stud ポーカー,スタッド やり方,スタッド 戦略,ミックスゲーム ポーカー,ライブカード,ポーカー スタッド ルール説明">
+<link rel="canonical" href="https://poker-mania.jp/mixed_stud.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://poker-mania.jp/mixed_stud.html">
+<meta property="og:title" content="セブンカードスタッド（7 Card Stud）のルールと戦略を解説">
+<meta property="og:description" content="セブンカードスタッドのルールを日本語で徹底解説。ライブカードの重要性・アップカードの読み方まで。">
+<meta property="og:site_name" content="Poker MANIA">
+<meta property="og:locale" content="ja_JP">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:#1c1c2e;font-family:-apple-system,sans-serif;color:#e8e0d0;min-height:100vh;line-height:1.7;}
+.header{position:sticky;top:0;z-index:50;background:#1c1c2e;border-bottom:1px solid rgba(201,168,76,0.2);padding:12px 16px;display:flex;align-items:center;gap:10px;}
+.header-title{font-size:16px;font-weight:700;color:#c9a84c;}
+.back-link{background:rgba(255,255,255,0.08);border-radius:8px;color:rgba(255,255,255,0.6);font-size:12px;padding:6px 10px;text-decoration:none;}
+.hero{padding:32px 16px 24px;border-bottom:1px solid rgba(255,255,255,0.06);}
+.hero-badge{display:inline-block;background:rgba(201,168,76,0.15);border:1px solid rgba(201,168,76,0.4);border-radius:20px;font-size:11px;font-weight:700;color:#c9a84c;padding:4px 12px;letter-spacing:0.1em;margin-bottom:12px;}
+.hero-title{font-size:24px;font-weight:800;color:#e8e0d0;margin-bottom:8px;line-height:1.3;}
+.hero-title span{color:#c9a84c;}
+.hero-sub{font-size:13px;color:rgba(255,255,255,0.45);line-height:1.6;}
+.toc{margin:16px 16px;background:#252540;border-radius:12px;padding:14px 16px;border:1px solid rgba(255,255,255,0.08);}
+.toc-title{font-size:11px;font-weight:700;color:rgba(201,168,76,0.7);letter-spacing:0.12em;margin-bottom:10px;}
+.toc-list{display:flex;flex-direction:column;gap:6px;}
+.toc-item{font-size:13px;color:rgba(201,168,76,0.8);text-decoration:none;display:flex;align-items:center;gap:8px;}
+.toc-item::before{content:'›';color:#c9a84c;font-size:16px;}
+.content{padding:0 16px 80px;}
+.section{margin-top:28px;}
+.section-title{font-size:17px;font-weight:800;color:#c9a84c;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid rgba(201,168,76,0.2);display:flex;align-items:center;gap:8px;}
+.prose{font-size:14px;color:rgba(255,255,255,0.75);line-height:1.8;margin-bottom:12px;}
+.prose strong{color:#e8e0d0;font-weight:700;}
+.hand-table{width:100%;border-collapse:collapse;margin:12px 0;}
+.hand-table th{background:rgba(201,168,76,0.1);color:#c9a84c;font-size:11px;font-weight:700;padding:8px 10px;text-align:left;}
+.hand-table td{padding:10px 10px;font-size:13px;border-bottom:1px solid rgba(255,255,255,0.06);color:rgba(255,255,255,0.75);}
+.hand-table tr:last-child td{border-bottom:none;}
+.hand-table .rank{color:#c9a84c;font-weight:700;}
+.hand-table .best{background:rgba(201,168,76,0.06);}
+.point-box{background:#252540;border-radius:12px;padding:14px 16px;margin:12px 0;border-left:3px solid #c9a84c;}
+.point-box-title{font-size:12px;font-weight:700;color:#c9a84c;margin-bottom:8px;}
+.point-list{display:flex;flex-direction:column;gap:7px;}
+.point-item{font-size:13px;color:rgba(255,255,255,0.7);display:flex;gap:8px;line-height:1.5;}
+.point-item::before{content:'▸';color:#c9a84c;flex-shrink:0;margin-top:1px;}
+.warn-box{background:rgba(255,80,80,0.08);border-radius:12px;padding:14px 16px;margin:12px 0;border-left:3px solid #e85555;}
+.warn-box-title{font-size:12px;font-weight:700;color:#e85555;margin-bottom:8px;}
+.warn-list{display:flex;flex-direction:column;gap:7px;}
+.warn-item{font-size:13px;color:rgba(255,255,255,0.7);display:flex;gap:8px;line-height:1.5;}
+.warn-item::before{content:'✕';color:#e85555;flex-shrink:0;}
+.flow{display:flex;flex-direction:column;gap:0;}
+.flow-step{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.05);}
+.flow-step:last-child{border-bottom:none;}
+.flow-num{width:28px;height:28px;border-radius:50%;background:#c9a84c;color:#1c1c2e;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;}
+.flow-title{font-size:14px;font-weight:700;color:#e8e0d0;margin-bottom:4px;}
+.flow-desc{font-size:13px;color:rgba(255,255,255,0.55);line-height:1.6;}
+.strat-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0;}
+.strat-card{background:#252540;border-radius:10px;padding:12px;border:1px solid rgba(255,255,255,0.08);}
+.strat-card-title{font-size:11px;font-weight:700;color:#c9a84c;margin-bottom:8px;}
+.strat-card-body{font-size:12px;color:rgba(255,255,255,0.6);line-height:1.6;}
+.divider{height:1px;background:rgba(255,255,255,0.06);margin:24px 0;}
+.next-games{margin-top:28px;background:#252540;border-radius:12px;padding:16px;border:1px solid rgba(255,255,255,0.08);}
+.next-games-title{font-size:12px;font-weight:700;color:rgba(201,168,76,0.7);letter-spacing:0.1em;margin-bottom:12px;}
+.game-chips{display:flex;flex-wrap:wrap;gap:8px;}
+.game-chip{padding:8px 14px;border-radius:20px;font-size:12px;font-weight:700;border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.4);text-decoration:none;display:inline-block;}
+.game-chip.current{border-color:#c9a84c;color:#c9a84c;background:rgba(201,168,76,0.1);}
+</style>
+</head>
+<body>
+<div class="header">
+  <a href="mixed.html" class="back-link">← ミックスゲーム</a>
+  <div class="header-title">🃏 ミックスゲーム</div>
+</div>
+
+<div class="hero">
+  <div class="hero-badge">MIXED GAMES</div>
+  <div class="hero-title"><span>スタッド（7 Card Stud）</span><br>完全ガイド</div>
+  <div class="hero-sub">7 Card Stud｜強いハンドを作るハイゲーム。相手のアップカードとライブカードの管理が鍵。</div>
+</div>
+
+<div class="toc">
+  <div class="toc-title">目次</div>
+  <div class="toc-list">
+    <a class="toc-item" href="#basics">ゲームの基本</a>
+    <a class="toc-item" href="#ranking">ハンドランキング</a>
+    <a class="toc-item" href="#flow">ゲームの流れ</a>
+    <a class="toc-item" href="#strategy">基本戦略</a>
+    <a class="toc-item" href="#live">ライブカードの重要性</a>
+    <a class="toc-item" href="#tips">実践のコツ</a>
+  </div>
+</div>
+
+<div class="content">
+
+  <div class="section" id="basics">
+    <div class="section-title">📖 ゲームの基本</div>
+    <div class="prose">
+      7カードスタッドは<strong>NLHと同じく強いハンドが勝つハイゲーム</strong>。7枚配られるカードの中から最強の5枚を作る。コミュニティカードはなく、相手のアップカード（表向きのカード）が見えるのが特徴。
+    </div>
+    <div class="point-box">
+      <div class="point-box-title">NLHとの主な違い</div>
+      <div class="point-list">
+        <div class="point-item">コミュニティカードなし、7枚を順番に受け取る</div>
+        <div class="point-item">相手のアップカード（表向き4枚）が見える</div>
+        <div class="point-item">ブラインドなし、アンティ+ブリングイン方式</div>
+        <div class="point-item">ドローなし、配られたカードのみで勝負</div>
+        <div class="point-item">ライブカード（まだ場に出ていないカード）の管理が重要</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="ranking">
+    <div class="section-title">🏆 ハンドランキング</div>
+    <div class="prose">NLHと同じハンドランキング。強い順に：</div>
+    <table class="hand-table">
+      <tr><th>順位</th><th>ハンド</th></tr>
+      <tr class="best"><td class="rank">#1</td><td>ロイヤルフラッシュ</td></tr>
+      <tr><td class="rank">#2</td><td>ストレートフラッシュ</td></tr>
+      <tr><td class="rank">#3</td><td>フォーオブアカインド（4枚同じ）</td></tr>
+      <tr><td class="rank">#4</td><td>フルハウス</td></tr>
+      <tr><td class="rank">#5</td><td>フラッシュ</td></tr>
+      <tr><td class="rank">#6</td><td>ストレート</td></tr>
+      <tr><td class="rank">#7</td><td>スリーオブアカインド</td></tr>
+      <tr><td class="rank">#8</td><td>ツーペア</td></tr>
+      <tr><td class="rank">#9</td><td>ワンペア</td></tr>
+      <tr><td class="rank">#10</td><td>ハイカード</td></tr>
+    </table>
+  </div>
+
+  <div class="section" id="flow">
+    <div class="section-title">🔄 ゲームの流れ</div>
+    <div class="flow">
+      <div class="flow-step">
+        <div class="flow-num">1</div>
+        <div class="flow-content">
+          <div class="flow-title">アンティ & 3rdストリート</div>
+          <div class="flow-desc">全員がアンティをポスト。3枚配られる（2枚伏せ＋1枚表）。最も低いアップカードを持つプレイヤーがブリングイン。以降は最も高いアップカードから先にアクション。</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">2</div>
+        <div class="flow-content">
+          <div class="flow-title">4thストリート</div>
+          <div class="flow-desc">1枚表向きで配られベッティング。この時点でペアが見えているプレイヤーはビッグベットが可能。</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">3</div>
+        <div class="flow-content">
+          <div class="flow-title">5thストリート</div>
+          <div class="flow-desc">1枚表向きで配られベッティング。5thからベットサイズがビッグベットに固定。</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">4</div>
+        <div class="flow-content">
+          <div class="flow-title">6thストリート</div>
+          <div class="flow-desc">1枚表向きで配られベッティング。</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">5</div>
+        <div class="flow-content">
+          <div class="flow-title">7thストリート（リバー）</div>
+          <div class="flow-desc">最後の1枚は伏せで配られる。最終ベッティング後ショーダウン。最強ハンドが勝ち。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="strategy">
+    <div class="section-title">♟️ 基本戦略</div>
+    <div class="prose"><strong>3rdストリートの判断</strong></div>
+    <table class="hand-table">
+      <tr><th>スターティングハンド</th><th>評価</th><th>アクション</th></tr>
+      <tr><td>ポケットペア（AA・KK・QQ）</td><td style="color:#4adc90;">◎ 強い</td><td>レイズ</td></tr>
+      <tr><td>スリーカード（同スート3枚）</td><td style="color:#4adc90;">◎ 強い</td><td>レイズ</td></tr>
+      <tr><td>ハイペア（JJ〜99）</td><td style="color:#4adc90;">○ まずまず</td><td>レイズ/コール</td></tr>
+      <tr><td>コネクター（同スート高カード）</td><td style="color:#c9a84c;">△ 可能性あり</td><td>ライブなら参加</td></tr>
+      <tr><td>ローペア（88以下）</td><td style="color:#e85555;">△ 微妙</td><td>状況次第</td></tr>
+      <tr><td>バラバラのハイカード3枚</td><td style="color:#e85555;">✕ 弱い</td><td>フォールド</td></tr>
+    </table>
+
+    <div class="strat-grid">
+      <div class="strat-card">
+        <div class="strat-card-title">3rd〜4th</div>
+        <div class="strat-card-body">スタートハンドで判断。ライブカードがあることを確認してから参加。</div>
+      </div>
+      <div class="strat-card">
+        <div class="strat-card-title">5th以降</div>
+        <div class="strat-card-body">ベットが倍になる。ストレート・フラッシュドローも含め手の可能性を評価。</div>
+      </div>
+      <div class="strat-card">
+        <div class="strat-card-title">強気になれる時</div>
+        <div class="strat-card-body">スリーカード・フルハウス完成・相手のアップカードが弱い時。</div>
+      </div>
+      <div class="strat-card">
+        <div class="strat-card-title">降りる判断</div>
+        <div class="strat-card-body">ライブカードがなくなった時・相手のボードが強く見える時。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="live">
+    <div class="section-title">🎯 ライブカードの重要性</div>
+    <div class="prose">
+      スタッドで最も重要な概念が<strong>ライブカード</strong>。自分が必要なカードがまだ場に出ていない（生きている）かどうかを常に確認する。
+    </div>
+    <div class="point-box">
+      <div class="point-box-title">ライブカードの考え方</div>
+      <div class="point-list">
+        <div class="point-item">他プレイヤーのアップカードを見て、必要なカードが残っているか確認</div>
+        <div class="point-item">ペアを狙っているカードが場に2枚出ていたら諦める</div>
+        <div class="point-item">フラッシュドローで同スートが多く出ていたら厳しい</div>
+        <div class="point-item">ライブカードが豊富なほどドローの価値が高い</div>
+        <div class="point-item">アップカードをフォールドしたプレイヤーのカードも覚えておく</div>
+      </div>
+    </div>
+    <div class="warn-box">
+      <div class="warn-box-title">⚠️ よくあるミス</div>
+      <div class="warn-list">
+        <div class="warn-item">場に出ているカードを追跡せずにプレイしてしまう</div>
+        <div class="warn-item">ライブでないドローに大きく投資してしまう</div>
+        <div class="warn-item">相手のアップカードが強いのに無視してベットしてしまう</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="tips">
+    <div class="section-title">💡 実践のコツ</div>
+    <div class="point-box">
+      <div class="point-box-title">初心者が意識すべきこと</div>
+      <div class="point-list">
+        <div class="point-item"><strong>場のカードを常に追跡</strong> → スタッドの基本中の基本</div>
+        <div class="point-item"><strong>スタートハンドを絞る</strong> → NLHより参加基準を厳しくする</div>
+        <div class="point-item"><strong>相手のアップカードの変化を見る</strong> → 4th・5thで何を引いたか</div>
+        <div class="point-item"><strong>5thで判断する</strong> → ベットが倍になる前に降りるか続けるか決める</div>
+        <div class="point-item"><strong>スリーカードは最強スタート</strong> → フルハウス・フォーカードのチャンス</div>
+      </div>
+    </div>
+    <div class="prose" style="margin-top:16px;">
+      スタッドはNLHと同じハンドランキングなので<strong>初めてのミックスゲームとして入りやすい</strong>。ただしライブカードの管理と相手のボード読みが必須。これをマスターするとポーカー全般のスキルも上がる。
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="next-games">
+    <div class="next-games-title">他のミックスゲーム</div>
+    <div class="game-chips">
+      <a class="game-chip" href="mixed_27td.html">2-7 Triple Draw</a>
+      <a class="game-chip" href="mixed_razz.html">Razz</a>
+      <span class="game-chip current">Stud</span>
+      <a class="game-chip" href="mixed_badugi.html">Badugi</a>
+      <a class="game-chip" href="mixed_a5.html">A-to-5</a>
+    </div>
+  </div>
+
+</div>
+<!-- Google AdSense: bottom horizontal banner (pokermania-incontent / slot 2184231625) -->
+<div style="max-width:728px;margin:20px auto 32px;padding:0 12px;box-sizing:border-box;text-align:center;">
+  <div style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:1px;margin-bottom:4px;">スポンサーリンク</div>
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-1294748320155117"
+       data-ad-slot="2184231625"
+       data-ad-format="horizontal"
+       data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+<footer style="border-top:1px solid rgba(201,168,76,0.2);margin-top:8px;padding:22px 16px 40px;text-align:center;font-family:-apple-system,sans-serif;">
+  <a href="index.html" style="color:rgba(201,168,76,0.85);font-size:12px;text-decoration:none;margin:0 5px;">ホーム</a><span style="color:rgba(255,255,255,0.25);">·</span><a href="guide.html" style="color:rgba(201,168,76,0.85);font-size:12px;text-decoration:none;margin:0 5px;">ポーカー講座</a><span style="color:rgba(255,255,255,0.25);">·</span><a href="privacy.html" style="color:rgba(201,168,76,0.85);font-size:12px;text-decoration:none;margin:0 5px;">プライバシーポリシー</a><span style="color:rgba(255,255,255,0.25);">·</span><a href="contact.html" style="color:rgba(201,168,76,0.85);font-size:12px;text-decoration:none;margin:0 5px;">お問い合わせ</a><span style="color:rgba(255,255,255,0.25);">·</span><a href="about.html" style="color:rgba(201,168,76,0.85);font-size:12px;text-decoration:none;margin:0 5px;">運営者情報</a>
+  <div style="margin-top:12px;font-size:11px;color:rgba(255,255,255,0.3);">© 2026 Poker MANIA</div>
+</footer>
+
+</body>
+</html>

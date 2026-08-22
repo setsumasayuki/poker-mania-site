@@ -1,0 +1,27 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "static/blog/images"
+public_folder: "/blog/images"
+
+locale: "ja"
+
+collections:
+  - name: "posts"
+    label: "ブログ記事"
+    label_singular: "記事"
+    description: "海外遠征記・プレイ日記などのブログ記事"
+    folder: "content/posts"
+    create: true
+    slug: "{{fields.slug}}"
+    extension: "md"
+    format: "frontmatter"
+    summary: "{{title}}（{{date}}）"
+    fields:
+      - { label: "タイトル", name: "title", widget: "string" }
+      - { label: "URL用スラッグ（半角英字とハイフンのみ・例: manila / korea）", name: "slug", widget: "string", pattern: ["^[a-z0-9-]+$", "半角英小文字・数字・ハイフンのみで入力してください"], hint: "これがそのままURLになります → /blog/●●/" }
+      - { label: "公開日", name: "date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, format: "YYYY-MM-DD" }
+      - { label: "タグ", name: "tag", widget: "select", options: ["遠征記", "日記"], default: "遠征記" }
+      - { label: "一覧に出す説明（1〜2文）", name: "description", widget: "text", required: false }
+      - { label: "本文", name: "body", widget: "markdown" }

@@ -1,0 +1,1581 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1294748320155117"
+     crossorigin="anonymous"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-3D8000X76H"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-3D8000X76H');
+</script>
+<title>ポーカークエスト | 役で戦うポーカーRPG - Poker MANIA</title>
+<meta name="description" content="ポーカーの役で敵を倒す無料ブラウザRPG。役が強いほど高ダメージ。15階のダンジョンに潜み、アウツ計算やポットオッズのクイズに答えて最深部のボスを目指せ。遊びながらポーカーが強くなる。">
+<meta name="keywords" content="ポーカー ゲーム 無料,ポーカー RPG,ポーカー 役 ゲーム,ポーカー 練習 ゲーム,アウツ計算 練習,ポットオッズ クイズ">
+<link rel="canonical" href="https://poker-mania.jp/quest/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://poker-mania.jp/quest/">
+<meta property="og:title" content="ポーカークエスト | 役で戦うポーカーRPG">
+<meta property="og:description" content="ポーカーの役で敵を倒す無料ブラウザRPG。15階のダンジョンとポーカークイズに挑戦。遊びながらポーカーが強くなる。">
+<meta property="og:site_name" content="Poker MANIA">
+<meta property="og:locale" content="ja_JP">
+<link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
+<!-- PWA（ホーム画面追加・全画面アプリ体験） -->
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#1a5c3a">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="ポーカークエスト">
+<meta name="mobile-web-app-capable" content="yes">
+<style>
+:root{
+  --felt:#1a5c3a;
+  --felt-dark:#0e3d25;
+  --gold:#e8c452;
+  --ink:#10131a;
+  --window:#101a2e;
+  --white:#f5f1e6;
+  --red:#d4453a;
+  --hp:#4fc46a;
+  --hp-low:#d4453a;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+html,body{height:100%;}
+body{
+  font-family:'DotGothic16','Hiragino Kaku Gothic ProN',monospace,sans-serif;
+  background:radial-gradient(ellipse at 50% 30%, var(--felt) 0%, var(--felt-dark) 75%);
+  color:var(--white);
+  display:flex;justify-content:center;align-items:flex-start;
+  min-height:100%;
+  overflow-x:hidden;
+}
+#game{
+  width:100%;max-width:430px;min-height:100vh;
+  display:flex;flex-direction:column;
+  padding:10px 12px 16px;
+  position:relative;
+}
+
+/* ---------- top bar ---------- */
+#topbar{
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:13px;color:var(--gold);
+  letter-spacing:1px;
+  padding:4px 2px 8px;
+}
+#floor{font-size:15px;}
+#homeBtn{
+  font-size:12px;
+  color:var(--gold);
+  text-decoration:none;
+  border:2px solid var(--gold);
+  border-radius:6px;
+  padding:4px 9px;
+  letter-spacing:0;
+  font-weight:bold;
+  white-space:nowrap;
+  background:rgba(0,0,0,.15);
+}
+#homeBtn:active{background:var(--gold);color:#3a2a00;}
+/* ---------- builds ---------- */
+#buildTitle{color:var(--gold);font-size:22px;margin-bottom:6px;}
+#buildHint{color:rgba(255,255,255,.6);font-size:12px;margin-bottom:18px;}
+#buildList{display:flex;flex-direction:column;gap:12px;width:100%;max-width:360px;}
+.buildCard{
+  background:var(--felt-dark);border:2px solid var(--gold);border-radius:12px;
+  padding:14px 16px;text-align:left;cursor:pointer;color:var(--white);
+}
+.buildCard:active{background:var(--gold);color:#3a2a00;}
+.buildCard .bc-name{font-size:17px;font-weight:bold;color:var(--gold);margin-bottom:3px;}
+.buildCard:active .bc-name{color:#3a2a00;}
+.buildCard .bc-tag{font-size:11px;opacity:.8;margin-bottom:6px;}
+.buildCard .bc-desc{font-size:12px;line-height:1.5;}
+#switchBtn{
+  font-size:11px;color:var(--gold);text-decoration:none;
+  border:2px solid var(--gold);border-radius:6px;padding:4px 9px;
+  letter-spacing:0;font-weight:bold;white-space:nowrap;background:rgba(0,0,0,.15);cursor:pointer;
+}
+#switchBtn:active{background:var(--gold);color:#3a2a00;}
+#switchBtn.hidden{display:none;}
+
+/* ---------- myhand ---------- */
+#mhStatus{font-size:13px;color:var(--gold);margin-bottom:10px;line-height:1.5;min-height:18px;}
+#mhStatus .mh-cards{font-size:18px;font-weight:bold;}
+#mhStatus .mh-lv{opacity:.9;}
+#btnMyHand{
+  font-size:13px;background:var(--felt-dark);border:2px solid var(--gold);
+  color:var(--gold);border-radius:8px;
+}
+#mhTitle{color:var(--gold);font-size:20px;margin-bottom:6px;}
+#mhRegHint{font-size:12px;opacity:.8;margin-bottom:14px;max-width:340px;line-height:1.5;}
+#mhPicked{display:flex;gap:10px;justify-content:center;margin-bottom:14px;min-height:54px;}
+.mh-slot{
+  width:40px;height:54px;border:2px dashed var(--gold);border-radius:6px;
+  display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:bold;
+  background:var(--white);color:var(--ink);
+}
+.mh-slot.empty{color:rgba(0,0,0,.25);border-style:dashed;}
+.mh-slot.red{color:var(--red);}
+#mhSuitTabs{display:flex;gap:8px;margin-bottom:10px;}
+.mh-suit{
+  width:44px;height:40px;border:2px solid var(--gold);border-radius:8px;
+  background:var(--felt-dark);color:var(--white);font-size:20px;cursor:pointer;
+}
+.mh-suit.red{color:var(--red);}
+.mh-suit.sel{background:var(--gold);color:#3a2a00;}
+#mhRankGrid{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;width:100%;max-width:340px;margin-bottom:14px;}
+.mh-rank{
+  background:var(--white);color:var(--ink);border-radius:5px;font-size:13px;
+  padding:9px 0;text-align:center;cursor:pointer;font-weight:bold;border:2px solid transparent;
+}
+.mh-rank.red{color:var(--red);}
+.mh-rank.taken{opacity:.3;cursor:default;}
+#mhLevelInfo{font-size:12px;color:var(--gold);opacity:.9;margin-bottom:14px;min-height:16px;}
+.mhBtns{display:flex;gap:10px;}
+#mhResetWrap{margin-top:14px;}
+#mhReset{font-size:11px;background:transparent;border:1px solid rgba(255,80,80,.5);color:#ff9a8f;border-radius:6px;padding:5px 10px;}
+/* ---------- in-battle myhand panel ---------- */
+#mhBattlePanel{
+  margin-top:14px;border:2px solid var(--gold);border-radius:10px;
+  padding:10px 12px;background:rgba(0,0,0,.18);text-align:center;
+}
+#mhBattlePanel.none{border-style:dashed;opacity:.7;}
+#mhBattlePanel .mhp-cards{font-size:20px;font-weight:bold;letter-spacing:2px;margin-bottom:4px;}
+#mhBattlePanel .mhp-lv{font-size:12px;color:var(--gold);margin-bottom:6px;}
+#mhBattlePanel .mhp-desc{font-size:11px;line-height:1.5;opacity:.85;}
+#mhBattlePanel .mhp-red{color:var(--red);}
+
+/* ---------- enemy area ---------- */
+#enemyArea{
+  text-align:center;
+  padding:6px 0 2px;
+  min-height:148px;
+}
+#enemySprite{
+  font-size:64px;
+  line-height:1.1;
+  display:inline-block;
+  transition:transform .12s;
+  filter:drop-shadow(0 6px 8px rgba(0,0,0,.45));
+}
+#enemySprite.hit{animation:shake .35s;}
+#enemySprite.die{animation:vanish .6s forwards;}
+@keyframes shake{
+  0%,100%{transform:translateX(0)}
+  20%{transform:translateX(-9px)}
+  40%{transform:translateX(8px)}
+  60%{transform:translateX(-6px)}
+  80%{transform:translateX(4px)}
+}
+@keyframes vanish{to{transform:scale(.2) rotate(20deg);opacity:0}}
+#enemyName{font-size:15px;margin-top:2px;}
+.bar{
+  height:12px;border:2px solid var(--white);
+  background:#000;border-radius:6px;overflow:hidden;
+  margin-top:4px;
+}
+.bar>div{height:100%;background:var(--hp);transition:width .4s;}
+.bar>div.low{background:var(--hp-low);}
+#enemyBarWrap{width:200px;margin:0 auto;}
+#enemyHpText{font-size:11px;opacity:.85;margin-top:2px;}
+
+/* ---------- damage popup ---------- */
+.dmg{
+  position:absolute;
+  font-size:30px;color:var(--gold);
+  text-shadow:2px 2px 0 #000;
+  pointer-events:none;
+  animation:fly 1s forwards;
+  z-index:30;
+  white-space:nowrap;
+}
+.dmg.player{color:var(--red);}
+@keyframes fly{
+  0%{opacity:0;transform:translateY(8px) scale(.6)}
+  20%{opacity:1;transform:translateY(-6px) scale(1.15)}
+  100%{opacity:0;transform:translateY(-44px) scale(1)}
+}
+
+/* ---------- message window ---------- */
+#msgWin{
+  border:3px solid var(--white);
+  border-radius:8px;
+  background:linear-gradient(180deg,#16223c, var(--window));
+  box-shadow:inset 0 0 0 2px #000, 0 4px 10px rgba(0,0,0,.4);
+  padding:10px 12px;
+  font-size:14px;
+  line-height:1.7;
+  min-height:74px;
+  margin:6px 0 10px;
+  white-space:pre-line;
+}
+#handName{color:var(--gold);}
+
+/* ---------- player ---------- */
+#playerRow{
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:13px;margin-bottom:6px;
+}
+#playerBarWrap{flex:1;margin:0 10px;}
+#playerHpText{font-size:12px;min-width:74px;text-align:right;}
+
+/* ---------- cards ---------- */
+#cards{
+  display:flex;gap:6px;justify-content:center;
+  margin:4px 0 12px;
+  perspective:600px;
+}
+.card{
+  width:62px;height:88px;
+  background:var(--white);
+  color:var(--ink);
+  border-radius:7px;
+  border:2px solid #b9b29c;
+  display:flex;flex-direction:column;justify-content:space-between;
+  padding:5px 6px;
+  font-size:18px;
+  cursor:pointer;
+  transition:transform .15s, box-shadow .15s;
+  position:relative;
+  user-select:none;
+  box-shadow:0 3px 6px rgba(0,0,0,.4);
+}
+.card .rank{font-size:19px;font-weight:bold;}
+.card .suit{font-size:24px;text-align:right;}
+.card.redsuit{color:var(--red);}
+.card.sel{
+  transform:translateY(-14px);
+  box-shadow:0 10px 14px rgba(0,0,0,.5), 0 0 0 3px var(--gold);
+}
+.card.sel::after{
+  content:"交換";
+  position:absolute;top:-22px;left:50%;transform:translateX(-50%);
+  font-size:10px;color:var(--gold);
+}
+.card.back{
+  background:repeating-linear-gradient(45deg,#3a5da8 0 6px,#2b4787 6px 12px);
+  color:transparent;
+}
+.card.deal{animation:dealIn .3s backwards;}
+@keyframes dealIn{
+  from{transform:translateY(40px) rotateY(90deg);opacity:0}
+  to{transform:translateY(0) rotateY(0);opacity:1}
+}
+
+/* ---------- buttons ---------- */
+#actions{display:flex;gap:10px;}
+button{
+  font-family:inherit;
+  flex:1;
+  font-size:16px;
+  padding:14px 8px;
+  border-radius:8px;
+  border:3px solid var(--white);
+  background:linear-gradient(180deg,#16223c,var(--window));
+  color:var(--white);
+  box-shadow:inset 0 0 0 2px #000;
+  cursor:pointer;
+  letter-spacing:1px;
+}
+button:active{transform:translateY(2px);}
+button.gold{border-color:var(--gold);color:var(--gold);}
+button:disabled{opacity:.4;}
+.hidden{display:none !important;}
+
+/* ---------- overlays (title / reward / gameover) ---------- */
+.overlay{
+  position:fixed;inset:0;
+  background:rgba(5,12,8,.88);
+  display:flex;flex-direction:column;justify-content:center;align-items:center;
+  z-index:50;
+  padding:24px 14px;
+  text-align:center;
+}
+#title h1{
+  font-size:44px;color:var(--gold);
+  text-shadow:3px 3px 0 #000;
+  letter-spacing:3px;
+  margin-bottom:4px;
+}
+#title .sub{font-size:14px;opacity:.9;margin-bottom:30px;line-height:1.8;}
+#title .suits{font-size:28px;letter-spacing:10px;margin-bottom:24px;}
+#title .suits span:nth-child(odd){color:var(--red);}
+.overlay button{flex:none;width:230px;margin-top:10px;}
+/* マイハンド登録の横並びボタンは画面幅に合わせて伸縮（固定230pxだとスマホで横はみ出し） */
+.mhBtns{width:100%;max-width:340px;}
+.mhBtns button{flex:1 1 0;width:auto;min-width:0;}
+
+#rewardBox h2{color:var(--gold);font-size:20px;margin-bottom:6px;}
+#rewardBox p{font-size:13px;opacity:.9;margin-bottom:18px;}
+.rewardBtn{
+  width:280px;text-align:left;font-size:14px;line-height:1.4;
+  margin-top:8px;flex:none;padding:10px 12px;
+}
+.rewardBtn small{display:block;font-size:11px;opacity:.75;}
+
+#gameover h1{font-size:34px;color:var(--red);text-shadow:3px 3px 0 #000;margin-bottom:10px;}
+#gameover p{font-size:15px;line-height:2;}
+
+/* ---------- deck viewer ---------- */
+button.mini{
+  flex:none;
+  font-size:12px;
+  padding:5px 10px;
+  border-width:2px;
+  border-radius:6px;
+  letter-spacing:0;
+  box-shadow:inset 0 0 0 1px #000;
+}
+#deckBox{width:100%;max-width:400px;}
+#deckBox h2{color:var(--gold);font-size:18px;margin-bottom:6px;}
+.dlegend{font-size:11px;opacity:.85;margin-bottom:12px;line-height:1.7;}
+.dlegend b{color:var(--gold);}
+.drow{
+  display:grid;
+  grid-template-columns:20px repeat(13,1fr);
+  gap:3px;
+  margin-bottom:5px;
+  align-items:center;
+}
+.dsuit{font-size:16px;text-align:center;}
+.dsuit.redtxt{color:var(--red);}
+.dcell{
+  background:var(--white);
+  color:var(--ink);
+  border-radius:3px;
+  font-size:10px;
+  padding:5px 0;
+  text-align:center;
+}
+.dcell.red{color:var(--red);}
+.dcell.hand{box-shadow:0 0 0 2px var(--gold);}
+.dcell.out{opacity:.15;}
+#btnDeckClose{margin-top:16px;}
+/* ---------- skills ---------- */
+#skills{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px;}
+button.skill{
+  font-size:13px;
+  padding:8px 2px 7px;
+  border-width:2px;
+  border-radius:7px;
+  letter-spacing:0;
+  line-height:1.3;
+}
+button.skill small{
+  display:block;
+  font-size:9px;
+  color:var(--gold);
+  opacity:.9;
+  margin-top:3px;
+  letter-spacing:0;
+}
+#deckHint{
+  text-align:center;
+  font-size:11px;
+  color:var(--gold);
+  opacity:.75;
+  margin-top:12px;
+  letter-spacing:.5px;
+}
+/* ---------- quiz ---------- */
+#quizBox{width:100%;max-width:380px;margin:0 auto;max-height:90vh;overflow-y:auto;}
+#quizTag{color:var(--red);font-weight:bold;font-size:14px;margin-bottom:4px;letter-spacing:1px;}
+#quizCategory{
+  display:inline-block;background:var(--gold);color:#3a2a00;
+  font-size:11px;font-weight:bold;padding:2px 10px;border-radius:10px;margin-bottom:12px;
+}
+#quizQ{font-size:15px;line-height:1.6;margin-bottom:16px;min-height:44px;}
+#quizChoices{display:flex;flex-direction:column;gap:9px;}
+button.qch{
+  width:100%;font-size:16px;padding:13px 8px;border-width:2px;border-radius:8px;
+  background:var(--white);color:var(--ink);font-weight:bold;
+}
+button.qch:disabled{opacity:1;}
+button.qch.correct{background:#2ec27e;color:#fff;box-shadow:0 0 0 3px #1a8f57;}
+button.qch.wrong{background:var(--red);color:#fff;}
+#quizResult{margin-top:16px;font-size:15px;font-weight:bold;line-height:1.6;}
+#quizResult.ok{color:#2ec27e;}
+#quizResult.ng{color:var(--red);}
+</style>
+</head>
+<body>
+<div id="game">
+  <div id="topbar">
+    <a id="homeBtn" href="https://poker-mania.jp">‹ MANIA</a>
+    <span id="floor">B1F</span>
+    <button class="mini" id="deckBtn">山札 47</button>
+    <span id="chips">💰0</span>
+    <button id="switchBtn" class="hidden">🎲 ジョブ変更</button>
+    <span id="atkStat">ATK x1.0</span>
+  </div>
+
+  <div id="enemyArea">
+    <div id="enemySprite">🐟</div>
+    <div id="enemyName">フィッシュスライム</div>
+    <div id="enemyBarWrap" class="bar"><div id="enemyBar" style="width:100%"></div></div>
+    <div id="enemyHpText"></div>
+  </div>
+
+  <div id="msgWin">カードを5枚くばった！\n交換するカードを選んで攻撃しろ！</div>
+
+  <div id="playerRow">
+    <span>ゆうしゃ</span>
+    <div id="playerBarWrap" class="bar"><div id="playerBar" style="width:100%"></div></div>
+    <span id="playerHpText">100/100</span>
+  </div>
+
+  <div id="cards"></div>
+
+  <div id="actions">
+    <button id="btnSwap">えらんだ札を交換</button>
+    <button id="btnAttack" class="gold">このまま攻撃！</button>
+  </div>
+  <div id="skills">
+    <button class="skill" id="skAllin">オールイン<small>💰40｜攻撃2倍 反撃も2倍</small></button>
+    <button class="skill" id="skMisdeal">ミスディール<small>💰25｜手札を配り直す</small></button>
+    <button class="skill" id="skFold">フォールド<small>💰30｜降りて回復する</small></button>
+    <button class="skill" id="skCheckraise">チェックレイズ<small>💰35｜1ターン耐え 次2倍</small></button>
+    <button class="skill" id="skRabbit">ラビットハント<small>💰20｜次の5枚をのぞく</small></button>
+    <button class="skill" id="skRake">レーキバック<small>💰20｜3T 与ダメ15%回復</small></button>
+  </div>
+  <div id="deckHint">「山札」をタップすると残存デッキが見れます</div>
+  <div id="mhBattlePanel"></div>
+</div>
+
+<!-- quiz -->
+<div class="overlay hidden" id="quizView">
+  <div id="quizBox">
+    <div id="quizTag">⚔️ B<span id="quizFloor">10</span>F・ポーカー検定</div>
+    <div id="quizCategory">アウツ計算</div>
+    <p id="quizQ">問題テキスト</p>
+    <div id="quizChoices"></div>
+    <div id="quizResult" class="hidden"></div>
+    <div class="dlegend" style="margin-top:10px;">正解：先制攻撃／不正解：敵から先制を食らう<br>※確率は「1アウツ＝2%」、最大アウツが山に残っている前提で計算</div>
+  </div>
+</div>
+
+<!-- deck viewer -->
+<div class="overlay hidden" id="deckView">
+  <div id="deckBox">
+    <h2 id="deckTitle">残存カード</h2>
+    <p class="dlegend"><b>金枠</b>＝手札　うすい＝捨て札<br>※山札は毎ターン配り直しや</p>
+    <div id="deckGrid"></div>
+    <button class="gold" id="btnDeckClose">とじる</button>
+  </div>
+</div>
+
+<!-- title -->
+<div class="overlay" id="title">
+  <div class="suits"><span>♥</span><span>♠</span><span>♦</span><span>♣</span></div>
+  <h1>POKER QUEST</h1>
+  <div class="sub">役の強さが攻撃力。<br>30階に潜む猛者たちを倒せ。<br>チップを稼いで技をくり出せ。<br>最深部に待つ者の正体は——</div>
+  <div id="mhStatus"></div>
+  <button class="gold" id="btnStart">ぼうけんに出る</button>
+  <button id="btnResume" class="hidden">▶ つづきから</button>
+  <!-- フィールド探索は開発中。完成まで hidden（相棒追従を仕上げたら class="hidden" を外す） -->
+  <button id="btnField" class="hidden">🗺️ フィールドに出かける</button>
+  <button id="btnMyHand">🃏 マイハンド登録</button>
+  <!-- 通信対戦は来週公開予定。準備中のため hidden（来週この class="hidden" を外す） -->
+  <button id="btnPvp" class="hidden">⚔️ 通信対戦</button>
+  <button id="btnRank">🏆 ランキング</button>
+  <button id="btnAuth">👤 ログイン / 登録</button>
+</div>
+
+<!-- myhand register -->
+<div class="overlay hidden" id="mhRegister">
+  <h2 id="mhTitle">🃏 マイハンドを登録</h2>
+  <div id="mhRegHint">相棒の2枚を選べ。スートは見た目用で、判定はランクのみ（QJならスート問わず発動）</div>
+  <div id="mhPicked"></div>
+  <div id="mhSuitTabs"></div>
+  <div id="mhRankGrid"></div>
+  <div id="mhLevelInfo"></div>
+  <div class="mhBtns">
+    <button class="gold" id="mhSave" disabled>登録する</button>
+    <button id="mhClose">とじる</button>
+  </div>
+  <div id="mhResetWrap"><button id="mhReset">登録を消す（レベルもリセット）</button></div>
+</div>
+
+<!-- build select -->
+<div class="overlay hidden" id="buildSelect">
+  <h2 id="buildTitle">ジョブを選べ</h2>
+  <div id="buildHint">15階以降はいつでも変更できる</div>
+  <div id="buildList"></div>
+</div>
+
+<!-- reward -->
+<div class="overlay hidden" id="reward">
+  <div id="rewardBox">
+    <h2>LEVEL UP!</h2>
+    <p>ごほうびを1つ選べ</p>
+    <div id="rewardList"></div>
+  </div>
+</div>
+
+<!-- checkpoint (深層B21F〜B28Fの中間セーブポイント) -->
+<div class="overlay hidden" id="checkpoint">
+  <h1 style="font-size:30px;color:var(--gold);text-shadow:3px 3px 0 #000;margin-bottom:8px;">🏁 中間セーブポイント</h1>
+  <p id="cpText" style="font-size:14px;line-height:1.9;margin-bottom:20px;"></p>
+  <button class="gold" id="cpSaveContinue">セーブしてつづける</button>
+  <button id="cpSaveQuit">セーブしてやめる</button>
+  <button id="cpNoSave">セーブせず進む</button>
+</div>
+
+<!-- game over -->
+<div class="overlay hidden" id="gameover">
+  <h1>GAME OVER</h1>
+  <p id="goText"></p>
+  <button class="gold" id="btnRetry">もういちど</button>
+  <button id="btnResumeGO" class="hidden">▶ つづきから</button>
+</div>
+
+<!-- フェーズ1：Supabase(CDN) ＋ 接続設定（ゲーム本体より先に読み込む） -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/config.js"></script>
+
+<script>
+// ================= state =================
+const S = {
+  floor:1, hp:100, maxHp:100, atk:1.0, def:0,
+  swapsLeft:1, swapsMax:1,
+  enemy:null, busy:false, selected:new Set(), hand:[], discards:[],
+  bestHand:'', kills:0, chips:0, allin:false, checkraise:false, rake:0,
+  build:'gambler', quizAtkBonus:0,
+  chipBonus:0, lowHpAtk:false, lowHpDef:false, foldUp:0, quizChip:false, roleBonus:null,
+  mode:'dungeon'   // 'dungeon' | 'field'（フィールド探索モード）
+};
+
+// ================= builds =================
+const BUILDS={
+  gambler:{
+    name:'ギャンブラー', emoji:'🎲',
+    desc:'役のダメージ+20%／ただし被ダメージも+20%',
+    tag:'ハイリスク・ハイリターン',
+    dmgMul:1.20, takeMul:1.20, skillMul:1.0, regen:0, foldBonus:0, quizGain:0
+  },
+  mathician:{
+    name:'数学者', emoji:'🧮',
+    desc:'技のコイン消費-30%／クイズ正解で攻撃力UP／火力は控えめ',
+    tag:'知識を力に',
+    dmgMul:0.92, takeMul:1.0, skillMul:0.7, regen:0, foldBonus:0, quizGain:0.1
+  },
+  rock:{
+    name:'堅実派', emoji:'🛡️',
+    desc:'毎ターンHP+5%／フォールド回復強化／攻撃は控えめ',
+    tag:'守って勝つ',
+    dmgMul:0.92, takeMul:1.0, skillMul:1.0, regen:0.03, foldBonus:0.15, quizGain:0
+  }
+};
+function B(){ return BUILDS[S.build]; }
+// 被ダメージ倍率（ビルド＋強化）
+function takenMul(){
+  let m=B().takeMul;
+  if(S.lowHpDef && S.hp<=S.maxHp*0.5) m*=0.8;
+  return m;
+}
+
+// ================= マイハンド（永続育成） =================
+// localStorageに保存。{cards:[{s,r},{s,r}], level, exp}
+const MH_KEY='pq_myhand_v1';
+const MH_MAX_LEVEL=10;
+// 各役の基準倍率（Lv1時）。レベルで上限が伸びる
+const MH_ROLE_MUL={high:1.2,pair:1.2,twopair:1.35,trips:1.5,straight:1.7,flush:1.9,full:2.1,quads:2.3,sf:2.5,royal:2.5};
+// 役ごとの獲得経験値
+const MH_ROLE_EXP={high:0,pair:1,twopair:2,trips:3,straight:5,flush:6,full:7,quads:8,sf:10,royal:10};
+// レベルアップ必要経験値（累計ではなく各レベルで必要な値）
+function mhNeed(lv){ return 10+lv*15; }   // Lv1→2:25, Lv2→3:40 ...
+
+let MH={cards:null, level:1, exp:0};
+function loadMyHand(){
+  try{
+    const raw=localStorage.getItem(MH_KEY);
+    if(raw){ const o=JSON.parse(raw); if(o&&o.cards){ MH=o; } }
+  }catch(e){}
+}
+function saveMyHand(){
+  try{ localStorage.setItem(MH_KEY, JSON.stringify(MH)); }catch(e){}
+  if(window.PQ_HandStore) window.PQ_HandStore.onChange(MH);  // ログイン中はサーバーへ後追い同期
+}
+// レベルによる倍率の伸び：Lv1で基準、Lv10で +0.6 まで線形上乗せ
+function mhLevelBonus(){ return (MH.level-1)/(MH_MAX_LEVEL-1)*0.6; }
+function mhRoleMul(key){ return (MH_ROLE_MUL[key]||1.2)+mhLevelBonus(); }
+// 手札の役5枚にマイハンド2枚が両方含まれるか
+// マイハンドはランクのみで判定（スート不問）。同じランク2枚指定なら手札に2枚必要
+function mhActive(hand){
+  if(!MH.cards) return false;
+  const need={};
+  MH.cards.forEach(c=>{ need[c.r]=(need[c.r]||0)+1; });
+  const have={};
+  hand.forEach(c=>{ have[c.r]=(have[c.r]||0)+1; });
+  return Object.keys(need).every(r => (have[r]||0) >= need[r]);
+}
+// 経験値を加算しレベルアップ判定。レベルアップしたらメッセージ用に返す
+function mhAddExp(key){
+  if(!MH.cards) return null;
+  const gain=MH_ROLE_EXP[key]||0;
+  if(gain<=0) return null;
+  MH.exp+=gain;
+  let leveled=false;
+  while(MH.level<MH_MAX_LEVEL && MH.exp>=mhNeed(MH.level)){
+    MH.exp-=mhNeed(MH.level);
+    MH.level++;
+    leveled=true;
+  }
+  if(MH.level>=MH_MAX_LEVEL) MH.exp=0;
+  saveMyHand();
+  return {gain, leveled};
+}
+
+const SUITS = ['♠','♥','♦','♣'];
+const RANKS = ['2','3','4','5','6','7','8','9','10','J','Q','K','A'];
+
+const HANDS = [
+  {key:'high',   name:'ハイカード',          dmg:4},
+  {key:'pair',   name:'ワンペア',            dmg:8},
+  {key:'twopair',name:'ツーペア',            dmg:15},
+  {key:'trips',  name:'スリーカード',        dmg:24},
+  {key:'straight',name:'ストレート',         dmg:34},
+  {key:'flush',  name:'フラッシュ',          dmg:42},
+  {key:'full',   name:'フルハウス',          dmg:55},
+  {key:'quads',  name:'フォーカード',        dmg:80},
+  {key:'sf',     name:'ストレートフラッシュ',dmg:120},
+  {key:'royal',  name:'ロイヤルフラッシュ',  dmg:200},
+];
+
+// 15階固定ダンジョン：序盤サクサク、終盤ガチ
+const FLOORS = [
+  {e:'👩‍🦰',n:'右利きのジェシカ', hp:22,  atk:5},
+  {e:'👱‍♀️',n:'左効きのアンナ',   hp:32,  atk:6},
+  {e:'👽',  n:'リトルクレイ',       hp:40,  atk:7},
+  {e:'🐙',  n:'たこわさの鉄',     hp:54,  atk:9},
+  {e:'🙇‍♂️',n:'高身長なドM',      hp:72,  atk:11},
+  {e:'🦹‍♀️',n:'前科7犯',          hp:95,  atk:13},
+  {e:'🤼',  n:'特技ラリアット',   hp:120, atk:16},
+  {e:'😎',  n:'自称プロ（無職）', hp:150, atk:18},
+  {e:'🎩',  n:'スロウロールの貴公子', hp:180, atk:20},
+  {e:'🤪',  n:'VPIP100の狂人',    hp:200, atk:21},
+  {e:'💃',  n:'谷間の女',         hp:220, atk:22},
+  {e:'🏃🏃',n:'特技ランナーランナー', hp:240, atk:24},
+  {e:'🕴️', n:'ポーカープロ',     hp:265, atk:25},
+  {e:'🌍',  n:'地球',             hp:285, atk:26},
+  {e:'👹',  n:'借金取り',         hp:320, atk:28, boss:true},
+  {e:'🏦',  n:'国税庁',           hp:361, atk:31},
+  {e:'🃏',  n:'バリアンスの化身', hp:391, atk:33},
+  {e:'🌌',  n:'宇宙',             hp:422, atk:35},
+  {e:'⏳',  n:'時間',             hp:464, atk:37},
+  {e:'👺',  n:'尼崎市民',         hp:536, atk:40, boss:true},
+  // ---- 21F〜30F：20階クリア後の深層（増築） ----
+  {e:'😈',  n:'高レートの魔王',   hp:580, atk:42},
+  {e:'🎰',  n:'スロットに溶かす男', hp:620, atk:44},
+  {e:'💳',  n:'リボ払いの帝王',   hp:665, atk:46},
+  {e:'🏦',  n:'追証（マージンコール）', hp:715, atk:48},
+  {e:'🤖',  n:'GTOソルバー',      hp:770, atk:51, boss:true},
+  {e:'📉',  n:'ダウンスイング',   hp:825, atk:53},
+  {e:'🧿',  n:'期待値（EV）の化身', hp:885, atk:56},
+  {e:'☠️',  n:'破産の淵',         hp:950, atk:59},
+  {e:'🌠',  n:'確率の支配者',     hp:1020, atk:62},
+  {e:'🃏',  n:'ポーカーの神',     hp:1120, atk:66, boss:true},
+];
+const LAST_FLOOR = FLOORS.length;
+const SWITCH_FLOOR = 15; // この階以降ビルド変更可能
+
+// ================= dom =================
+const $ = id=>document.getElementById(id);
+const msgWin=$('msgWin'), cardsEl=$('cards');
+
+function msg(t){ msgWin.innerHTML=t; }
+
+// ================= enemy =================
+// ================= quiz =================
+// 各 [問題, [選択肢4つ], 正解index, カテゴリ]。確率は「1アウツ=2%」ルール。
+const QUIZ_FLOOR_START=10;
+const QUIZ=[
+  // --- A: アウツ→確率換算 ---
+  ['フロップでフラッシュドロー（9アウツ）。リバーまでに完成する確率は？',['28%','32%','36%','40%'],2,'アウツ計算'],
+  ['ターンでフラッシュドロー。リバー1枚で完成する確率は？',['14%','16%','18%','22%'],2,'アウツ計算'],
+  ['フロップでオープンエンド（8アウツ）。リバーまでに完成する確率は？',['28%','32%','36%','40%'],1,'アウツ計算'],
+  ['ターンでオープンエンド。リバー1枚で完成する確率は？',['12%','14%','16%','18%'],2,'アウツ計算'],
+  ['フロップでガットショット（4アウツ）。リバーまでなら？',['8%','12%','16%','20%'],2,'アウツ計算'],
+  ['ガットショット、次の1枚だけで引く確率は？',['4%','6%','8%','10%'],2,'アウツ計算'],
+  ['オーバーカード2枚（6アウツ）。リバーまでにペアになる確率は？',['16%','20%','24%','28%'],2,'アウツ計算'],
+  ['オーバーカード2枚、次の1枚でペアになる確率は？',['8%','10%','12%','16%'],2,'アウツ計算'],
+  ['フラドロ＋オープンエンドのコンボドロー（15アウツ）。リバーまでなら？',['52%','56%','60%','64%'],2,'アウツ計算'],
+  ['コンボドロー（15アウツ）、リバー1枚だけなら？',['26%','28%','30%','34%'],2,'アウツ計算'],
+  ['フラドロ＋ガットショット（12アウツ）。リバーまでなら？',['40%','44%','48%','52%'],2,'アウツ計算'],
+  ['セットを逃したポケットペア（2アウツ）。リバーまでにセットを引く確率は？',['4%','6%','8%','12%'],2,'アウツ計算'],
+  ['ツーペア（4アウツ）。リバーまでにフルハウスになる確率は？',['8%','12%','16%','20%'],2,'アウツ計算'],
+  ['ツーペア、リバー1枚でフルハウスになる確率は？',['4%','6%','8%','10%'],2,'アウツ計算'],
+  ['アウツが7枚あるドロー、次の1枚で引く確率は？',['12%','14%','16%','21%'],1,'アウツ計算'],
+  // --- B: アウツカウント ---
+  ['オープンエンドのアウツは何枚？',['6枚','8枚','9枚','10枚'],1,'アウツ枚数'],
+  ['フラッシュドローのアウツは何枚？',['8枚','9枚','10枚','13枚'],1,'アウツ枚数'],
+  ['ガットショットのアウツは何枚？',['2枚','3枚','4枚','8枚'],2,'アウツ枚数'],
+  ['フラドロ＋オープンエンドのコンボドロー、重複を引くと何アウツ？',['13枚','14枚','15枚','17枚'],2,'アウツ枚数'],
+  ['フラドロ＋ガットショット、重複を引くと何アウツ？',['11枚','12枚','13枚','14枚'],1,'アウツ枚数'],
+  ['ツーペアからフルハウスへのアウツは？',['2枚','4枚','6枚','8枚'],1,'アウツ枚数'],
+  ['セットからターン1枚でクアッズになるアウツは？',['1枚','2枚','3枚','4枚'],0,'アウツ枚数'],
+  ['セットを逃したポケットペア、残りのセットのアウツは？',['1枚','2枚','3枚','4枚'],1,'アウツ枚数'],
+  ['オーバーカード2枚からトップペアを作るアウツは？',['4枚','6枚','8枚','12枚'],1,'アウツ枚数'],
+  ['ダブルガットショット（ガット2つ）のアウツは？',['4枚','6枚','8枚','12枚'],2,'アウツ枚数'],
+  // --- C: クラシック勝率 ---
+  ['AA vs KK、AA側の勝率は約？',['70%','75%','80%','90%'],2,'プリフロップ'],
+  ['AKo vs QQ、AK側の勝率は約？',['38%','43%','48%','53%'],1,'プリフロップ'],
+  ['AKs vs 22、この勝負は？',['AK有利','22圧勝','ほぼ五分','AK圧勝'],2,'プリフロップ'],
+  ['AA vs ランダムハンド、AA側の勝率は約？',['75%','80%','85%','95%'],2,'プリフロップ'],
+  ['ポケットペアがフロップでセット以上になる確率は約？',['8%','12%','18%','25%'],1,'プリフロップ'],
+  ['スーテッド2枚がフロップでフラッシュ完成する確率は約？',['1%','3%','5%','8%'],0,'プリフロップ'],
+  ['スーテッド2枚がリバーまでにフラッシュ完成する確率は約？',['3%','6%','12%','20%'],1,'プリフロップ'],
+  ['AKがフロップでAかKをヒットする確率は約？',['24%','32%','40%','50%'],1,'プリフロップ'],
+  ['KK vs AA、KK側がまくる確率は約？',['10%','20%','30%','40%'],1,'プリフロップ'],
+  ['AAが配られる確率は約？',['0.5%','1%','2%','5%'],0,'プリフロップ'],
+  // --- D: ポットオッズ ---
+  ['ポット100にポットベット100。コールに必要な勝率は約？',['25%','30%','33%','50%'],2,'ポットオッズ'],
+  ['ポット100にハーフポットベット50。必要勝率は約？',['20%','25%','33%','40%'],1,'ポットオッズ'],
+  ['ポット100に1/3ポットベット33。必要勝率は約？',['15%','20%','25%','33%'],1,'ポットオッズ'],
+  ['ポット100に2/3ポットベット67。必要勝率は約？',['25%','29%','33%','38%'],1,'ポットオッズ'],
+  ['ポット100に2倍ポットのオーバーベット200。必要勝率は約？',['33%','36%','40%','50%'],2,'ポットオッズ'],
+  ['ポット100に1/4ポットベット25。必要勝率は約？',['13%','17%','20%','25%'],1,'ポットオッズ'],
+  ['ポット100、相手が300をオールイン。必要勝率は約？',['33%','38%','43%','50%'],2,'ポットオッズ'],
+  ['「ポットオッズ3:1」のとき必要勝率は？',['20%','25%','33%','40%'],1,'ポットオッズ'],
+  ['ターンでガットショット（8%）。必要勝率25%のベットへのコールは？',['得','損','五分','役による'],1,'ポットオッズ'],
+  ['フロップでコンボドロー（リバーまで60%）。必要勝率33%のベットへのコールは？',['得','損','五分','降りるべき'],0,'ポットオッズ'],
+];
+let quizDeck=[];
+function drawQuiz(){
+  if(quizDeck.length===0){
+    quizDeck=[...Array(QUIZ.length).keys()];
+    for(let i=quizDeck.length-1;i>0;i--){const j=(Math.random()*(i+1))|0;[quizDeck[i],quizDeck[j]]=[quizDeck[j],quizDeck[i]];}
+  }
+  return QUIZ[quizDeck.pop()];
+}
+
+// クイズを出し、正解ならtrue（先制）、不正解ならfalse（敵先制）を返す
+function runQuiz(){
+  return new Promise(resolve=>{
+    const q=drawQuiz();
+    const text=q[0], choices=q[1], ans=q[2], cat=q[3];
+    const order=[0,1,2,3];
+    for(let i=order.length-1;i>0;i--){const j=(Math.random()*(i+1))|0;[order[i],order[j]]=[order[j],order[i]];}
+    $('quizFloor').textContent=S.floor;
+    $('quizCategory').textContent=cat;
+    $('quizQ').textContent=text;
+    const wrap=$('quizChoices'); wrap.innerHTML='';
+    const resBox=$('quizResult'); resBox.className='hidden';
+    order.forEach(idx=>{
+      const b=document.createElement('button');
+      b.className='qch'; b.textContent=choices[idx];
+      b.onclick=()=>{
+        [...wrap.children].forEach(c=>c.disabled=true);
+        const correct=(idx===ans);
+        if(window.gtag) gtag('event','quest_quiz',{floor:S.floor, category:cat, correct:correct});
+        b.classList.add(correct?'correct':'wrong');
+        if(!correct){
+          [...wrap.children].forEach((c,k)=>{ if(order[k]===ans) c.classList.add('correct'); });
+        }
+        resBox.className=correct?'ok':'ng';
+        let bonusMsg='';
+        if(correct && B().quizGain>0){
+          S.quizAtkBonus=+(S.quizAtkBonus+B().quizGain).toFixed(2);
+          bonusMsg='\n🧮数学者の知恵！攻撃力+'+Math.round(B().quizGain*100)+'%（累計+'+Math.round(S.quizAtkBonus*100)+'%）';
+        }
+        if(correct && S.quizChip){
+          S.chips+=10;
+          bonusMsg+='\n💰計算高い頭脳！チップ+10';
+        }
+        resBox.textContent=correct
+          ? '正解！先制攻撃や！'+bonusMsg
+          : '不正解…正解は「'+choices[ans]+'」。'+S.enemy.n+'の先制攻撃を食らう！';
+        setTimeout(()=>{ $('quizView').classList.add('hidden'); resolve(correct); }, correct?900:1600);
+      };
+      wrap.appendChild(b);
+    });
+    $('quizView').classList.remove('hidden');
+  });
+}
+
+// クイズ不正解時の敵の先制攻撃
+async function preemptiveStrike(){
+  const variance=0.8+Math.random()*0.4;
+  const edmg=Math.max(1,Math.round(S.enemy.atk*variance*(1-S.def)*takenMul()));
+  msg('💥'+S.enemy.n+'の先制攻撃！\nゆうしゃは <b>'+edmg+'</b> のダメージを受けた！');
+  popDmg(edmg,$('playerBarWrap'),true);
+  S.hp-=edmg;
+  updateBars();
+  await wait(800);
+  if(S.hp<=0){ gameOver(); return false; }
+  return true;
+}
+
+// 階の開始時にクイズを挟む（10F以降）。死んだらfalse
+async function floorIntro(){
+  if(S.floor>=QUIZ_FLOOR_START){
+    S.busy=true; updateButtons();
+    const correct=await runQuiz();
+    if(!correct){
+      const alive=await preemptiveStrike();
+      if(!alive) return false;
+    }
+    S.busy=false; updateButtons();
+  }
+  return true;
+}
+
+function spawnEnemy(){
+  const base = FLOORS[S.floor-1];
+  const isBoss = !!base.boss;
+  const isFinal = (S.floor===LAST_FLOOR);
+  S.enemy = {...base, maxHp:base.hp, boss:isBoss};
+  $('enemySprite').textContent=base.e;
+  $('enemySprite').classList.remove('die');
+  $('enemySprite').style.fontSize = isBoss?'90px':'64px';
+  const badge = isFinal?'★ラスボス★ ':(isBoss?'◆中ボス◆ ':'');
+  $('enemyName').textContent=badge+base.n;
+  updateBars();
+}
+
+function updateBars(){
+  const e=S.enemy;
+  const eb=$('enemyBar'), pb=$('playerBar');
+  const ep=Math.max(0,e.hp/e.maxHp*100), pp=Math.max(0,S.hp/S.maxHp*100);
+  eb.style.width=ep+'%'; pb.style.width=pp+'%';
+  eb.classList.toggle('low',ep<30); pb.classList.toggle('low',pp<30);
+  $('enemyHpText').textContent=Math.max(0,e.hp)+'/'+e.maxHp;
+  $('playerHpText').textContent=Math.max(0,S.hp)+'/'+S.maxHp;
+  $('floor').textContent = (S.mode==='field') ? '🗺️フィールド' : ('B'+S.floor+'F');
+  const effAtk=(S.atk*B().dmgMul*(1+S.quizAtkBonus));
+  $('atkStat').textContent=B().emoji+' x'+effAtk.toFixed(1);
+  $('chips').textContent='💰'+S.chips;
+  const sw=$('switchBtn');
+  if(S.mode!=='field' && S.floor>=SWITCH_FLOOR) sw.classList.remove('hidden');
+  else sw.classList.add('hidden');
+  renderMhBattlePanel();
+}
+
+// 戦闘画面下のマイハンド表示
+function renderMhBattlePanel(){
+  const p=$('mhBattlePanel');
+  if(!p) return;
+  if(MH.cards){
+    const isRedS=s=>(s==='♥'||s==='♦');
+    const txt=MH.cards.map(c=>'<span class="'+(isRedS(c.s)?'mhp-red':'')+'">'+c.s+RANKS[c.r]+'</span>').join(' ');
+    const lvtxt='Lv'+MH.level+(MH.level>=MH_MAX_LEVEL?'（MAX）':'　EXP '+MH.exp+'/'+mhNeed(MH.level));
+    p.className='';
+    p.innerHTML='<div class="mhp-cards">🃏 マイハンド '+txt+'</div>'
+      +'<div class="mhp-lv">'+lvtxt+'</div>'
+      +'<div class="mhp-desc">この2枚（'+MH.cards.map(c=>RANKS[c.r]).join('・')+'）が役に絡んで攻撃すると<br>役の強さに応じてダメージUP＆経験値ゲット！</div>';
+  }else{
+    p.className='none';
+    p.innerHTML='<div class="mhp-desc">🃏 タイトルで「マイハンド」を登録すると<br>相棒の2枚が絡む役で攻撃力アップ＆育成できる</div>';
+  }
+}
+
+// ================= deck / hand =================
+function newHand(){
+  const deck=[];
+  for(const s of SUITS) for(let r=0;r<13;r++) deck.push({s,r});
+  for(let i=deck.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [deck[i],deck[j]]=[deck[j],deck[i]];
+  }
+  S.deck=deck;
+  S.hand=deck.splice(0,5);
+  S.discards=[];
+  S.selected.clear();
+  S.swapsLeft=S.swapsMax;
+  renderCards(true);
+  updateButtons();
+  updateDeckBtn();
+}
+
+function renderCards(deal){
+  cardsEl.innerHTML='';
+  S.hand.forEach((c,i)=>{
+    const d=document.createElement('div');
+    d.className='card'+(c.s==='♥'||c.s==='♦'?' redsuit':'')+(S.selected.has(i)?' sel':'')+(deal?' deal':'');
+    if(deal) d.style.animationDelay=(i*0.07)+'s';
+    d.innerHTML='<div class="rank">'+RANKS[c.r]+'</div><div class="suit">'+c.s+'</div>';
+    d.onclick=()=>{
+      if(S.busy||S.swapsLeft<=0) return;
+      S.selected.has(i)?S.selected.delete(i):S.selected.add(i);
+      d.classList.toggle('sel');
+      updateButtons();
+    };
+    cardsEl.appendChild(d);
+  });
+}
+
+function updateButtons(){
+  $('btnSwap').disabled = S.busy || S.swapsLeft<=0 || S.selected.size===0;
+  $('btnSwap').textContent = S.swapsLeft>0 ? 'えらんだ札を交換('+S.swapsLeft+')' : '交換ずみ';
+  $('btnAttack').disabled = S.busy;
+  $('skAllin').disabled   = S.busy || S.chips<cost("allin");
+  $('skMisdeal').disabled = S.busy || S.chips<cost("misdeal");
+  $('skFold').disabled    = S.busy || S.chips<cost("fold");
+  $('skCheckraise').disabled = S.busy || S.chips<cost("checkraise") || S.checkraise;
+  $('skRabbit').disabled  = S.busy || S.chips<cost("rabbit");
+  $('skRake').disabled    = S.busy || S.chips<cost("rake") || S.rake>0;
+  // 数学者の割引などをラベルに反映
+  setSkillCost('skAllin','allin');
+  setSkillCost('skMisdeal','misdeal');
+  setSkillCost('skFold','fold');
+  setSkillCost('skCheckraise','checkraise');
+  setSkillCost('skRabbit','rabbit');
+  setSkillCost('skRake','rake');
+}
+function setSkillCost(id,key){
+  const small=$(id).querySelector('small');
+  if(!small) return;
+  const txt=small.textContent;
+  small.textContent=txt.replace(/💰\d+/, '💰'+cost(key));
+}
+
+// ================= hand evaluation =================
+function evalHand(hand){
+  const rs=hand.map(c=>c.r).sort((a,b)=>a-b);
+  const flush=hand.every(c=>c.s===hand[0].s);
+  const counts={};
+  rs.forEach(r=>counts[r]=(counts[r]||0)+1);
+  // [count, rank] の配列を count降順→rank降順で並べる
+  const groups=Object.keys(counts)
+    .map(r=>[counts[r], +r])
+    .sort((a,b)=> b[0]-a[0] || b[1]-a[1]);
+  const cv=groups.map(g=>g[0]);
+  let straight=false, high=rs[4];
+  if(new Set(rs).size===5){
+    if(rs[4]-rs[0]===4) straight=true;
+    // A-2-3-4-5 (A=index12)
+    if(rs.join()==='0,1,2,3,12'){straight=true;high=3;}
+  }
+  let key;
+  if(straight&&flush) key = (rs[0]===8) ? 'royal' : 'sf';
+  else if(cv[0]===4) key='quads';
+  else if(cv[0]===3&&cv[1]===2) key='full';
+  else if(flush) key='flush';
+  else if(straight) key='straight';
+  else if(cv[0]===3) key='trips';
+  else if(cv[0]===2&&cv[1]===2) key='twopair';
+  else if(cv[0]===2) key='pair';
+  else key='high';
+  const h=HANDS.find(x=>x.key===key);
+  // ワンペア・ツーペア・トリップスのみ、主役ランクで4段階ボーナス（キッカー無視）
+  // グループ: 2-5 / 6-9 / T-Q / K-A  → 倍率 1.0 / 1.125 / 1.25 / 1.5
+  let dmg=h.dmg;
+  if(key==='pair'||key==='twopair'||key==='trips'){
+    const lead=groups[0][1];               // 役を構成する主役ランク(0=2 .. 12=A)
+    const tierMul=[1.0,1.125,1.25,1.5];
+    let tier;
+    if(lead<=3) tier=0;                    // 2,3,4,5
+    else if(lead<=7) tier=1;               // 6,7,8,9
+    else if(lead<=10) tier=2;              // T,J,Q
+    else tier=3;                           // K,A
+    dmg=Math.round(h.dmg*tierMul[tier]);
+  }
+  return {name:h.name, dmg, key};
+}
+
+// ================= battle flow =================
+function popDmg(text, target, isPlayer){
+  const r=target.getBoundingClientRect();
+  const d=document.createElement('div');
+  d.className='dmg'+(isPlayer?' player':'');
+  d.textContent=text;
+  d.style.left=(r.left+r.width/2-20)+'px';
+  d.style.top=(r.top+10)+'px';
+  document.body.appendChild(d);
+  setTimeout(()=>d.remove(),1000);
+}
+
+const wait=ms=>new Promise(r=>setTimeout(r,ms));
+
+async function doSwap(){
+  if(S.selected.size===0||S.swapsLeft<=0) return;
+  [...S.selected].forEach(i=>{ S.discards.push(S.hand[i]); S.hand[i]=S.deck.pop(); });
+  S.selected.clear();
+  S.swapsLeft--;
+  renderCards(true);
+  msg('カードを交換した！');
+  updateButtons();
+  updateDeckBtn();
+}
+
+async function doAttack(){
+  if(S.busy) return;
+  S.busy=true; updateButtons();
+  const res=evalHand(S.hand);
+  const wasAllin=S.allin, wasCR=S.checkraise;
+  let mult=1;
+  if(wasAllin) mult*=2;
+  if(wasCR){ mult*=2; S.checkraise=false; }
+  let dmg=Math.round(res.dmg*S.atk*mult*B().dmgMul*(1+S.quizAtkBonus));
+  // 強化：特定の役ボーナス
+  if(S.roleBonus && res.key===S.roleBonus) dmg=Math.round(dmg*1.2);
+  // 強化：背水の陣（HP30%以下で攻撃+30%）
+  if(S.lowHpAtk && S.hp<=S.maxHp*0.3) dmg=Math.round(dmg*1.3);
+  // マイハンド・ボーナス（相棒が役に絡むと倍率＆経験値）
+  const mhOn=mhActive(S.hand);
+  let mhTag='', mhMsg='';
+  if(mhOn){
+    const m=mhRoleMul(res.key);
+    dmg=Math.round(dmg*m);
+    mhTag='🃏';
+    const ex=mhAddExp(res.key);
+    if(ex){
+      mhMsg='\n🃏相棒ボーナス x'+m.toFixed(2)+'！ EXP+'+ex.gain;
+      if(ex.leveled) mhMsg+='　★Lv'+MH.level+'にアップ！';
+    }
+  }
+  const tag=(wasAllin?'（オールイン！）':'')+(wasCR?'（チェックレイズ！）':'')+mhTag;
+  msg('<span id="handName">'+res.name+'</span>'+tag+'！\n'+S.enemy.n+'に <b>'+dmg+'</b> のダメージ！'+mhMsg);
+  $('enemySprite').classList.add('hit');
+  popDmg(dmg,$('enemySprite'),false);
+  setTimeout(()=>$('enemySprite').classList.remove('hit'),400);
+  S.enemy.hp-=dmg;
+  if(S.rake>0){
+    const rb=Math.max(1,Math.round(dmg*0.15));
+    S.hp=Math.min(S.maxHp,S.hp+rb);
+    S.rake--;
+    popDmg('+'+rb,$('playerBarWrap'),false);
+  }
+  updateBars();
+  await wait(mhOn ? 1500 : 650);
+
+  if(S.enemy.hp<=0){
+    S.allin=false;
+    // フィールドモードは階を進めず、フィールドに戻る（field.js が処理）
+    if(S.mode==='field'){ $('enemySprite').classList.add('die'); await wait(750); if(window.PQ_Field) window.PQ_Field.battleWon(); return; }
+    const gain=Math.round((12+S.floor*4)*(1+S.chipBonus));
+    S.chips+=gain;
+    updateBars();
+    $('enemySprite').classList.add('die');
+    msg(S.enemy.n+'をたおした！\n💰チップを'+gain+'枚かくとく！');
+    S.kills++;
+    await wait(800);
+    if(S.floor>=LAST_FLOOR){ victory(); return; }
+    showReward();
+    return;
+  }
+
+  // enemy turn
+  const variance=0.8+Math.random()*0.4;
+  let edmg=Math.max(1,Math.round(S.enemy.atk*variance*(1-S.def)*takenMul()));
+  if(S.allin){ edmg*=2; S.allin=false; }
+  const lines=[
+    'のこうげき！','のレイズ！','のブラフ！','のチェックレイズ！','のオールイン！'
+  ];
+  msg(S.enemy.n+lines[Math.floor(Math.random()*lines.length)]+'\nゆうしゃは <b>'+edmg+'</b> のダメージを受けた！');
+  popDmg(edmg,$('playerBarWrap'),true);
+  S.hp-=edmg;
+  updateBars();
+  await wait(650);
+
+  if(S.hp<=0){ gameOver(); return; }
+
+  // 堅実派：毎ターンHP回復
+  if(B().regen>0){
+    const rg=Math.max(1,Math.round(S.maxHp*B().regen));
+    S.hp=Math.min(S.maxHp,S.hp+rg);
+    popDmg('+'+rg,$('playerBarWrap'),false);
+    updateBars();
+    await wait(300);
+  }
+
+  S.busy=false;
+  newHand();
+  msg('カードを5枚くばった！');
+}
+const SKILL_COST={allin:40, checkraise:35, misdeal:25, rabbit:20, fold:30, rake:20};
+function cost(k){ return Math.round(SKILL_COST[k]*B().skillMul); }
+
+async function skillAllin(){
+  if(S.busy||S.chips<cost("allin")) return;
+  S.chips-=cost("allin");
+  S.allin=true;
+  updateBars();
+  msg('💥オールイン！この攻撃はダメージ2倍！\nただし倒しきれんと反撃も2倍や…！');
+  await wait(800);
+  doAttack();
+}
+
+function skillMisdeal(){
+  if(S.busy||S.chips<cost("misdeal")) return;
+  S.chips-=cost("misdeal");
+  const keepSwaps=S.swapsLeft;
+  newHand();
+  S.swapsLeft=keepSwaps;
+  updateButtons();
+  updateBars();
+  msg('🃏ミスディール！\n手札を5枚ぜんぶくばり直した！');
+}
+
+async function skillFold(){
+  if(S.busy||S.chips<cost("fold")) return;
+  S.busy=true; updateButtons();
+  S.chips-=cost("fold");
+  updateBars();
+  msg('🛡️フォールド！このターンは降りた。\n体勢を立て直す…！');
+  await wait(750);
+  const variance=0.8+Math.random()*0.4;
+  const edmg=Math.max(1,Math.round(S.enemy.atk*variance*(1-S.def)*0.2));
+  msg(S.enemy.n+'のこうげき！\nしかし降りたゆうしゃには <b>'+edmg+'</b> しか届かない！');
+  popDmg(edmg,$('playerBarWrap'),true);
+  S.hp-=edmg;
+  updateBars();
+  await wait(650);
+  if(S.hp<=0){ gameOver(); return; }
+  const heal=Math.round(S.maxHp*(0.20+B().foldBonus+S.foldUp));
+  S.hp=Math.min(S.maxHp,S.hp+heal);
+  updateBars();
+  msg('ゆうしゃはHPを <b>'+heal+'</b> 回復した！');
+  await wait(650);
+  S.busy=false;
+  newHand();
+  msg('カードを5枚くばった！');
+}
+
+async function skillCheckraise(){
+  if(S.busy||S.chips<cost("checkraise")||S.checkraise) return;
+  S.busy=true; updateButtons();
+  S.chips-=cost("checkraise");
+  updateBars();
+  msg('チェックレイズ！このターンは様子見…\n次の攻撃のダメージが2倍になる！');
+  await wait(750);
+  const variance=0.8+Math.random()*0.4;
+  const edmg=Math.max(1,Math.round(S.enemy.atk*variance*(1-S.def)*0.5));
+  msg(S.enemy.n+'のこうげき！\n身がまえたゆうしゃは <b>'+edmg+'</b> のダメージにおさえた！');
+  popDmg(edmg,$('playerBarWrap'),true);
+  S.hp-=edmg;
+  updateBars();
+  await wait(650);
+  if(S.hp<=0){ gameOver(); return; }
+  S.checkraise=true;
+  S.busy=false;
+  newHand();
+  msg('カードを5枚くばった！\n（チェックレイズ中：次の攻撃2倍）');
+}
+
+function skillRabbit(){
+  if(S.busy||S.chips<cost("rabbit")) return;
+  S.chips-=cost("rabbit");
+  updateBars(); updateButtons();
+  const n=Math.min(5,S.deck.length);
+  const peek=[];
+  for(let i=1;i<=n;i++){
+    const c=S.deck[S.deck.length-i];
+    const red=(c.s==='♥'||c.s==='♦');
+    peek.push('<span'+(red?' style="color:#ff7b6e"':'')+'>'+c.s+RANKS[c.r]+'</span>');
+  }
+  msg('🐇ラビットハント！次にくばられる札は…\n'+peek.join('　'));
+}
+
+function skillRake(){
+  if(S.busy||S.chips<cost("rake")||S.rake>0) return;
+  S.chips-=cost("rake");
+  S.rake=3;
+  updateBars(); updateButtons();
+  msg('レーキバック発動！\n3ターンのあいだ、与えたダメージの15%ぶんHPを回収する！');
+}
+
+// ================= rewards =================
+const REWARDS=[
+  {t:'ポット回収',     d:'HPを70%回復する',          f:()=>{S.hp=Math.min(S.maxHp,S.hp+Math.round(S.maxHp*0.7));}},
+  {t:'バンクロール強化',d:'最大HP+40／HPを50%回復',f:()=>{S.maxHp+=40;S.hp=Math.min(S.maxHp,S.hp+Math.round(S.maxHp*0.5));}},
+  {t:'バリューベット', d:'攻撃力 +30%',               f:()=>{S.atk=+(S.atk+0.3).toFixed(2);}},
+  {t:'タイトな守り',   d:'受けるダメージ -10%',        f:()=>{S.def=Math.min(0.6,S.def+0.1);}},
+  {t:'レーキ収入',     d:'撃破チップ +25%',            f:()=>{S.chipBonus=+(S.chipBonus+0.25).toFixed(2);}},
+  {t:'背水の陣',       d:'HP30%以下のとき攻撃+30%',    f:()=>{S.lowHpAtk=true;}, once:'lowHpAtk'},
+  {t:'粘りの構え',     d:'HP50%以下のとき被ダメ-20%',  f:()=>{S.lowHpDef=true;}, once:'lowHpDef'},
+  {t:'セーフティネット',d:'フォールドの回復 +10%',      f:()=>{S.foldUp=+(S.foldUp+0.1).toFixed(2);}},
+  {t:'スーテッド偏愛', d:'フラッシュのダメージ +20%',  f:()=>{S.roleBonus='flush';}, once:'roleBonus'},
+  {t:'計算高い頭脳',   d:'クイズ正解でチップ+10',      f:()=>{S.quizChip=true;}, once:'quizChip'},
+];
+const EXTRA_DRAW={t:'エクストラドロー',d:'毎ターンの交換回数 +1',f:()=>{S.swapsMax++;}, extra:true};
+
+function showReward(){
+  const list=$('rewardList');
+  list.innerHTML='';
+  const avail=REWARDS.filter(r=>{
+    if(r.once){ const v=S[r.once]; return !(v===true || (r.once==='roleBonus'&&v)); }
+    return true;
+  });
+  // シャッフルして3つ
+  const shuffled=[...avail].sort(()=>Math.random()-0.5).slice(0,3);
+  // 右端：交換回数+1（上限3まで）。到達済みなら追加でもう1つランダム
+  let picks=[...shuffled];
+  if(S.swapsMax<3){ picks.push(EXTRA_DRAW); }
+  else {
+    const rest=avail.filter(r=>!shuffled.includes(r));
+    if(rest.length) picks.push(rest[Math.floor(Math.random()*rest.length)]);
+  }
+  picks.forEach(r=>{
+    const b=document.createElement('button');
+    b.className='rewardBtn'+(r.extra?' gold':'');
+    let label='<b>'+r.t+'</b><small>'+r.d+'</small>';
+    if(r.extra) label='<b>'+r.t+'（現在'+S.swapsMax+'回）</b><small>'+r.d+'（最大3回まで）</small>';
+    b.innerHTML=label;
+    b.onclick=()=>{
+      r.f();
+      $('reward').classList.add('hidden');
+      nextFloor();
+    };
+    list.appendChild(b);
+  });
+  $('reward').classList.remove('hidden');
+}
+
+async function nextFloor(){
+  S.floor++;
+  spawnEnemy();
+  S.busy=false;
+  newHand();
+  let warn='';
+  if(S.floor===SWITCH_FLOOR){
+    warn='\n🎲ここからは右上の「ジョブ変更」でいつでも戦い方を変えられる！';
+  }
+  if(S.floor===20){
+    const heal=Math.round(S.maxHp*0.3);
+    S.hp=Math.min(S.maxHp,S.hp+heal);
+    updateBars();
+    warn='\n…とてつもない気配！尼崎市民が現れた！\n気合いでHPが'+heal+'回復した！';
+  }
+  if(S.floor===LAST_FLOOR){
+    const heal=Math.round(S.maxHp*0.3);
+    S.hp=Math.min(S.maxHp,S.hp+heal);
+    updateBars();
+    warn='\n…空間が歪む。ポーカーの神が降臨した！\n気合いでHPが'+heal+'回復した！';
+  }
+  msg('B'+S.floor+'Fに進んだ！'+warn);
+  // 深層（B21F〜B28F）は数階おきにセーブポイントを設置。一気に潜り切らなくていい
+  if(CHECKPOINT_FLOORS.has(S.floor)){ offerCheckpoint(); return; }
+  await floorIntro();
+}
+
+function victory(){
+  if(window.gtag) gtag('event','quest_clear',{kills:S.kills, hp_left:S.hp, build:S.build});
+  if(window.PQ_Ranking) window.PQ_Ranking.submit(LAST_FLOOR, S.kills, true);  // ランキング記録（クリア）
+  clearRun();  // クリアしたのでセーブは消す
+  $('goText').innerHTML='';
+  const v=$('gameover');
+  v.querySelector('h1').textContent='CLEAR!!';
+  v.querySelector('h1').style.color='var(--gold)';
+  $('goText').innerHTML='ポーカーの神を打ち破った！<br>全'+LAST_FLOOR+'階ダンジョン完全制覇や！<br><br>ジョブ：'+B().emoji+B().name+'<br>残りHP：'+S.hp+'/'+S.maxHp+'<br><br>もはや運も実力のうち。お前がバリアンスや。';
+  $('btnRetry').textContent='もういちど潜る';
+  updateResumeBtn();
+  v.classList.remove('hidden');
+}
+
+// ================= game over / start =================
+const DEATH_LINES=[
+  '完全にクーラーや。お前は悪くない。たぶん。',
+  'それ、フォールドできたやろ…',
+  '敗因：プリフロップ。',
+  'リバーまで夢を見た結果がこれや。',
+  'アウツはあった。引けへんかっただけや。',
+  'GTO的には正しかった。結果は知らん。',
+  'これがバリアンスや。受け入れろ。',
+  'EVはプラスやった。EVはな。',
+  'ティルトしたまま潜るからこうなるねん。',
+  'ナイスハンド（白目）',
+  'キャッシャーはあちらです。',
+  'バンクロール管理から出直しや。',
+  '今日はもう寝ろ。明日のテーブルはきっと優しい。',
+  'お前のレンジ、広すぎて太平洋や。',
+  'バッドビートも実力のうちや。',
+];
+
+function gameOver(){
+  // フィールドモードの全滅は field.js が処理（ランキング記録はしない）
+  if(S.mode==='field'){ if(window.PQ_Field) window.PQ_Field.battleLost(); return; }
+  if(window.gtag) gtag('event','quest_gameover',{floor:S.floor, enemy:S.enemy.n, kills:S.kills});
+  if(window.PQ_Ranking) window.PQ_Ranking.submit(S.floor, S.kills, false);  // ランキング記録（到達階）
+  const v=$('gameover');
+  v.querySelector('h1').textContent='GAME OVER';
+  v.querySelector('h1').style.color='var(--red)';
+  let line;
+  if(S.enemy.n==='特技ランナーランナー') line='残念、ランナーランナーされました。';
+  else if(S.enemy.n==='尼崎市民') line='市民に勝てんかったか…また鍛えて来いや。';
+  else line=DEATH_LINES[Math.floor(Math.random()*DEATH_LINES.length)];
+  $('goText').innerHTML='B'+S.floor+'F の'+S.enemy.n+'にやられた…<br>倒した敵：'+S.kills+'体<br><br>'+line;
+  $('btnRetry').textContent='もういちど';
+  updateResumeBtn();   // セーブがあれば「つづきから」を表示
+  v.classList.remove('hidden');
+}
+
+// ================= build select =================
+function renderBuildSelect(mode){
+  // mode: 'start' = ゲーム開始前 / 'switch' = 道中変更
+  const list=$('buildList');
+  list.innerHTML='';
+  $('buildTitle').textContent = mode==='switch' ? 'ジョブを変更する' : 'ジョブを選べ';
+  $('buildHint').textContent = mode==='switch'
+    ? '今の状態を引き継いで戦い方だけ変わる'
+    : '15階以降はいつでも変更できる';
+  Object.keys(BUILDS).forEach(key=>{
+    const b=BUILDS[key];
+    const card=document.createElement('div');
+    card.className='buildCard';
+    const cur=(mode==='switch'&&S.build===key)?'　（今これ）':'';
+    card.innerHTML='<div class="bc-name">'+b.emoji+' '+b.name+cur+'</div>'
+      +'<div class="bc-tag">'+b.tag+'</div>'
+      +'<div class="bc-desc">'+b.desc+'</div>';
+    card.onclick=()=>{
+      S.build=key;
+      $('buildSelect').classList.add('hidden');
+      if(window.gtag) gtag('event', mode==='switch'?'quest_build_switch':'quest_build_pick', {build:key});
+      if(mode==='start'){ beginRun(); }
+      else { updateBars(); updateButtons(); msg(b.emoji+b.name+'に変更した！'); }
+    };
+    list.appendChild(card);
+  });
+  $('buildSelect').classList.remove('hidden');
+}
+
+function startGame(){
+  $('title').classList.add('hidden');
+  $('gameover').classList.add('hidden');
+  renderBuildSelect('start');
+}
+
+function beginRun(){
+  if(window.gtag) gtag('event','quest_start',{build:S.build});
+  Object.assign(S,{floor:1,hp:100,maxHp:100,atk:1.0,def:0,swapsMax:1,kills:0,busy:false,chips:0,allin:false,checkraise:false,rake:0,quizAtkBonus:0,chipBonus:0,lowHpAtk:false,lowHpDef:false,foldUp:0,quizChip:false,roleBonus:null});
+  quizDeck=[];
+  spawnEnemy();
+  newHand();
+  msg('カードを5枚くばった！\n交換するカードを選んで攻撃しろ！');
+}
+
+function openSwitch(){
+  if(S.busy||S.floor<SWITCH_FLOOR) return;
+  renderBuildSelect('switch');
+}
+
+// ================= セーブ / つづきから（深層B21F〜B28Fの中間セーブポイント） =================
+const RUN_KEY='pq_run_save_v1';
+const RUN_FIELDS=['floor','hp','maxHp','atk','def','swapsMax','kills','chips','build','chipBonus','lowHpAtk','lowHpDef','foldUp','quizChip','roleBonus','quizAtkBonus'];
+function saveRun(){
+  const d={}; RUN_FIELDS.forEach(k=>d[k]=S[k]);
+  try{ localStorage.setItem(RUN_KEY, JSON.stringify(d)); }catch(e){}
+  updateResumeBtn();
+}
+function loadRunData(){ try{ const r=localStorage.getItem(RUN_KEY); return r?JSON.parse(r):null; }catch(e){ return null; } }
+function clearRun(){ try{ localStorage.removeItem(RUN_KEY); }catch(e){} updateResumeBtn(); }
+function updateResumeBtn(){
+  const d=loadRunData();
+  ['btnResume','btnResumeGO'].forEach(id=>{
+    const b=$(id); if(!b) return;
+    if(d){ b.classList.remove('hidden'); b.textContent='▶ つづきから（B'+d.floor+'F）'; }
+    else b.classList.add('hidden');
+  });
+}
+// 深層（B21F/22F/24F/26F/28F）で出るセーブポイント
+const CHECKPOINT_FLOORS=new Set([21,22,24,26,28]);
+function offerCheckpoint(){
+  S.busy=true; updateButtons();
+  const t=$('cpText');
+  if(t) t.innerHTML = (S.floor===21)
+    ? '尼崎市民を超え、深層（B21F〜B30F）へ。<br>ここで<b>セーブ</b>できる。<br>やめても「つづきから」で再開できるぞ。'
+    : 'B'+S.floor+'Fに到達。<br>ここで<b>セーブ</b>できる。<br>やめても「つづきから」で再開できるぞ。';
+  $('checkpoint').classList.remove('hidden');
+}
+async function continueFromCheckpoint(){
+  $('checkpoint').classList.add('hidden');
+  S.busy=false;
+  await floorIntro();   // 通常フロー（10F以降のクイズ）に合流
+}
+function saveAndQuit(){
+  saveRun();
+  $('checkpoint').classList.add('hidden');
+  $('title').classList.remove('hidden');
+  updateTitleMyHand();
+}
+function resumeRun(){
+  const d=loadRunData(); if(!d) return;
+  if(window.gtag) gtag('event','quest_resume',{floor:d.floor});
+  Object.assign(S,{floor:1,hp:100,maxHp:100,atk:1.0,def:0,swapsMax:1,kills:0,busy:false,chips:0,allin:false,checkraise:false,rake:0,quizAtkBonus:0,chipBonus:0,lowHpAtk:false,lowHpDef:false,foldUp:0,quizChip:false,roleBonus:null});
+  RUN_FIELDS.forEach(k=>{ if(d[k]!==undefined) S[k]=d[k]; });
+  quizDeck=[];
+  $('title').classList.add('hidden');
+  $('gameover').classList.add('hidden');
+  spawnEnemy();
+  newHand();
+  msg('B'+S.floor+'Fから冒険を再開した！');
+}
+
+$('btnStart').onclick=startGame;
+$('btnRetry').onclick=startGame;
+$('btnResume').onclick=resumeRun;
+$('btnResumeGO').onclick=resumeRun;
+$('cpSaveContinue').onclick=()=>{ saveRun(); continueFromCheckpoint(); };
+$('cpNoSave').onclick=continueFromCheckpoint;
+$('cpSaveQuit').onclick=saveAndQuit;
+$('btnSwap').onclick=doSwap;
+$('btnAttack').onclick=doAttack;
+$('skAllin').onclick=skillAllin;
+$('skMisdeal').onclick=skillMisdeal;
+$('skFold').onclick=skillFold;
+$('skCheckraise').onclick=skillCheckraise;
+$('skRabbit').onclick=skillRabbit;
+$('skRake').onclick=skillRake;
+$('switchBtn').onclick=openSwitch;
+
+// ================= マイハンド登録UI（スート付き登録／判定はランクのみ） =================
+let mhDraft=[];        // 登録中に選んだカード [{s,r}...]
+let mhCurSuit='♠';
+const isRed=s=>(s==='♥'||s==='♦');
+
+function updateTitleMyHand(){
+  const el=$('mhStatus');
+  if(MH.cards){
+    const txt=MH.cards.map(c=>'<span style="'+(isRed(c.s)?'color:var(--red)':'')+'">'+c.s+RANKS[c.r]+'</span>').join(' ');
+    el.innerHTML='<span class="mh-cards">相棒：'+txt+'</span><br><span class="mh-lv">Lv'+MH.level+(MH.level>=MH_MAX_LEVEL?'（MAX）':' / EXP '+MH.exp+'/'+mhNeed(MH.level))+'</span>';
+    $('btnMyHand').textContent='🃏 マイハンド変更';
+  }else{
+    el.innerHTML='<span style="opacity:.7">相棒2枚を登録すると、その2枚が役に絡んだとき大ダメージ＆育成できる</span>';
+    $('btnMyHand').textContent='🃏 マイハンド登録';
+  }
+}
+
+function openMyHand(){
+  mhDraft = MH.cards ? MH.cards.map(c=>({...c})) : [];
+  mhCurSuit='♠';
+  renderMhRegister();
+  $('mhRegister').classList.remove('hidden');
+}
+
+function renderMhRegister(){
+  // 選択中スロット
+  const picked=$('mhPicked');
+  picked.innerHTML='';
+  for(let i=0;i<2;i++){
+    const slot=document.createElement('div');
+    const c=mhDraft[i];
+    if(c){ slot.className='mh-slot'+(isRed(c.s)?' red':''); slot.textContent=c.s+RANKS[c.r]; slot.onclick=()=>{ mhDraft.splice(i,1); renderMhRegister(); }; }
+    else { slot.className='mh-slot empty'; slot.textContent='?'; }
+    picked.appendChild(slot);
+  }
+  // スートタブ
+  const tabs=$('mhSuitTabs'); tabs.innerHTML='';
+  SUITS.forEach(s=>{
+    const b=document.createElement('div');
+    b.className='mh-suit'+(isRed(s)?' red':'')+(s===mhCurSuit?' sel':'');
+    b.textContent=s;
+    b.onclick=()=>{ mhCurSuit=s; renderMhRegister(); };
+    tabs.appendChild(b);
+  });
+  // ランクグリッド（同じカード＝同スート同ランクは1枚のみ）
+  const grid=$('mhRankGrid'); grid.innerHTML='';
+  for(let r=12;r>=0;r--){
+    const cell=document.createElement('div');
+    const taken=mhDraft.some(c=>c.s===mhCurSuit&&c.r===r);
+    cell.className='mh-rank'+(isRed(mhCurSuit)?' red':'')+(taken?' taken':'');
+    cell.textContent=RANKS[r];
+    if(!taken && mhDraft.length<2) cell.onclick=()=>{ mhDraft.push({s:mhCurSuit,r}); renderMhRegister(); };
+    grid.appendChild(cell);
+  }
+  $('mhLevelInfo').innerHTML = MH.cards
+    ? '今の相棒：'+MH.cards.map(c=>c.s+RANKS[c.r]).join(' ')+'（Lv'+MH.level+'）／別のハンドに変えると<b>レベルもリセット</b>される'
+    : 'まだ相棒なし。判定はランクのみ（スート問わず2枚揃えば発動）';
+  $('mhSave').disabled = (mhDraft.length!==2);
+  $('mhResetWrap').style.display = MH.cards ? 'block' : 'none';
+}
+
+$('btnMyHand').onclick=openMyHand;
+$('mhClose').onclick=()=>$('mhRegister').classList.add('hidden');
+$('mhSave').onclick=()=>{
+  if(mhDraft.length!==2) return;
+  const newCards=mhDraft.map(c=>({...c}));
+  // ランク構成が同じなら据え置き（レベル維持）、違うならリセット
+  const sortKey=a=>a.map(c=>c.r).sort((x,y)=>x-y).join(',');
+  const same = MH.cards && sortKey(MH.cards)===sortKey(newCards);
+  if(!same){ MH={cards:newCards, level:1, exp:0}; }
+  else { MH.cards=newCards; }  // スートだけ変えた場合は見た目更新、レベル維持
+  saveMyHand();
+  if(window.gtag) gtag('event','quest_myhand_set',{cards:newCards.map(c=>c.s+RANKS[c.r]).join('')});
+  $('mhRegister').classList.add('hidden');
+  updateTitleMyHand();
+};
+$('mhReset').onclick=()=>{
+  MH={cards:null, level:1, exp:0};
+  saveMyHand();
+  mhDraft=[];
+  renderMhRegister();
+  updateTitleMyHand();
+};
+
+// 初期化
+loadMyHand();
+updateTitleMyHand();
+updateResumeBtn();   // 中間セーブがあればタイトルに「つづきから」を表示
+
+// ===== フェーズ1：保存層への橋渡し（hand-store.js / auth.js から呼ばれる） =====
+window.PQ_BRIDGE = {
+  getMH: ()=>MH,
+  applyServerHand:(h)=>{
+    MH = (h && h.cards) ? {cards:h.cards, level:h.level, exp:h.exp} : {cards:null, level:1, exp:0};
+    try{ localStorage.setItem(MH_KEY, JSON.stringify(MH)); }catch(e){}
+    updateTitleMyHand();
+    renderMhBattlePanel();
+  }
+};
+
+
+
+
+// ================= deck viewer =================
+function updateDeckBtn(){ $('deckBtn').textContent='山札 '+S.deck.length; }
+
+function showDeck(){
+  const grid=$('deckGrid');
+  grid.innerHTML='';
+  const hand=new Set(S.hand.map(c=>c.s+c.r));
+  const disc=new Set(S.discards.map(c=>c.s+c.r));
+  SUITS.forEach(s=>{
+    const row=document.createElement('div');
+    row.className='drow';
+    const sd=document.createElement('div');
+    sd.className='dsuit'+((s==='♥'||s==='♦')?' redtxt':'');
+    sd.textContent=s;
+    row.appendChild(sd);
+    for(let r=12;r>=0;r--){
+      const id=s+r;
+      const c=document.createElement('div');
+      c.className='dcell'
+        +((s==='♥'||s==='♦')?' red':'')
+        +(hand.has(id)?' hand':'')
+        +(disc.has(id)?' out':'');
+      c.textContent=RANKS[r];
+      row.appendChild(c);
+    }
+    grid.appendChild(row);
+  });
+  $('deckTitle').textContent='残存カード（山札 '+S.deck.length+'枚）';
+  $('deckView').classList.remove('hidden');
+}
+
+$('deckBtn').onclick=showDeck;
+$('btnDeckClose').onclick=()=>$('deckView').classList.add('hidden');
+</script>
+
+<!-- フェーズ1：保存層と認証（ゲーム本体の後に読み込む＝MH等を参照するため） -->
+<script src="js/hand-store.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/pvp.js"></script>
+<script src="js/ranking.js"></script>
+<script src="js/field.js"></script>
+
+<!-- PWA：Service Worker 登録（http/https のときのみ） -->
+<script>
+if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js').catch(e => console.warn('[PQ] SW登録失敗:', e));
+  });
+}
+</script>
+</body>
+</html>

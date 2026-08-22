@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1294748320155117"
+     crossorigin="anonymous"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ポーカーのポジション解説｜UTGからBTNまで立ち回りの基本 | Poker MANIA</title>
+<meta name="description" content="ポーカー(テキサスホールデム)のポジションを初心者向けに徹底解説。UTG・MP・CO・BTN・SB・BBの名称と位置、アーリー/ミドル/レイトの分類、IPとOOPの有利不利、ボタンが最強な理由、ブラインドディフェンスの考え方まで実戦で使える基本をまとめました。">
+<meta name="keywords" content="ポーカー,ポジション,UTG,BTN,ボタン,ブラインド,立ち回り,インポジション,アウトオブポジション,テキサスホールデム,6max,フルリング,ポーカー 初心者">
+<link rel="canonical" href="https://poker-mania.jp/position.html">
+<meta property="og:site_name" content="Poker MANIA">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ポーカーのポジション解説｜UTGからBTNまで立ち回りの基本">
+<meta property="og:description" content="UTGからBTNまで各ポジションの名称・特徴とレンジの違い、IP/OOPの有利不利、ブラインドディフェンスの基本を実戦目線で解説します。">
+<meta property="og:url" content="https://poker-mania.jp/position.html">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:#1c1c2e;font-family:-apple-system,sans-serif;color:#e8e0d0;min-height:100vh;line-height:1.7;}
+.header{position:sticky;top:0;z-index:50;background:#1c1c2e;border-bottom:1px solid rgba(201,168,76,0.2);padding:12px 16px;display:flex;align-items:center;gap:10px;}
+.header-title{font-size:16px;font-weight:700;color:#c9a84c;}
+.back-link{background:rgba(255,255,255,0.08);border-radius:8px;color:rgba(255,255,255,0.6);font-size:12px;padding:6px 10px;text-decoration:none;}
+.hero{padding:32px 16px 24px;border-bottom:1px solid rgba(255,255,255,0.06);}
+.hero-badge{display:inline-block;background:rgba(201,168,76,0.15);border:1px solid rgba(201,168,76,0.4);border-radius:20px;font-size:11px;font-weight:700;color:#c9a84c;padding:4px 12px;letter-spacing:0.1em;margin-bottom:12px;}
+.hero-title{font-size:24px;font-weight:800;color:#e8e0d0;margin-bottom:8px;line-height:1.3;}
+.hero-title span{color:#c9a84c;}
+.hero-sub{font-size:13px;color:rgba(255,255,255,0.45);line-height:1.6;}
+.toc{margin:16px 16px;background:#252540;border-radius:12px;padding:14px 16px;border:1px solid rgba(255,255,255,0.08);max-width:760px;}
+.toc-title{font-size:11px;font-weight:700;color:rgba(201,168,76,0.7);letter-spacing:0.12em;margin-bottom:10px;}
+.toc-list{display:flex;flex-direction:column;gap:6px;}
+.toc-item{font-size:13px;color:rgba(201,168,76,0.8);text-decoration:none;display:flex;align-items:center;gap:8px;}
+.toc-item::before{content:'›';color:#c9a84c;font-size:16px;}
+.content{max-width:760px;margin:0 auto;padding:0 16px 40px;}
+.section{margin-top:28px;}
+.section-title{font-size:17px;font-weight:800;color:#c9a84c;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid rgba(201,168,76,0.2);display:flex;align-items:center;gap:8px;}
+.prose{font-size:14px;color:rgba(255,255,255,0.75);line-height:1.9;margin-bottom:12px;}
+.prose strong{color:#e8e0d0;font-weight:700;}
+.prose a{color:#c9a84c;text-decoration:underline;}
+.hand-table{width:100%;border-collapse:collapse;margin:12px 0;}
+.hand-table th{background:rgba(201,168,76,0.1);color:#c9a84c;font-size:11px;font-weight:700;padding:8px 10px;text-align:left;}
+.hand-table td{padding:10px 10px;font-size:13px;border-bottom:1px solid rgba(255,255,255,0.06);color:rgba(255,255,255,0.75);}
+.hand-table tr:last-child td{border-bottom:none;}
+.hand-table .rank{color:#c9a84c;font-weight:700;}
+.hand-table .best{background:rgba(201,168,76,0.06);}
+.point-box{background:#252540;border-radius:12px;padding:14px 16px;margin:12px 0;border-left:3px solid #c9a84c;}
+.point-box-title{font-size:12px;font-weight:700;color:#c9a84c;margin-bottom:8px;}
+.point-list{display:flex;flex-direction:column;gap:7px;}
+.point-item{font-size:13px;color:rgba(255,255,255,0.7);display:flex;gap:8px;line-height:1.5;}
+.point-item::before{content:'▸';color:#c9a84c;flex-shrink:0;margin-top:1px;}
+.warn-box{background:rgba(255,80,80,0.08);border-radius:12px;padding:14px 16px;margin:12px 0;border-left:3px solid #e85555;}
+.warn-box-title{font-size:12px;font-weight:700;color:#e85555;margin-bottom:8px;}
+.warn-list{display:flex;flex-direction:column;gap:7px;}
+.warn-item{font-size:13px;color:rgba(255,255,255,0.7);display:flex;gap:8px;line-height:1.5;}
+.warn-item::before{content:'✕';color:#e85555;flex-shrink:0;}
+.flow{display:flex;flex-direction:column;gap:0;}
+.flow-step{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.05);}
+.flow-step:last-child{border-bottom:none;}
+.flow-num{width:28px;height:28px;border-radius:50%;background:#c9a84c;color:#1c1c2e;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;}
+.flow-title{font-size:14px;font-weight:700;color:#e8e0d0;margin-bottom:4px;}
+.flow-desc{font-size:13px;color:rgba(255,255,255,0.55);line-height:1.6;}
+.divider{height:1px;background:rgba(255,255,255,0.06);margin:24px 0;}
+.next-games{margin-top:28px;background:#252540;border-radius:12px;padding:16px;border:1px solid rgba(255,255,255,0.08);}
+.next-games-title{font-size:12px;font-weight:700;color:rgba(201,168,76,0.7);letter-spacing:0.1em;margin-bottom:12px;}
+.game-chips{display:flex;flex-wrap:wrap;gap:8px;}
+.game-chip{padding:8px 14px;border-radius:20px;font-size:12px;font-weight:700;border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.4);text-decoration:none;display:inline-block;}
+.game-chip.current{border-color:#c9a84c;color:#c9a84c;background:rgba(201,168,76,0.1);}
+.faq-q{font-size:14px;font-weight:700;color:#e8e0d0;margin-top:16px;margin-bottom:6px;}
+.faq-q::before{content:'Q. ';color:#c9a84c;}
+.faq-a{font-size:14px;color:rgba(255,255,255,0.72);line-height:1.85;}
+.faq-a::before{content:'A. ';color:rgba(201,168,76,0.7);font-weight:700;}
+.cta-box{background:linear-gradient(135deg,rgba(201,168,76,0.14),rgba(201,168,76,0.04));border:1px solid rgba(201,168,76,0.3);border-radius:12px;padding:16px;margin:20px 0;text-align:center;}
+.cta-box a{display:inline-block;margin-top:8px;background:#c9a84c;color:#1c1c2e;border-radius:9px;font-size:13px;font-weight:800;padding:10px 20px;text-decoration:none;}
+.site-footer{border-top:1px solid rgba(201,168,76,0.2);margin-top:8px;padding:24px 16px 40px;text-align:center;}
+.site-footer a{color:rgba(201,168,76,0.85);font-size:12px;text-decoration:none;margin:0 6px;}
+.site-footer .copy{display:block;margin-top:12px;font-size:11px;color:rgba(255,255,255,0.3);}
+</style>
+</head>
+<body>
+<header class="header">
+  <a href="guide.html" class="back-link">‹ 戻る</a>
+  <span class="header-title">🎯 ポジション</span>
+</header>
+
+<section class="hero">
+  <span class="hero-badge">POSITION</span>
+  <h1 class="hero-title">ポーカーの<span>ポジション</span>解説<br>UTGからBTNまで立ち回りの基本</h1>
+  <p class="hero-sub">テキサスホールデムで最も勝率に直結する概念が「ポジション」です。同じハンドでも座る場所次第で価値は大きく変わります。各ポジションの名称・特徴から、インポジションの有利さ、ブラインドディフェンスまで、実戦で使える基礎を体系的にまとめました。</p>
+</section>
+
+<nav class="toc">
+  <div class="toc-title">目次</div>
+  <div class="toc-list">
+    <a href="#s1" class="toc-item">ポジションとは・なぜ重要か</a>
+    <a href="#s2" class="toc-item">各ポジションの名称と位置</a>
+    <a href="#s3" class="toc-item">アーリー/ミドル/レイトの分類</a>
+    <a href="#s4" class="toc-item">インポジション(IP)とアウトオブポジション(OOP)</a>
+    <a href="#s5" class="toc-item">ボタンが最強な理由とブラインドの不利</a>
+    <a href="#s6" class="toc-item">ポジション別の基本方針とよくあるミス</a>
+    <a href="#s7" class="toc-item">FAQ よくある質問</a>
+  </div>
+</nav>
+
+<main class="content">
+
+  <section class="section" id="s1">
+    <h2 class="section-title">1. ポジションとは・なぜ重要か</h2>
+    <p class="prose"><strong>ポジション</strong>とは、テーブル上で自分が何番目に行動するかを示す「席順」のことです。ポーカーはボタン(ディーラーボタン)を基準に時計回りにアクションが進み、1ハンドごとにボタンが1つ左へ移動します。つまりポジションは固定ではなく、1周ごとに全員が順番に各ポジションを経験する仕組みです。</p>
+    <p class="prose">なぜこれが重要かというと、答えはシンプルで<strong>「後に行動できる人ほど手に入る情報が多い」</strong>からです。相手が先にベット・チェック・フォールドといったアクションを見せてくれれば、その情報をもとに自分の判断を最適化できます。逆に自分が先に動かなければならない立場だと、相手の手が強いのか弱いのか分からないまま決断を迫られます。</p>
+    <p class="prose">ポーカーは配られるカードそのものを選べませんが、<strong>「どのハンドを、どのポジションでプレーするか」は完全に自分でコントロールできる</strong>要素です。強豪ほどこの情報格差を徹底的に利用し、有利な位置では積極的に、不利な位置では慎重にプレーします。ポジションの理解は、テクニックというより勝ち続けるための土台だと考えてください。</p>
+  </section>
+
+  <section class="section" id="s2">
+    <h2 class="section-title">2. 各ポジションの名称と位置</h2>
+    <p class="prose">各席には固有の名前があります。プリフロップでは基準となるボタンの左隣2席が強制ベット(ブラインド)を出す<strong>SB・BB</strong>で、そのさらに左、つまり最初にアクションする席が<strong>UTG</strong>です。以下は9人テーブル(フルリング)を基準にした一覧です。</p>
+    <table class="hand-table">
+      <thead>
+        <tr><th>ポジション</th><th>略称</th><th>特徴</th></tr>
+      </thead>
+      <tbody>
+        <tr class="best"><td class="rank">ボタン</td><td>BTN</td><td>プリフロップ以降、常に最後に行動できる最強の席</td></tr>
+        <tr><td class="rank">スモールブラインド</td><td>SB</td><td>少額の強制ベット。ポストフロップは最も不利な席</td></tr>
+        <tr><td class="rank">ビッグブラインド</td><td>BB</td><td>規定額の強制ベット。プリフロップだけ最後に動ける</td></tr>
+        <tr><td class="rank">アンダーザガン</td><td>UTG</td><td>プリフロップで最初に動く。残る相手が最も多い</td></tr>
+        <tr><td class="rank">アンダーザガン+1</td><td>UTG+1</td><td>UTGの次。アーリー扱いで依然として不利</td></tr>
+        <tr><td class="rank">ミドルポジション</td><td>MP</td><td>中間の席。UTGより少しレンジを広げられる</td></tr>
+        <tr><td class="rank">ハイジャック</td><td>HJ</td><td>COの1つ手前。レイト寄りで攻めやすくなる</td></tr>
+        <tr class="best"><td class="rank">カットオフ</td><td>CO</td><td>BTNの右隣。BTNに次いで強い攻撃的な席</td></tr>
+      </tbody>
+    </table>
+    <p class="prose"><strong>6max(6人テーブル)とフルリング(9〜10人)の違い</strong>にも触れておきます。6maxではUTG+1・HJなどが省かれ、席は「UTG・MP・CO・BTN・SB・BB」の6つに簡略化されます。人数が少ないぶん1人あたりに回ってくる強い席の頻度が高く、全体的にレンジは広く、アグレッシブな展開になりやすいのが特徴です。一方フルリングは自分の前を通過する相手が多いため、特にアーリーでは手をかなり絞る必要があります。オンラインの主流は6max、ライブトーナメントはフルリングが多い、と覚えておくと実戦で混乱しません。</p>
+  </section>
+
+  <!-- Google AdSense: in-content (slot 2184231625) -->
+  <div style="max-width:728px;margin:28px auto;padding:0 4px;box-sizing:border-box;text-align:center;">
+    <div style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:1px;margin-bottom:4px;">スポンサーリンク</div>
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1294748320155117" data-ad-slot="2184231625" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <section class="section" id="s3">
+    <h2 class="section-title">3. アーリー/ミドル/レイトの分類</h2>
+    <p class="prose">個々の席は、大きく3つのグループに分類して考えると立ち回りがシンプルになります。プリフロップで動く順番が早いほど「後ろに残っている相手が多い=危険」であり、扱えるハンドの範囲(レンジ)は狭くなります。</p>
+    <table class="hand-table">
+      <thead>
+        <tr><th>分類</th><th>含まれる席</th><th>レンジの広さ</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="rank">アーリー(EP)</td><td>UTG・UTG+1</td><td>最も狭い。強いハンドに限定</td></tr>
+        <tr><td class="rank">ミドル(MP)</td><td>MP・HJ</td><td>中程度。少しずつ広げられる</td></tr>
+        <tr class="best"><td class="rank">レイト(LP)</td><td>CO・BTN</td><td>最も広い。積極的に参加可能</td></tr>
+        <tr><td class="rank">ブラインド</td><td>SB・BB</td><td>特殊。守り中心の別枠で考える</td></tr>
+      </tbody>
+    </table>
+    <p class="prose">なぜアーリーでレンジを絞るのかを具体的に言うと、UTGでレイズした場合、後ろに7〜8人が控えており、その中の誰かが自分より強いハンドを持っている確率が高いからです。逆にBTNまで全員がフォールドやコールで回ってくれば、脅威は残り2人(SBとBB)だけ。だから同じ「A9o」のようなハンドでも、UTGでは降りる一方、BTNではレイズできる、という判断の差が生まれます。<strong>座る席によってプレーすべきハンドが変わる</strong>——これがポジションの実践的な核心です。詳しくは<a href="starting_hands.html">スターティングハンド</a>の記事も参照してください。</p>
+  </section>
+
+  <section class="section" id="s4">
+    <h2 class="section-title">4. インポジション(IP)とアウトオブポジション(OOP)</h2>
+    <p class="prose">ポジションの有利不利は、対戦相手との相対的な位置関係で決まります。フロップ以降、相手より<strong>後に行動できる状態を「インポジション(IP)」</strong>、相手より<strong>先に行動しなければならない状態を「アウトオブポジション(OOP)」</strong>と呼びます。</p>
+    <div class="point-box">
+      <div class="point-box-title">インポジション(IP)の3つの利点</div>
+      <div class="point-list">
+        <div class="point-item">相手のアクションを見てから決められるため、情報量で常に上回る</div>
+        <div class="point-item">相手がチェックしたらチェックで無料のカードを見られる(フリーカードを取れる)</div>
+        <div class="point-item">ベットサイズやブラフの頻度を、相手の反応に合わせて後出しで最適化できる</div>
+      </div>
+    </div>
+    <p class="prose">逆にOOPは、相手が何を持っているか分からないまま先に手の内を明かす必要があり、ブラフも通しにくく、ポットのコントロールも困難です。プロの統計でも、同じハンド強度ならIPのほうが期待値が明確に高いことが知られています。重要なのは、<strong>IP/OOPはプリフロップのポジションとほぼ連動する</strong>という点です。BTNやCOでレイズして相手がコールすれば、フロップ以降ずっとIPを保てます。だから「良い席で参加する」ことが、そのまま「フロップ以降の有利」に直結するのです。</p>
+  </section>
+
+  <section class="section" id="s5">
+    <h2 class="section-title">5. ボタンが最強な理由とブラインドの不利</h2>
+    <p class="prose"><strong>ボタン(BTN)がポーカーで最も価値の高い席</strong>と言われるのは、プリフロップでもポストフロップでも常に最後に行動できる唯一の席だからです。全ラウンドで相手全員のアクションを見終わってから決断できるため、情報の非対称性を最大限に活かせます。統計的にも、長期で見ればBTNは全ポジション中で唯一大きくプラス収支になりやすい席です。</p>
+    <div class="flow">
+      <div class="flow-step">
+        <div class="flow-num">1</div>
+        <div>
+          <div class="flow-title">BTNは最後に動ける</div>
+          <div class="flow-desc">前が全員降りればSB・BBの2人だけが相手。弱いハンドでもスチール(ブラインド奪取)を狙える。</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">2</div>
+        <div>
+          <div class="flow-title">SBは常に不利</div>
+          <div class="flow-desc">強制ベットで既にチップを出しているのに、ポストフロップは全員より先に動く最悪の位置。参加基準は厳しめに。</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">3</div>
+        <div>
+          <div class="flow-title">BBは守りの席</div>
+          <div class="flow-desc">既に規定額を払っているぶん、割安にコールできる。ここで登場するのがブラインドディフェンス。</div>
+        </div>
+      </div>
+    </div>
+    <p class="prose"><strong>ブラインドディフェンス</strong>とは、相手(特にレイトポジション)のオープンレイズに対して、BBから安易に降りすぎない考え方のことです。BBは既にビッグブラインド分を支払っているため、コールに必要な追加額に対してポットが割安になっており、<a href="pot_odds.html">ポットオッズ</a>の観点から見て、そこそこ弱いハンドでもコール(ディフェンス)する価値が生まれます。ただしOOPで戦う不利は残るため、守りすぎず・降りすぎずのバランスが重要です。相手がBTNなど広いレンジでスチールを仕掛けてくる席ほど、こちらもディフェンス範囲を広げるのがセオリーです。</p>
+  </section>
+
+  <!-- Google AdSense: in-content (slot 2184231625) -->
+  <div style="max-width:728px;margin:28px auto;padding:0 4px;box-sizing:border-box;text-align:center;">
+    <div style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:1px;margin-bottom:4px;">スポンサーリンク</div>
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1294748320155117" data-ad-slot="2184231625" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <section class="section" id="s6">
+    <h2 class="section-title">6. ポジション別の基本方針とよくあるミス</h2>
+    <div class="point-box">
+      <div class="point-box-title">ポジション別・基本の立ち回り</div>
+      <div class="point-list">
+        <div class="point-item"><strong>アーリー(UTG)</strong>:プレミアムハンド中心に厳選。大きなペアや強いエース、高いスーテッドコネクターに限定する</div>
+        <div class="point-item"><strong>ミドル(MP)</strong>:アーリーより少し広げ、中位ペアや強めのブロードウェイを追加していく</div>
+        <div class="point-item"><strong>レイト(CO・BTN)</strong>:最も広く参加。スチールを積極的に狙い、弱い相手のブラインドを奪う</div>
+        <div class="point-item"><strong>SB</strong>:参加基準を厳しく。基本はレイズかフォールドで、限定コールは避ける</div>
+        <div class="point-item"><strong>BB</strong>:ディフェンスを意識。ポットオッズが合う範囲で降りすぎない</div>
+      </div>
+    </div>
+    <div class="warn-box">
+      <div class="warn-box-title">初心者にありがちなポジションのミス</div>
+      <div class="warn-list">
+        <div class="warn-item">アーリーで手を広げすぎる。UTGでA5oやKToまで参加してフロップ以降ずっとOOPで苦しむ</div>
+        <div class="warn-item">レイトの優位を活かさない。BTNまで回ってきたのに弱気に降り、スチールのチャンスを逃す</div>
+        <div class="warn-item">SBで安易にリンプ(コールのみ)。中途半端に参加してOOPで難しい局面を作ってしまう</div>
+        <div class="warn-item">BBを守らなすぎる。オッズが合っているのに機械的にフォールドし、長期で損を重ねる</div>
+        <div class="warn-item">ポジションを無視してハンドだけで判断する。「同じ手でも席で価値が変わる」感覚が抜けている</div>
+      </div>
+    </div>
+    <p class="prose">最も伝えたいのは、<strong>ハンドの強さだけでプレーを決めないこと</strong>です。「このハンドは強いから参加」ではなく、「このポジションで、この相手構成なら、このハンドは参加に値するか」と考える習慣をつけると、勝率は着実に上がります。ポジションで選ぶハンドがどう変わるかは、ぜひ<a href="starting_hands.html">スターティングハンド</a>の記事と併せて身につけてください。</p>
+  </section>
+
+  <div class="cta-box">
+    <div class="prose" style="margin-bottom:0;">ポジションを理解したら、次は「どの席でどの手を打つか」。</div>
+    <a href="starting_hands.html">スターティングハンドを学ぶ</a>
+  </div>
+
+  <section class="section" id="s7">
+    <h2 class="section-title">7. FAQ よくある質問</h2>
+    <div class="faq-q">一番有利なポジションはどこですか？</div>
+    <p class="faq-a">ボタン(BTN)です。プリフロップからリバーまで一貫して最後に行動でき、相手全員のアクションを見てから判断できます。長期的にも唯一大きくプラス収支になりやすい席で、最も広いレンジで積極的に攻められます。</p>
+    <div class="faq-q">UTGとは何ですか？</div>
+    <p class="faq-a">アンダーザガン(Under The Gun)の略で、プリフロップで最初に行動する席です。「銃口の下=一番プレッシャーがかかる」という意味の通り、後ろに残る相手が最も多く不利なため、強いハンドに絞って参加するのが基本です。</p>
+    <div class="faq-q">ブラインドはなぜ不利なのですか？</div>
+    <p class="faq-a">SB・BBは自分の意思と関係なく強制ベットを払わされた上で、フロップ以降は相手より先に動くOOP(アウトオブポジション)になるためです。特にSBはチップを出しているのに最も不利な位置で戦う二重の不利を背負います。</p>
+    <div class="faq-q">6maxとフルリングでポジションの考え方は変わりますか？</div>
+    <p class="faq-a">基本原理は同じですが、6maxは席が6つと少なく、強い席が回ってくる頻度が高いため全体的にレンジが広くアグレッシブになります。フルリング(9〜10人)は前を通る相手が多く、特にアーリーでは手をより厳しく絞る必要があります。</p>
+    <div class="faq-q">ポジションはどれくらい重要ですか？</div>
+    <p class="faq-a">ハンド選択と並んで、勝敗を分ける最重要要素の一つです。配られるカードは選べませんが、どの席でどのハンドを打つかは自分で完全にコントロールできます。初心者がまず身につけるべき、最もコスパの高い知識と言えます。</p>
+  </section>
+
+  <div class="next-games">
+    <div class="next-games-title">関連記事</div>
+    <div class="game-chips">
+      <a href="holdem_rules.html" class="game-chip">ルール</a>
+      <a href="hand_rankings.html" class="game-chip">役の強さ</a>
+      <a href="starting_hands.html" class="game-chip">スターティングハンド</a>
+      <a href="pot_odds.html" class="game-chip">ポットオッズ</a>
+      <a href="glossary.html" class="game-chip">用語集</a>
+      <a href="guide.html" class="game-chip">講座トップ</a>
+    </div>
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <a href="index.html">ホーム</a>·<a href="guide.html">ポーカー講座</a>·<a href="privacy.html">プライバシーポリシー</a>·<a href="contact.html">お問い合わせ</a>·<a href="about.html">運営者情報</a>
+  <span class="copy">© 2026 Poker MANIA</span>
+</footer>
+
+</body>
+</html>

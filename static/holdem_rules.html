@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1294748320155117"
+     crossorigin="anonymous"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>テキサスホールデムのルール完全ガイド｜初心者向けに流れを解説 | Poker MANIA</title>
+<meta name="description" content="テキサスホールデムのルールを初心者向けに解説。配られるカード、ディーラーボタンとブラインド、プリフロップからショーダウンまでの流れ、フォールドやレイズなどのアクション、勝敗の決め方まで、読めばすぐ遊べるように丁寧にまとめました。">
+<meta name="keywords" content="テキサスホールデム,ルール,ポーカー,初心者,遊び方,ブラインド,ショーダウン,プリフロップ,フロップ,ターン,リバー">
+<link rel="canonical" href="https://poker-mania.jp/holdem_rules.html">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://poker-mania.jp/holdem_rules.html">
+<meta property="og:title" content="テキサスホールデムのルール完全ガイド｜初心者向けに流れを解説">
+<meta property="og:description" content="配られるカードからブラインド、各ストリートの流れ、アクション、勝敗の決め方まで。テキサスホールデムのルールを初心者が読んですぐ遊べるレベルまで解説します。">
+<meta property="og:site_name" content="Poker MANIA">
+<meta property="og:locale" content="ja_JP">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:#1c1c2e;font-family:-apple-system,sans-serif;color:#e8e0d0;min-height:100vh;line-height:1.7;}
+.header{position:sticky;top:0;z-index:50;background:#1c1c2e;border-bottom:1px solid rgba(201,168,76,0.2);padding:12px 16px;display:flex;align-items:center;gap:10px;}
+.header-title{font-size:16px;font-weight:700;color:#c9a84c;}
+.back-link{background:rgba(255,255,255,0.08);border-radius:8px;color:rgba(255,255,255,0.6);font-size:12px;padding:6px 10px;text-decoration:none;}
+.hero{padding:32px 16px 24px;border-bottom:1px solid rgba(255,255,255,0.06);}
+.hero-badge{display:inline-block;background:rgba(201,168,76,0.15);border:1px solid rgba(201,168,76,0.4);border-radius:20px;font-size:11px;font-weight:700;color:#c9a84c;padding:4px 12px;letter-spacing:0.1em;margin-bottom:12px;}
+.hero-title{font-size:24px;font-weight:800;color:#e8e0d0;margin-bottom:8px;line-height:1.3;}
+.hero-title span{color:#c9a84c;}
+.hero-sub{font-size:13px;color:rgba(255,255,255,0.45);line-height:1.6;}
+.toc{margin:16px 16px;background:#252540;border-radius:12px;padding:14px 16px;border:1px solid rgba(255,255,255,0.08);max-width:760px;}
+.toc-title{font-size:11px;font-weight:700;color:rgba(201,168,76,0.7);letter-spacing:0.12em;margin-bottom:10px;}
+.toc-list{display:flex;flex-direction:column;gap:6px;}
+.toc-item{font-size:13px;color:rgba(201,168,76,0.8);text-decoration:none;display:flex;align-items:center;gap:8px;}
+.toc-item::before{content:'›';color:#c9a84c;font-size:16px;}
+.content{max-width:760px;margin:0 auto;padding:0 16px 40px;}
+.section{margin-top:28px;}
+.section-title{font-size:17px;font-weight:800;color:#c9a84c;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid rgba(201,168,76,0.2);display:flex;align-items:center;gap:8px;}
+.prose{font-size:14px;color:rgba(255,255,255,0.75);line-height:1.9;margin-bottom:12px;}
+.prose strong{color:#e8e0d0;font-weight:700;}
+.prose a{color:#c9a84c;text-decoration:underline;}
+.hand-table{width:100%;border-collapse:collapse;margin:12px 0;}
+.hand-table th{background:rgba(201,168,76,0.1);color:#c9a84c;font-size:11px;font-weight:700;padding:8px 10px;text-align:left;}
+.hand-table td{padding:10px 10px;font-size:13px;border-bottom:1px solid rgba(255,255,255,0.06);color:rgba(255,255,255,0.75);}
+.hand-table tr:last-child td{border-bottom:none;}
+.hand-table .rank{color:#c9a84c;font-weight:700;}
+.hand-table .best{background:rgba(201,168,76,0.06);}
+.point-box{background:#252540;border-radius:12px;padding:14px 16px;margin:12px 0;border-left:3px solid #c9a84c;}
+.point-box-title{font-size:12px;font-weight:700;color:#c9a84c;margin-bottom:8px;}
+.point-list{display:flex;flex-direction:column;gap:7px;}
+.point-item{font-size:13px;color:rgba(255,255,255,0.7);display:flex;gap:8px;line-height:1.5;}
+.point-item::before{content:'▸';color:#c9a84c;flex-shrink:0;margin-top:1px;}
+.warn-box{background:rgba(255,80,80,0.08);border-radius:12px;padding:14px 16px;margin:12px 0;border-left:3px solid #e85555;}
+.warn-box-title{font-size:12px;font-weight:700;color:#e85555;margin-bottom:8px;}
+.warn-list{display:flex;flex-direction:column;gap:7px;}
+.warn-item{font-size:13px;color:rgba(255,255,255,0.7);display:flex;gap:8px;line-height:1.5;}
+.warn-item::before{content:'✕';color:#e85555;flex-shrink:0;}
+.flow{display:flex;flex-direction:column;gap:0;}
+.flow-step{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.05);}
+.flow-step:last-child{border-bottom:none;}
+.flow-num{width:28px;height:28px;border-radius:50%;background:#c9a84c;color:#1c1c2e;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;}
+.flow-title{font-size:14px;font-weight:700;color:#e8e0d0;margin-bottom:4px;}
+.flow-desc{font-size:13px;color:rgba(255,255,255,0.55);line-height:1.6;}
+.divider{height:1px;background:rgba(255,255,255,0.06);margin:24px 0;}
+.next-games{margin-top:28px;background:#252540;border-radius:12px;padding:16px;border:1px solid rgba(255,255,255,0.08);}
+.next-games-title{font-size:12px;font-weight:700;color:rgba(201,168,76,0.7);letter-spacing:0.1em;margin-bottom:12px;}
+.game-chips{display:flex;flex-wrap:wrap;gap:8px;}
+.game-chip{padding:8px 14px;border-radius:20px;font-size:12px;font-weight:700;border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.4);text-decoration:none;display:inline-block;}
+.game-chip.current{border-color:#c9a84c;color:#c9a84c;background:rgba(201,168,76,0.1);}
+.faq-q{font-size:14px;font-weight:700;color:#e8e0d0;margin-top:16px;margin-bottom:6px;}
+.faq-q::before{content:'Q. ';color:#c9a84c;}
+.faq-a{font-size:14px;color:rgba(255,255,255,0.72);line-height:1.85;}
+.faq-a::before{content:'A. ';color:rgba(201,168,76,0.7);font-weight:700;}
+.cta-box{background:linear-gradient(135deg,rgba(201,168,76,0.14),rgba(201,168,76,0.04));border:1px solid rgba(201,168,76,0.3);border-radius:12px;padding:16px;margin:20px 0;text-align:center;}
+.cta-box a{display:inline-block;margin-top:8px;background:#c9a84c;color:#1c1c2e;border-radius:9px;font-size:13px;font-weight:800;padding:10px 20px;text-decoration:none;}
+.site-footer{border-top:1px solid rgba(201,168,76,0.2);margin-top:8px;padding:24px 16px 40px;text-align:center;}
+.site-footer a{color:rgba(201,168,76,0.85);font-size:12px;text-decoration:none;margin:0 6px;}
+.site-footer .copy{display:block;margin-top:12px;font-size:11px;color:rgba(255,255,255,0.3);}
+</style>
+</head>
+<body>
+<div class="header">
+  <a href="index.html" class="back-link">← Poker MANIA</a>
+  <div class="header-title">📖 ルール解説</div>
+</div>
+
+<div class="hero">
+  <div class="hero-badge">TEXAS HOLD'EM</div>
+  <div class="hero-title">テキサスホールデムの<span>ルール完全ガイド</span></div>
+  <div class="hero-sub">配られるカードからブラインド、各ストリートの流れ、アクション、勝敗の決め方まで。この記事を読み終えれば、初心者でも自信を持って1ハンドをプレイできるようになります。</div>
+</div>
+
+<div class="toc">
+  <div class="toc-title">目次</div>
+  <div class="toc-list">
+    <a class="toc-item" href="#what">1. テキサスホールデムとは</a>
+    <a class="toc-item" href="#items">2. 使うもの・基本用語</a>
+    <a class="toc-item" href="#flow">3. ゲームの流れ（1ハンドの進み方）</a>
+    <a class="toc-item" href="#actions">4. できるアクション</a>
+    <a class="toc-item" href="#betting">5. ベットのルール</a>
+    <a class="toc-item" href="#showdown">6. ショーダウンと勝敗の決め方</a>
+    <a class="toc-item" href="#tips">7. 初心者がまず覚えるべきこと</a>
+    <a class="toc-item" href="#faq">8. よくある質問（FAQ）</a>
+  </div>
+</div>
+
+<div class="content">
+
+  <div class="section" id="what">
+    <div class="section-title">♠️ テキサスホールデムとは</div>
+    <div class="prose">
+      <strong>テキサスホールデム</strong>は、世界中でもっとも広くプレイされているポーカーの種目です。国際大会やオンライン対戦の主役になっているのもこの形式で、「ポーカー＝テキサスホールデム」と言ってよいほど普及しています。ルール自体はとてもシンプルで、覚えることが少ないわりに、駆け引きの奥行きが深いのが人気の理由です。
+    </div>
+    <div class="prose">
+      基本の考え方はこうです。各プレイヤーには自分だけが見られる<strong>ホールカード（手札）</strong>が2枚配られます。さらにテーブルの中央には、全員が共通で使える<strong>コミュニティカード</strong>が最終的に5枚めくられていきます。プレイヤーは、自分の手札2枚とこの共通カード5枚、合わせて7枚の中から<strong>もっとも強い5枚の組み合わせ</strong>を作り、その強さを競います。
+    </div>
+    <div class="prose">
+      勝負は必ずしも最後までカードを見せ合うわけではありません。各段階で「賭ける・降りる」といったアクションを行い、途中で全員が降りれば、残った1人がその場の賭け金（ポット）を獲得します。つまり<strong>手札の強さだけでなく、ベットによる駆け引きそのものが勝敗を左右する</strong>のがこのゲームの醍醐味です。本記事は学習・娯楽目的の解説であり、金銭を賭けた賭博を推奨するものではありません。
+    </div>
+  </div>
+
+  <div class="section" id="items">
+    <div class="section-title">🃏 使うもの・基本用語</div>
+    <div class="prose">
+      用意するものはとてもシンプルです。ジョーカーを除いた<strong>52枚のトランプ1組</strong>と、賭け金の単位を表す<strong>チップ</strong>があれば遊べます。プレイ人数は一般的に2〜10人で、多くのテーブルは6人または9人で行われます。まずは最低限おさえておきたい用語を整理しましょう。
+    </div>
+    <div class="point-box">
+      <div class="point-box-title">最初に覚える5つの用語</div>
+      <div class="point-list">
+        <div class="point-item"><strong>ディーラーボタン</strong>：親の位置を示す目印。1ハンドごとに時計回りに1人ずつ移動し、アクションの順番を決める基準になります。</div>
+        <div class="point-item"><strong>SB（スモールブラインド）</strong>：ボタンの左隣の人が、カードを見る前に置く強制ベット。金額は小さめです。</div>
+        <div class="point-item"><strong>BB（ビッグブラインド）</strong>：SBのさらに左隣の人が置く強制ベット。通常SBの2倍で、そのハンドの最低ベット額の基準になります。</div>
+        <div class="point-item"><strong>ポット</strong>：テーブル中央に集まった賭け金の合計。勝者がこれを総取りします。</div>
+        <div class="point-item"><strong>ポジション</strong>：ボタンからの相対的な席順のこと。後ろの席（アクションが後）ほど相手の動きを見てから決められるため有利とされます。</div>
+      </div>
+    </div>
+    <div class="prose">
+      <strong>ブラインド</strong>とは、その名の通り「目隠しのまま（カードを見ずに）」置く強制ベットのことです。全員が毎回チップを出すわけではないので、ブラインドがなければ誰も賭けず勝負が始まりません。そこで最初の2人だけ強制的にチップを出すことで、必ずポットが生まれ、ゲームが動き出す仕組みになっています。ポジションの詳しい考え方は<a href="position.html">ポジションの解説記事</a>もあわせてどうぞ。
+    </div>
+  </div>
+
+  <!-- Google AdSense: in-content (slot 2184231625) -->
+  <div style="max-width:728px;margin:28px auto;padding:0 4px;box-sizing:border-box;text-align:center;">
+    <div style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:1px;margin-bottom:4px;">スポンサーリンク</div>
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1294748320155117" data-ad-slot="2184231625" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <div class="section" id="flow">
+    <div class="section-title">🔄 ゲームの流れ（1ハンドの進み方）</div>
+    <div class="prose">
+      テキサスホールデムの1ハンドは、カードがめくられるタイミングで区切られた4つの<strong>ストリート（ベットラウンド）</strong>から成り立っています。プリフロップ → フロップ → ターン → リバー、と進み、最後に手札を見せ合う<strong>ショーダウン</strong>で決着します。全体の流れを順番に見ていきましょう。
+    </div>
+    <div class="flow">
+      <div class="flow-step">
+        <div class="flow-num">1</div>
+        <div>
+          <div class="flow-title">プリフロップ（手札配布）</div>
+          <div class="flow-desc">SBとBBがブラインドを置いた後、各プレイヤーに2枚のホールカードが配られます。BBの左隣の人から順に、時計回りにアクション。ここでは共通カードはまだ1枚も見えていません。</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">2</div>
+        <div>
+          <div class="flow-title">フロップ（共通カード3枚）</div>
+          <div class="flow-desc">テーブル中央に共通カードが一気に3枚オープンされます。ここから2巡目のベットラウンド。以降はSB側（ボタンの左）から順にアクションしていきます。</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">3</div>
+        <div>
+          <div class="flow-title">ターン（共通カード4枚目）</div>
+          <div class="flow-desc">共通カードがもう1枚めくられ、合計4枚に。役の完成に近づく重要な局面で、3巡目のベットラウンドを行います。</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">4</div>
+        <div>
+          <div class="flow-title">リバー（共通カード5枚目）</div>
+          <div class="flow-desc">最後の共通カードがめくられ、共通カードは5枚で確定。これで手札を作る材料がすべて出そろい、最終ベットラウンドが行われます。</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">5</div>
+        <div>
+          <div class="flow-title">ショーダウン（勝負）</div>
+          <div class="flow-desc">最後まで降りずに残ったプレイヤーが手札を見せ合い、もっとも強い5枚を作った人がポットを獲得します。途中で1人を除く全員が降りた場合は、その時点でショーダウンなしに勝者が決まります。</div>
+        </div>
+      </div>
+    </div>
+    <div class="prose">
+      各ストリートでは、そのラウンドに残っている全員の賭け金がそろう（または全員がチェックする）までアクションが続き、それが済むと次のカードがめくられます。この「カードをめくる → 賭け合う」を4回繰り返すのが基本のリズムです。
+    </div>
+  </div>
+
+  <div class="section" id="actions">
+    <div class="section-title">🎯 できるアクション</div>
+    <div class="prose">
+      自分の番が回ってきたら、状況に応じて次の6つの行動から1つを選びます。何ができるかは「今、自分より前の誰かがベットしているかどうか」で変わります。
+    </div>
+    <div class="point-box">
+      <div class="point-box-title">6つのアクション</div>
+      <div class="point-list">
+        <div class="point-item"><strong>フォールド（降りる）</strong>：手札を捨てて、そのハンドから離脱します。それまでに出したチップは戻りませんが、追加の負けは避けられます。</div>
+        <div class="point-item"><strong>チェック</strong>：追加で賭けず、権利をそのまま次の人へ回します。<strong>自分より前に誰もベットしていないときだけ</strong>選べます。</div>
+        <div class="point-item"><strong>コール</strong>：直前のベット額と同じ金額を出して勝負に残ります。「その賭けについていく」行動です。</div>
+        <div class="point-item"><strong>ベット</strong>：まだ誰も賭けていないラウンドで、最初にチップを賭ける行動。以降の人はコール／レイズ／フォールドを迫られます。</div>
+        <div class="point-item"><strong>レイズ</strong>：すでにあるベットに上乗せして金額をつり上げる行動。相手にさらなる判断を迫れます。</div>
+        <div class="point-item"><strong>オールイン</strong>：手持ちのチップを全額賭ける行動。持ち点が足りなくても、その全額分までは勝負に参加できます。</div>
+      </div>
+    </div>
+    <div class="prose">
+      整理すると、<strong>誰もベットしていない</strong>ときの選択肢は「チェック」か「ベット」。<strong>すでに誰かがベットしている</strong>ときの選択肢は「フォールド」「コール」「レイズ」の3つです。この区別さえ押さえれば、自分の番で迷うことはほとんどなくなります。
+    </div>
+  </div>
+
+  <!-- Google AdSense: in-content (slot 2184231625) -->
+  <div style="max-width:728px;margin:28px auto;padding:0 4px;box-sizing:border-box;text-align:center;">
+    <div style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:1px;margin-bottom:4px;">スポンサーリンク</div>
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1294748320155117" data-ad-slot="2184231625" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <div class="section" id="betting">
+    <div class="section-title">💰 ベットのルール</div>
+    <div class="prose">
+      ベットの流れは、必ず<strong>ブラインドから始まる</strong>のがポイントです。プリフロップの最低ベット額（コールに必要な額）はBBと同じ金額。プレイヤーは順番に、そのBB額をコールするか、レイズするか、降りるかを選んでいきます。
+    </div>
+    <div class="prose">
+      レイズには<strong>最低レイズ額</strong>のルールがあります。ノーリミット形式では、レイズの上げ幅は「直前のベット（またはレイズ）の増加分以上」でなければなりません。たとえばBBが100で、ある人が300までレイズ（増加分200）した場合、次にレイズする人は最低でもさらに200上乗せの500以上にする必要があります。上限額は自分の持ちチップまで、つまりオールインまで自由です。
+    </div>
+    <div class="prose">
+      各ラウンドは、そのラウンドに残る全員の<strong>賭け金がそろった時点</strong>で終了します。誰かがベットすれば、他の全員がコール・レイズ・フォールドで応じ、金額が一致すればラウンド終了。誰もベットせず全員チェックで一周した場合も、そこでラウンドは終わり次のカードがめくられます。集まったチップはすべてポットに積み上がっていきます。
+    </div>
+    <div class="warn-box">
+      <div class="warn-box-title">ベットで間違えやすい点</div>
+      <div class="warn-list">
+        <div class="warn-item">前に誰かがベットしているのに「チェック」しようとする（このときはコール・レイズ・フォールドのいずれか）。</div>
+        <div class="warn-item">レイズ額が最低レイズ額に届いていない（上げ幅は直前の増加分以上が必要）。</div>
+        <div class="warn-item">一度に賭ける手順を分けて出す「ストリングベット」は反則。チップは一度の動作で出すのがマナー。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="showdown">
+    <div class="section-title">🏆 ショーダウンと勝敗の決め方</div>
+    <div class="prose">
+      リバー後の最終ベットラウンドを終え、2人以上が残っていれば<strong>ショーダウン</strong>です。残ったプレイヤーは手札を公開し、自分の2枚と共通カード5枚の計7枚から選んだ<strong>最強の5枚</strong>で強さを比べます。より強い役を持つ人がポットを獲得します。
+    </div>
+    <div class="prose">
+      役の強さには決まった序列があります。おおまかな順位は次のとおりです。それぞれの成立条件や具体例は<a href="hand_rankings.html">役の強さの解説記事</a>で詳しくまとめているので、あわせてご覧ください。
+    </div>
+    <table class="hand-table">
+      <tr><th>順位</th><th>役の名前</th><th>ざっくり説明</th></tr>
+      <tr class="best"><td class="rank">1</td><td>ロイヤルフラッシュ</td><td>同じスートのA・K・Q・J・10。最強</td></tr>
+      <tr><td class="rank">2</td><td>ストレートフラッシュ</td><td>同じスートで数字が5枚連続</td></tr>
+      <tr><td class="rank">3</td><td>フォーカード</td><td>同じ数字が4枚</td></tr>
+      <tr><td class="rank">4</td><td>フルハウス</td><td>スリーカード＋ワンペア</td></tr>
+      <tr><td class="rank">5</td><td>フラッシュ</td><td>同じスートが5枚</td></tr>
+      <tr><td class="rank">6</td><td>ストレート</td><td>数字が5枚連続</td></tr>
+      <tr><td class="rank">7</td><td>スリーカード</td><td>同じ数字が3枚</td></tr>
+      <tr><td class="rank">8</td><td>ツーペア</td><td>ペアが2組</td></tr>
+      <tr><td class="rank">9</td><td>ワンペア</td><td>同じ数字が2枚</td></tr>
+      <tr><td class="rank">10</td><td>ハイカード</td><td>役なし。一番高いカードで比較</td></tr>
+    </table>
+    <div class="prose">
+      同じ役どうしで並んだ場合は、役を構成するカードの数字や、残りの<strong>キッカー（比較用の余りカード）</strong>で優劣を決めます。それでも完全に同じ強さなら「スプリット」となり、ポットを山分けします。なお、途中で自分以外の全員がフォールドした場合は、手札を見せる必要すらなく、残った1人が自動的に勝者となります。
+    </div>
+  </div>
+
+  <div class="section" id="tips">
+    <div class="section-title">💡 初心者がまず覚えるべきこと</div>
+    <div class="prose">
+      ルールを覚えたら、次は「勝ちやすい心構え」です。最初のうちは複雑な戦術より、次のポイントを意識するだけで大きくミスが減ります。
+    </div>
+    <div class="point-box">
+      <div class="point-box-title">まず身につけたい3つの習慣</div>
+      <div class="point-list">
+        <div class="point-item"><strong>参加するハンドを絞る</strong>：配られた2枚が弱ければ迷わず降りる。良い手だけで戦うのが勝率アップの近道です。強い初手の目安は<a href="starting_hands.html">スターティングハンドの記事</a>を参考に。</div>
+        <div class="point-item"><strong>ポジションを意識する</strong>：後ろの席ほど情報が多く有利。前の席では慎重に、後ろの席では積極的に、が基本の型です。</div>
+        <div class="point-item"><strong>降りる勇気を持つ</strong>：良い手でも、相手の強い動きに無理して付き合わない。「今回は降りる」判断ができる人ほど長く勝ち続けます。</div>
+      </div>
+    </div>
+    <div class="warn-box">
+      <div class="warn-box-title">初心者にありがちなミス</div>
+      <div class="warn-list">
+        <div class="warn-item">どんな手でも参加してしまう（弱い手は素直に降りるのが正解）。</div>
+        <div class="warn-item">手札の2枚だけを見て役を判断する（勝負は共通カードと合わせた最強5枚で決まる）。</div>
+        <div class="warn-item">一度出したチップが惜しくて、勝ち目の薄い勝負を最後まで続けてしまう。</div>
+      </div>
+    </div>
+    <div class="prose">
+      賭け金の期待値を考える<a href="pot_odds.html">ポットオッズ</a>や、専門用語をまとめた<a href="glossary.html">用語集</a>まで理解が進めば、判断の精度はさらに上がります。ただし焦らず、まずは1ハンドの流れを体に覚えさせることが最優先です。
+    </div>
+  </div>
+
+  <div class="section" id="faq">
+    <div class="section-title">❓ よくある質問（FAQ）</div>
+    <div class="faq-q">テキサスホールデムは何人で遊べますか？</div>
+    <div class="faq-a">一般的に2〜10人で遊べます。1対1の「ヘッズアップ」から、6人や9人のフルテーブルまで対応でき、人数が増えるほど駆け引きの幅も広がります。</div>
+    <div class="faq-q">一番強い役は何ですか？</div>
+    <div class="faq-a">同じスートのA・K・Q・J・10で作る「ロイヤルフラッシュ」が最強です。次いでストレートフラッシュ、フォーカードと続きます。詳しくは<a href="hand_rankings.html">役の強さの記事</a>をご覧ください。</div>
+    <div class="faq-q">ブラインドとは何ですか？</div>
+    <div class="faq-a">カードを見る前に置く強制ベットのことです。ボタンの左隣がスモールブラインド（SB）、その左隣がビッグブラインド（BB）を置きます。これがあることで毎ハンド必ずポットが生まれ、ゲームが始まります。</div>
+    <div class="faq-q">初心者はまず何から覚えればいいですか？</div>
+    <div class="faq-a">「1ハンドの流れ（プリフロップ→フロップ→ターン→リバー→ショーダウン）」と「6つのアクション」の2つを先に覚えましょう。この2点さえ分かれば、実際に卓についてプレイを始められます。</div>
+    <div class="faq-q">手札は必ず2枚とも使わないといけませんか？</div>
+    <div class="faq-a">いいえ。テキサスホールデムでは、自分の手札2枚と共通カード5枚の計7枚から自由に5枚を選べます。手札1枚だけ使っても、共通カード5枚だけで役を作っても構いません。あくまで「最強の5枚」を作れれば勝ちです。</div>
+  </div>
+
+  <div class="next-games">
+    <div class="next-games-title">関連記事</div>
+    <div class="game-chips">
+      <a class="game-chip" href="hand_rankings.html">役の強さ</a>
+      <a class="game-chip" href="starting_hands.html">スターティングハンド</a>
+      <a class="game-chip" href="position.html">ポジション</a>
+      <a class="game-chip" href="pot_odds.html">ポットオッズ</a>
+      <a class="game-chip" href="glossary.html">用語集</a>
+      <a class="game-chip" href="guide.html">講座トップ</a>
+    </div>
+  </div>
+
+</div>
+
+<footer class="site-footer">
+  <a href="index.html">ホーム</a>·<a href="guide.html">ポーカー講座</a>·<a href="privacy.html">プライバシーポリシー</a>·<a href="contact.html">お問い合わせ</a>·<a href="about.html">運営者情報</a>
+  <span class="copy">© 2026 Poker MANIA</span>
+</footer>
+</body>
+</html>

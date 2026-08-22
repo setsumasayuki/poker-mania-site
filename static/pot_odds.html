@@ -1,0 +1,279 @@
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1294748320155117"
+     crossorigin="anonymous"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ポットオッズとアウツ・エクイティの計算方法｜勝率判断の基礎 | Poker MANIA</title>
+<meta name="description" content="ポーカーのポットオッズ・アウツ・エクイティの計算方法を具体例つきで解説。2-4の法則で概算勝率を出し、必要勝率と比較してコール/フォールドを判断する手順、インプライドオッズまで初心者向けに丁寧に紹介します。">
+<meta name="keywords" content="ポットオッズ,アウツ,エクイティ,2-4の法則,Rule of 2 and 4,ポーカー,計算,必要勝率,インプライドオッズ,フラッシュドロー">
+<link rel="canonical" href="https://poker-mania.jp/pot_odds.html">
+<meta property="og:title" content="ポットオッズとアウツ・エクイティの計算方法｜勝率判断の基礎">
+<meta property="og:description" content="アウツの数え方、2-4の法則、ポットオッズの計算式、必要勝率との比較手順を具体例で解説。数字でコール/フォールドを判断できるようになります。">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Poker MANIA">
+<meta property="og:url" content="https://poker-mania.jp/pot_odds.html">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:#1c1c2e;font-family:-apple-system,sans-serif;color:#e8e0d0;min-height:100vh;line-height:1.7;}
+.header{position:sticky;top:0;z-index:50;background:#1c1c2e;border-bottom:1px solid rgba(201,168,76,0.2);padding:12px 16px;display:flex;align-items:center;gap:10px;}
+.header-title{font-size:16px;font-weight:700;color:#c9a84c;}
+.back-link{background:rgba(255,255,255,0.08);border-radius:8px;color:rgba(255,255,255,0.6);font-size:12px;padding:6px 10px;text-decoration:none;}
+.hero{padding:32px 16px 24px;border-bottom:1px solid rgba(255,255,255,0.06);}
+.hero-badge{display:inline-block;background:rgba(201,168,76,0.15);border:1px solid rgba(201,168,76,0.4);border-radius:20px;font-size:11px;font-weight:700;color:#c9a84c;padding:4px 12px;letter-spacing:0.1em;margin-bottom:12px;}
+.hero-title{font-size:24px;font-weight:800;color:#e8e0d0;margin-bottom:8px;line-height:1.3;}
+.hero-title span{color:#c9a84c;}
+.hero-sub{font-size:13px;color:rgba(255,255,255,0.45);line-height:1.6;}
+.toc{margin:16px 16px;background:#252540;border-radius:12px;padding:14px 16px;border:1px solid rgba(255,255,255,0.08);max-width:760px;}
+.toc-title{font-size:11px;font-weight:700;color:rgba(201,168,76,0.7);letter-spacing:0.12em;margin-bottom:10px;}
+.toc-list{display:flex;flex-direction:column;gap:6px;}
+.toc-item{font-size:13px;color:rgba(201,168,76,0.8);text-decoration:none;display:flex;align-items:center;gap:8px;}
+.toc-item::before{content:'›';color:#c9a84c;font-size:16px;}
+.content{max-width:760px;margin:0 auto;padding:0 16px 40px;}
+.section{margin-top:28px;}
+.section-title{font-size:17px;font-weight:800;color:#c9a84c;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid rgba(201,168,76,0.2);display:flex;align-items:center;gap:8px;}
+.prose{font-size:14px;color:rgba(255,255,255,0.75);line-height:1.9;margin-bottom:12px;}
+.prose strong{color:#e8e0d0;font-weight:700;}
+.prose a{color:#c9a84c;text-decoration:underline;}
+.hand-table{width:100%;border-collapse:collapse;margin:12px 0;}
+.hand-table th{background:rgba(201,168,76,0.1);color:#c9a84c;font-size:11px;font-weight:700;padding:8px 10px;text-align:left;}
+.hand-table td{padding:10px 10px;font-size:13px;border-bottom:1px solid rgba(255,255,255,0.06);color:rgba(255,255,255,0.75);}
+.hand-table tr:last-child td{border-bottom:none;}
+.hand-table .rank{color:#c9a84c;font-weight:700;}
+.hand-table .best{background:rgba(201,168,76,0.06);}
+.point-box{background:#252540;border-radius:12px;padding:14px 16px;margin:12px 0;border-left:3px solid #c9a84c;}
+.point-box-title{font-size:12px;font-weight:700;color:#c9a84c;margin-bottom:8px;}
+.point-list{display:flex;flex-direction:column;gap:7px;}
+.point-item{font-size:13px;color:rgba(255,255,255,0.7);display:flex;gap:8px;line-height:1.5;}
+.point-item::before{content:'▸';color:#c9a84c;flex-shrink:0;margin-top:1px;}
+.warn-box{background:rgba(255,80,80,0.08);border-radius:12px;padding:14px 16px;margin:12px 0;border-left:3px solid #e85555;}
+.warn-box-title{font-size:12px;font-weight:700;color:#e85555;margin-bottom:8px;}
+.warn-list{display:flex;flex-direction:column;gap:7px;}
+.warn-item{font-size:13px;color:rgba(255,255,255,0.7);display:flex;gap:8px;line-height:1.5;}
+.warn-item::before{content:'✕';color:#e85555;flex-shrink:0;}
+.flow{display:flex;flex-direction:column;gap:0;}
+.flow-step{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.05);}
+.flow-step:last-child{border-bottom:none;}
+.flow-num{width:28px;height:28px;border-radius:50%;background:#c9a84c;color:#1c1c2e;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;}
+.flow-title{font-size:14px;font-weight:700;color:#e8e0d0;margin-bottom:4px;}
+.flow-desc{font-size:13px;color:rgba(255,255,255,0.55);line-height:1.6;}
+.divider{height:1px;background:rgba(255,255,255,0.06);margin:24px 0;}
+.next-games{margin-top:28px;background:#252540;border-radius:12px;padding:16px;border:1px solid rgba(255,255,255,0.08);}
+.next-games-title{font-size:12px;font-weight:700;color:rgba(201,168,76,0.7);letter-spacing:0.1em;margin-bottom:12px;}
+.game-chips{display:flex;flex-wrap:wrap;gap:8px;}
+.game-chip{padding:8px 14px;border-radius:20px;font-size:12px;font-weight:700;border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.4);text-decoration:none;display:inline-block;}
+.game-chip.current{border-color:#c9a84c;color:#c9a84c;background:rgba(201,168,76,0.1);}
+.faq-q{font-size:14px;font-weight:700;color:#e8e0d0;margin-top:16px;margin-bottom:6px;}
+.faq-q::before{content:'Q. ';color:#c9a84c;}
+.faq-a{font-size:14px;color:rgba(255,255,255,0.72);line-height:1.85;}
+.faq-a::before{content:'A. ';color:rgba(201,168,76,0.7);font-weight:700;}
+.cta-box{background:linear-gradient(135deg,rgba(201,168,76,0.14),rgba(201,168,76,0.04));border:1px solid rgba(201,168,76,0.3);border-radius:12px;padding:16px;margin:20px 0;text-align:center;}
+.cta-box a{display:inline-block;margin-top:8px;background:#c9a84c;color:#1c1c2e;border-radius:9px;font-size:13px;font-weight:800;padding:10px 20px;text-decoration:none;}
+.site-footer{border-top:1px solid rgba(201,168,76,0.2);margin-top:8px;padding:24px 16px 40px;text-align:center;}
+.site-footer a{color:rgba(201,168,76,0.85);font-size:12px;text-decoration:none;margin:0 6px;}
+.site-footer .copy{display:block;margin-top:12px;font-size:11px;color:rgba(255,255,255,0.3);}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <a href="guide.html" class="back-link">← 講座トップ</a>
+  <span class="header-title">📐 ポットオッズ</span>
+</header>
+
+<section class="hero">
+  <span class="hero-badge">POT ODDS</span>
+  <h1 class="hero-title">ポットオッズとアウツ・<span>エクイティの計算方法</span></h1>
+  <p class="hero-sub">「なんとなくコール」から卒業しよう。アウツを数え、勝率を概算し、ポットオッズと比べる。この3ステップで、ドローの続行判断が数字で決められるようになります。具体的な計算例つきで丁寧に解説します。</p>
+</section>
+
+<nav class="toc">
+  <div class="toc-title">目次</div>
+  <div class="toc-list">
+    <a href="#why" class="toc-item">なぜオッズと勝率で判断するのか</a>
+    <a href="#outs" class="toc-item">アウツとは（役を完成させる枚数）</a>
+    <a href="#rule24" class="toc-item">2-4の法則で勝率を概算する</a>
+    <a href="#potodds" class="toc-item">ポットオッズの計算方法</a>
+    <a href="#decide" class="toc-item">コール/フォールドを判断する手順</a>
+    <a href="#implied" class="toc-item">インプライドオッズ</a>
+    <a href="#faq" class="toc-item">よくある質問（FAQ）</a>
+  </div>
+</nav>
+
+<main class="content">
+
+  <section class="section" id="why">
+    <h2 class="section-title">なぜオッズと勝率で判断するのか</h2>
+    <p class="prose">ポーカーは1回1回の勝敗ではなく、<strong>長期的に見て得な選択（＝期待値がプラスの選択）を積み重ねるゲーム</strong>です。目の前の1ハンドで負けても、正しく判断できていれば長い目では勝てます。逆に「役ができそうだから」と雰囲気でコールを続けると、勝つときの利益より負けるときの損失が上回り、じわじわチップを失います。</p>
+    <p class="prose">そこで使うのが<strong>「勝つ確率（エクイティ）」と「今払うコストに見合う勝率（ポットオッズ）」の比較</strong>です。たとえば「25%の確率で勝てる勝負に、20%勝てば元が取れる金額でコールできる」なら、それは長期的に得な判断になります。感覚ではなく数字で比べる——これがポットオッズを学ぶ目的です。</p>
+    <div class="point-box">
+      <div class="point-box-title">この記事で使う3つの言葉</div>
+      <div class="point-list">
+        <div class="point-item"><strong>アウツ</strong>：自分の役を勝てる手に完成させてくれるカードの枚数</div>
+        <div class="point-item"><strong>エクイティ</strong>：そのハンドで勝てる確率（%）</div>
+        <div class="point-item"><strong>ポットオッズ</strong>：コールに必要な最低勝率（%）</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="outs">
+    <h2 class="section-title">アウツとは（役を完成させる枚数）</h2>
+    <p class="prose"><strong>アウツ</strong>とは、まだ見えていない残りのカードのうち、<strong>引けば自分が勝てる役になるカードの枚数</strong>のことです。1つのスート（マーク）は13枚、同じ数字は4枚——この事実からアウツを数えます。代表的なドローとアウツ枚数を覚えてしまいましょう。</p>
+    <table class="hand-table">
+      <thead>
+        <tr><th>ドローの種類</th><th>アウツ枚数</th><th>数え方の根拠</th></tr>
+      </thead>
+      <tbody>
+        <tr class="best"><td class="rank">フラッシュドロー</td><td>9枚</td><td>同スート13枚 − 手元と場の4枚</td></tr>
+        <tr><td class="rank">オープンエンドストレートドロー</td><td>8枚</td><td>両端の数字が各4枚 × 2種類</td></tr>
+        <tr><td class="rank">ガットショット（内側待ち）</td><td>4枚</td><td>真ん中1種類の数字4枚のみ</td></tr>
+        <tr><td class="rank">ワンペア → セット</td><td>2枚</td><td>同じ数字の残り2枚</td></tr>
+        <tr><td class="rank">2オーバーカード</td><td>6枚</td><td>ペアになる2種類 × 各3枚</td></tr>
+      </tbody>
+    </table>
+    <p class="prose">たとえば手札が♠A♠K、ボードに♠9♠4♣2が出ていれば、スペードはあと9枚残っています（13枚 − 見えている4枚）。この9枚のどれかが引ければフラッシュ完成なので、<strong>フラッシュドローのアウツは9枚</strong>です。ストレートとフラッシュの両方を狙える形など、複数のドローが重なると15枚前後のアウツになることもあります。</p>
+  </section>
+
+  <!-- Google AdSense: in-content (slot 2184231625) -->
+  <div style="max-width:728px;margin:28px auto;padding:0 4px;box-sizing:border-box;text-align:center;">
+    <div style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:1px;margin-bottom:4px;">スポンサーリンク</div>
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1294748320155117" data-ad-slot="2184231625" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <section class="section" id="rule24">
+    <h2 class="section-title">2-4の法則で勝率を概算する</h2>
+    <p class="prose">アウツの枚数がわかったら、次は勝率（エクイティ）を暗算します。厳密な確率計算は複雑ですが、<strong>2-4の法則（Rule of 2 and 4）</strong>を使えば実戦で使える精度の概算がすぐ出せます。ルールはとてもシンプルです。</p>
+    <div class="point-box">
+      <div class="point-box-title">2-4の法則</div>
+      <div class="point-list">
+        <div class="point-item"><strong>あと1枚だけ見る場合（例：ターンからリバー）</strong>　アウツ × 2 ＝ 概算勝率（%）</div>
+        <div class="point-item"><strong>あと2枚見られる場合（例：フロップからリバーまで）</strong>　アウツ × 4 ＝ 概算勝率（%）</div>
+      </div>
+    </div>
+    <p class="prose"><strong>計算例：フラッシュドロー（9アウツ）</strong>。フロップの時点で、あと2枚（ターンとリバー）引けるなら、9 × 4 ＝ <strong>36%</strong> が概算勝率です（実際の正確値は約35%なので、ほぼ一致します）。一方、ターンまで進んで残り1枚しか見られないなら、9 × 2 ＝ <strong>18%</strong> になります（正確値は約19.6%）。</p>
+    <p class="prose"><strong>計算例：オープンエンドストレートドロー（8アウツ）</strong>。フロップで2枚見るなら 8 × 4 ＝ <strong>32%</strong>、ターンで1枚なら 8 × 2 ＝ <strong>16%</strong>。<strong>ガットショット（4アウツ）</strong>なら、それぞれ 16% と 8% です。このように、アウツさえ数えられれば勝率は暗算できます。</p>
+    <div class="warn-box">
+      <div class="warn-box-title">×4を使うときの注意</div>
+      <div class="warn-list">
+        <div class="warn-item">×4（2枚分）が使えるのは、ターンで追加ベットされずに<strong>リバーまで確実に見られる場合</strong>（オールインなど）。途中でまたベットされるなら、そのつど×2で1枚ずつ計算する方が安全です。</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="potodds">
+    <h2 class="section-title">ポットオッズの計算方法</h2>
+    <p class="prose"><strong>ポットオッズ</strong>は「今このコールをするのに、最低どれくらいの勝率があれば元が取れるか（必要勝率）」を表します。計算式は次の通りです。</p>
+    <div class="point-box">
+      <div class="point-box-title">必要勝率の計算式</div>
+      <div class="point-list">
+        <div class="point-item"><strong>必要勝率 ＝ コール額 ÷（コール後の総ポット）</strong></div>
+        <div class="point-item">コール後の総ポット ＝ 現在のポット ＋ 相手のベット ＋ 自分のコール額</div>
+      </div>
+    </div>
+    <p class="prose"><strong>計算例</strong>：ポットに100チップあり、相手が50ベットしてきました。あなたがコールするには50が必要です。コールするとポットは、元の100 ＋ 相手の50 ＋ 自分の50 ＝ <strong>200</strong> になります。<br>必要勝率 ＝ 50 ÷ 200 ＝ <strong>0.25 ＝ 25%</strong>。<br>つまり「25%以上の確率で勝てるなら、この50コールは長期的に得」ということです。</p>
+    <p class="prose">別の例も見てみましょう。ポット200に相手が100ベット。コール後の総ポットは 200 ＋ 100 ＋ 100 ＝ <strong>400</strong>。必要勝率 ＝ 100 ÷ 400 ＝ <strong>25%</strong>。ベット額がポットの半分（ハーフポット）のとき、必要勝率はいつも25%になる、と覚えておくと便利です。ポットと同額（ポットベット）なら約33%、ポットの3分の1なら約20%が目安です。</p>
+  </section>
+
+  <!-- Google AdSense: in-content (slot 2184231625) -->
+  <div style="max-width:728px;margin:28px auto;padding:0 4px;box-sizing:border-box;text-align:center;">
+    <div style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:1px;margin-bottom:4px;">スポンサーリンク</div>
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1294748320155117" data-ad-slot="2184231625" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <section class="section" id="decide">
+    <h2 class="section-title">コール/フォールドを判断する手順</h2>
+    <p class="prose">ここまでの2つの数字——<strong>エクイティ（勝てる確率）</strong>と<strong>必要勝率（ポットオッズ）</strong>——を比べれば、コールかフォールドかが決まります。手順はたった4ステップです。</p>
+    <div class="flow">
+      <div class="flow-step">
+        <div class="flow-num">1</div>
+        <div><div class="flow-title">アウツを数える</div><div class="flow-desc">勝てる手に完成するカードが何枚残っているか。</div></div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">2</div>
+        <div><div class="flow-title">2-4の法則でエクイティを概算</div><div class="flow-desc">残り1枚ならアウツ×2、2枚見られるならアウツ×4。</div></div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">3</div>
+        <div><div class="flow-title">ポットオッズで必要勝率を計算</div><div class="flow-desc">コール額 ÷ コール後の総ポット。</div></div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">4</div>
+        <div><div class="flow-title">比べて判断</div><div class="flow-desc">エクイティ ＞ 必要勝率 ならコール、下回るならフォールド。</div></div>
+      </div>
+    </div>
+    <p class="prose"><strong>通し例</strong>：あなたの手札は♠A♠K、フロップは♠9♠4♣2。フラッシュドローで<strong>アウツは9枚</strong>です。ポットは100、相手が50ベットしてきました。<br>① アウツ ＝ 9枚。<br>② これがリバーまで見られる想定なら、エクイティ ＝ 9 × 4 ＝ <strong>36%</strong>。<br>③ 必要勝率 ＝ 50 ÷（100＋50＋50）＝ 50 ÷ 200 ＝ <strong>25%</strong>。<br>④ 36% ＞ 25% なので<strong>コールが正解</strong>です。長期的に得な判断になります。</p>
+    <p class="prose"><strong>逆の例</strong>：同じフラッシュドローでも、ターンまで進んで残り1枚しか見られない場面。ポット200に相手が100ベット。<br>② エクイティ ＝ 9 × 2 ＝ <strong>18%</strong>。<br>③ 必要勝率 ＝ 100 ÷（200＋100＋100）＝ 100 ÷ 400 ＝ <strong>25%</strong>。<br>④ 18% ＜ 25% なので、単純なポットオッズだけで見れば<strong>フォールド寄り</strong>です。ただし——次に紹介するインプライドオッズを考えると話が変わることもあります。</p>
+  </section>
+
+  <section class="section" id="implied">
+    <h2 class="section-title">インプライドオッズ（将来のチップも考える）</h2>
+    <p class="prose">ポットオッズは「今この瞬間のポット」だけで計算します。しかし実戦では、<strong>ドローが完成した後のストリートで相手から追加で取れるチップ</strong>も期待できます。これを含めて考えるのが<strong>インプライドオッズ</strong>です。</p>
+    <p class="prose">先ほどの「18% ＜ 25%でフォールド寄り」の場面を思い出してください。もし相手のスタックが十分に深く、あなたがフラッシュを完成させたときにリバーでさらに大きなベットをコールしてくれそうなら、実質的に得られるポットはもっと大きくなります。仮にリバーで平均150チップ余分に取れる見込みなら、実質のポットオッズは 100 ÷（400＋150）＝ 約<strong>18%</strong> まで下がり、18%のエクイティでもコールが正当化されます。</p>
+    <div class="warn-box">
+      <div class="warn-box-title">インプライドオッズの落とし穴</div>
+      <div class="warn-list">
+        <div class="warn-item">「取れるはず」の見込みは<strong>楽観しすぎない</strong>こと。相手が降りやすい相手・スタックが浅い場面では、追加のチップはほとんど期待できません。</div>
+        <div class="warn-item">フラッシュのように<strong>完成が丸見えのドロー</strong>は、相手が警戒して払ってくれにくく、インプライドオッズは小さめに見積もるのが安全です。</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="cta-box">
+    <p class="prose" style="margin-bottom:0;">複雑な場面や、アウツが重なる形は暗算だとズレがちです。<strong>正確な勝率を出したいときはツールで計算しましょう。</strong></p>
+    <a href="index.html">勝率計算ツールを使う →</a>
+  </div>
+
+  <div class="point-box">
+    <div class="point-box-title">覚え方のコツ</div>
+    <div class="point-list">
+      <div class="point-item"><strong>フラッシュ9・OESD8・ガットショット4・セット2</strong>——主要なアウツ枚数はこれだけ暗記する。</div>
+      <div class="point-item"><strong>ハーフポットベットの必要勝率は25%</strong>、ポットベットは33%、3分の1ベットは20%と数字で覚える。</div>
+      <div class="point-item"><strong>1枚待ちは×2、2枚見られるなら×4</strong>。迷ったら安全側の×2で見積もる。</div>
+    </div>
+  </div>
+
+  <div class="warn-box">
+    <div class="warn-box-title">やりがちな失敗</div>
+    <div class="warn-list">
+      <div class="warn-item"><strong>アウツの数え過ぎ</strong>：引いても相手により強い役が完成する「弱いアウツ」を満額で数えない。ボードにペアがある（相手フルハウスの可能性）ときのフラッシュなどは割り引く。</div>
+      <div class="warn-item"><strong>被りアウツ（重複）の二重カウント</strong>：ストレートとフラッシュを両狙いのとき、同じカードを両方で数えてしまわない。実際の枚数を正確に。</div>
+      <div class="warn-item"><strong>×4の使いすぎ</strong>：ターンでまたベットされる前提なのに2枚分で計算すると、勝率を過大評価してしまう。</div>
+    </div>
+  </div>
+
+  <section class="section" id="faq">
+    <h2 class="section-title">よくある質問（FAQ）</h2>
+    <div class="faq-q">2-4の法則とは何ですか？</div>
+    <p class="faq-a">アウツの枚数から勝率をざっくり暗算する方法です。あと1枚だけ見る場面は「アウツ×2%」、フロップからリバーまで2枚見られる場面は「アウツ×4%」で概算勝率が出せます。たとえばフラッシュドロー9アウツなら、それぞれ約18%・約36%です。</p>
+    <div class="faq-q">アウツって何ですか？</div>
+    <p class="faq-a">まだ見えていない残りのカードのうち、引けば自分が勝てる役に完成するカードの枚数のことです。フラッシュドローなら同じスートの残り9枚、オープンエンドストレートドローなら両端の8枚、ガットショットなら4枚が代表的なアウツ数です。</p>
+    <div class="faq-q">ポットオッズの計算式を教えてください。</div>
+    <p class="faq-a">必要勝率 ＝ コール額 ÷（コール後の総ポット）です。コール後の総ポットは「現在のポット＋相手のベット＋自分のコール額」。たとえばポット100に相手が50ベットなら、50 ÷ 200 ＝ 25%が必要勝率になります。</p>
+    <div class="faq-q">エクイティと必要勝率、どちらが大きければコールですか？</div>
+    <p class="faq-a">自分の勝率（エクイティ）が必要勝率を上回っていればコール、下回っていればフォールドが基本です。エクイティ36%・必要勝率25%なら、36%が上回っているのでコールが長期的に得な判断になります。</p>
+    <div class="faq-q">インプライドオッズとは何ですか？</div>
+    <p class="faq-a">今のポットだけでなく、ドローが完成した後のストリートで相手から追加で取れるチップも含めて考えるオッズです。目先のポットオッズだけでは足りなくても、完成後に大きく払ってもらえる見込みがあればコールが正当化される場合があります。ただし取れる額を楽観しすぎないことが重要です。</p>
+  </section>
+
+  <div class="next-games">
+    <div class="next-games-title">関連記事</div>
+    <div class="game-chips">
+      <a href="holdem_rules.html" class="game-chip">ルール</a>
+      <a href="hand_rankings.html" class="game-chip">役の強さ</a>
+      <a href="starting_hands.html" class="game-chip">スターティングハンド</a>
+      <a href="position.html" class="game-chip">ポジション</a>
+      <a href="glossary.html" class="game-chip">用語集</a>
+      <a href="guide.html" class="game-chip">講座トップ</a>
+    </div>
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <a href="index.html">ホーム</a>·<a href="guide.html">ポーカー講座</a>·<a href="privacy.html">プライバシーポリシー</a>·<a href="contact.html">お問い合わせ</a>·<a href="about.html">運営者情報</a>
+  <span class="copy">© 2026 Poker MANIA</span>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,1346 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1294748320155117"
+     crossorigin="anonymous"></script>
+
+<meta charset="UTF-8">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-3D8000X76H"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-3D8000X76H');
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="color-scheme" content="dark">
+
+<title>ポーカー勝率計算ツール【無料】NLH・PLO対応 | Poker MANIA</title>
+<meta name="description" content="ポーカーの勝率計算ツール（無料）。テキサスホールデム（NLH）・PLO対応。プリフロップからリバーまでリアルタイムで勝率を計算。収支管理・為替換算・ハンド記録・アジアトーナメントスケジュールも。">
+<meta name="keywords" content="ポーカー勝率計算,PLO勝率計算,ポーカーオッズ計算,テキサスホールデム勝率,ポーカー収支管理,ポーカー為替換算,NLH勝率,オマハ勝率計算,ポーカーツール,無料ポーカー計算機,ハンド履歴,ポーカーハンド記録,ハンドヒストリー,ポーカー アジア スケジュール,APT 日程,APPT 日程,アジアポーカーツアー">
+<link rel="canonical" href="https://poker-mania.jp/">
+
+<!-- OGP -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://poker-mania.jp/">
+<meta property="og:title" content="Poker MANIA | ポーカー勝率計算・PLO勝率計算・収支管理ツール">
+<meta property="og:description" content="ポーカープレイヤー必携の無料ツール。テキサスホールデム・PLOの勝率計算、ハンド履歴記録・分析、オッズ計算、収支管理、為替換算、アジアトーナメントスケジュールをこれ一つで。">
+<meta property="og:site_name" content="Poker MANIA">
+<meta property="og:locale" content="ja_JP">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Poker MANIA | ポーカー勝率計算・PLO勝率計算・収支管理ツール">
+<meta name="twitter:description" content="ポーカープレイヤー必携の無料ツール。テキサスホールデム・PLOの勝率計算、ハンド履歴記録・分析、オッズ計算、収支管理、為替換算、アジアトーナメントスケジュールをこれ一つで。">
+
+<!-- 構造化データ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Poker MANIA",
+  "url": "https://poker-mania.jp/",
+  "description": "テキサスホールデム・PLOの勝率計算、ポーカーオッズ計算、収支管理カレンダー、為替換算が使える無料のポーカープレイヤー向けツール。",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "inLanguage": "ja",
+  "keywords": "ポーカー勝率計算,PLO勝率計算,テキサスホールデム,ポーカーオッズ,収支管理"
+}
+</script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:#1c1c2e;}
+body{font-family:-apple-system,sans-serif;color:#e8e0d0;overflow-x:hidden;}
+
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:100;display:none;opacity:0;transition:opacity 0.25s;}
+.overlay.show{display:block;opacity:1;}
+.sidebar{position:fixed;top:0;left:0;width:220px;height:100%;background:#16162a;z-index:200;transform:translateX(-100%);transition:transform 0.25s ease;border-right:1px solid rgba(201,168,76,0.3);}
+.sidebar.show{transform:translateX(0);}
+.sidebar-title{padding:52px 20px 12px;font-size:11px;color:rgba(201,168,76,0.5);letter-spacing:0.15em;}
+.sidebar-app-name{padding:0 20px 16px;font-size:18px;font-weight:800;color:#c9a84c;letter-spacing:0.05em;}
+.nav-item{display:flex;align-items:center;gap:12px;padding:14px 20px;cursor:pointer;font-size:15px;color:#e8e0d0;border-left:3px solid transparent;}
+.nav-item.active{color:#c9a84c;border-left-color:#c9a84c;background:rgba(201,168,76,0.08);}
+.nav-icon{font-size:18px;width:24px;text-align:center;}
+
+.header{position:sticky;top:0;z-index:50;background:#1c1c2e;border-bottom:1px solid rgba(201,168,76,0.2);padding:12px 16px;display:flex;align-items:center;gap:12px;}
+.menu-btn{background:none;border:none;cursor:pointer;padding:4px;display:flex;flex-direction:column;gap:5px;}
+.menu-btn span{display:block;width:22px;height:2px;background:#c9a84c;border-radius:2px;}
+.header-title{font-size:16px;font-weight:700;color:#c9a84c;letter-spacing:0.06em;}
+
+.page{display:none;padding:14px;}
+.page.active{display:block;}
+.section{background:#2a2a42;border-radius:12px;padding:12px;margin-bottom:10px;border:1px solid rgba(201,168,76,0.3);}
+.sec-label{font-size:10px;color:rgba(201,168,76,0.8);letter-spacing:0.15em;margin-bottom:10px;}
+
+/* 勝率計算 */
+.player-row{display:flex;align-items:center;gap:8px;padding:8px 0;}
+.player-row+.player-row{border-top:1px solid rgba(255,255,255,0.08);}
+.p-label{font-size:13px;font-weight:700;width:26px;flex-shrink:0;}
+.p-cards{display:flex;gap:6px;flex-shrink:0;}
+.p-odds{flex:1;display:flex;flex-direction:column;justify-content:center;gap:4px;min-width:0;}
+.p-odds-pct{font-size:20px;font-weight:800;line-height:1;}
+.p-odds-bar-bg{background:rgba(255,255,255,0.1);border-radius:4px;height:7px;overflow:hidden;}
+.p-odds-bar-fill{height:7px;border-radius:4px;transition:width 0.5s ease;}
+.p-odds-detail{font-size:10px;color:rgba(255,255,255,0.35);}
+.p-odds-hand{font-size:11px;color:rgba(255,255,255,0.5);}
+.p-odds-empty{font-size:12px;color:rgba(255,255,255,0.2);}
+.card-slot{width:46px;height:68px;border-radius:8px;border:2px dashed rgba(255,255,255,0.3);background:rgba(255,255,255,0.07);display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;font-size:10px;color:rgba(255,255,255,0.3);}
+.card-slot.active{border:2px solid #c9a84c;background:rgba(201,168,76,0.15);box-shadow:0 0 0 3px rgba(201,168,76,0.25);}
+.card-slot.filled{border:2px solid rgba(255,255,255,0.3);background:#f5f0e8;}
+.card-slot.filled.active{border:2px solid #c9a84c;box-shadow:0 0 0 3px rgba(201,168,76,0.35);}
+.card-slot .cr{font-size:20px;font-weight:800;line-height:1.1;}
+.card-slot .cs{font-size:15px;line-height:1.1;}
+.board-slots{display:flex;gap:6px;justify-content:center;}
+.board-slot{width:46px;height:66px;border-radius:8px;border:2px dashed rgba(255,255,255,0.2);background:rgba(255,255,255,0.05);display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;font-size:10px;color:rgba(255,255,255,0.3);font-weight:600;}
+.board-slot.active{border:2px solid #c9a84c;background:rgba(201,168,76,0.15);box-shadow:0 0 0 3px rgba(201,168,76,0.25);}
+.board-slot.filled{border:2px solid rgba(255,255,255,0.3);background:#f5f0e8;}
+.board-slot.filled.active{border:2px solid #c9a84c;box-shadow:0 0 0 3px rgba(201,168,76,0.35);}
+.board-slot .cr{font-size:18px;font-weight:800;line-height:1.1;}
+.board-slot .cs{font-size:14px;line-height:1.1;}
+.btn-area{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;}
+.calc-btn{padding:16px 8px;border-radius:10px;background:#c9a84c;border:none;color:#1c1c2e;font-size:15px;font-weight:700;cursor:pointer;}
+.calc-btn:disabled{background:rgba(201,168,76,0.25);color:rgba(255,255,255,0.3);cursor:not-allowed;}
+.reset-btn{padding:16px 8px;border-radius:10px;background:rgba(255,255,255,0.12);border:2px solid rgba(255,255,255,0.35);color:#e8e0d0;font-size:15px;font-weight:600;cursor:pointer;}
+.picker{background:#252540;border-radius:12px;padding:12px;margin-bottom:10px;border:1px solid rgba(201,168,76,0.5);}
+.picker-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;}
+.picker-title{font-size:13px;color:#c9a84c;font-weight:700;}
+.picker-close{background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);border-radius:50%;width:28px;height:28px;font-size:14px;color:#e8e0d0;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+.picker-status{font-size:11px;color:rgba(201,168,76,0.7);margin-bottom:8px;min-height:15px;}
+.card-grid{display:grid;grid-template-columns:repeat(13,1fr);gap:3px;}
+.cg-btn{padding:6px 1px;border-radius:5px;border:1px solid rgba(255,255,255,0.15);background:#f5f0e8;font-weight:800;cursor:pointer;text-align:center;display:flex;flex-direction:column;align-items:center;}
+.cg-btn .cg-r{font-size:12px;line-height:1.1;}
+.cg-btn .cg-s{font-size:11px;line-height:1;}
+.cg-btn.used{opacity:0.2;cursor:not-allowed;}
+.suit-gap{grid-column:1/-1;height:5px;}
+.calc-note{text-align:center;font-size:10px;color:rgba(255,255,255,0.3);margin-top:4px;}
+
+
+/* 為替換算 */
+.fx-status-bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;padding:8px 12px;background:#16162a;border-radius:10px;border:1px solid rgba(201,168,76,0.15);}
+.fx-status-text{font-size:11px;color:rgba(255,255,255,0.35);}
+.fx-status-time{font-size:10px;color:rgba(201,168,76,0.5);}
+.fx-refresh-btn{background:rgba(201,168,76,0.15);border:1px solid rgba(201,168,76,0.3);border-radius:8px;color:#c9a84c;font-size:12px;padding:6px 12px;cursor:pointer;}
+
+/* 上段：入力 */
+.fx-row{background:#2a2a42;border-radius:12px;padding:14px;margin-bottom:8px;border:1px solid rgba(201,168,76,0.2);}
+.fx-row-label{font-size:10px;color:rgba(201,168,76,0.7);letter-spacing:0.12em;margin-bottom:10px;}
+.fx-cur-btns{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px;}
+.fx-cur-btn{padding:7px 12px;border-radius:20px;font-size:12px;font-weight:600;border:1.5px solid rgba(255,255,255,0.15);background:transparent;color:rgba(255,255,255,0.5);cursor:pointer;display:flex;align-items:center;gap:4px;}
+.fx-cur-btn.active{border-color:#c9a84c;color:#c9a84c;background:rgba(201,168,76,0.12);}
+.fx-amount-wrap{display:flex;align-items:center;gap:10px;}
+.fx-amount-input{flex:1;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.2);border-radius:10px;color:#e8e0d0;font-size:24px;font-weight:700;padding:12px 14px;text-align:right;font-family:-apple-system,sans-serif;}
+.fx-amount-input:focus{outline:none;border-color:rgba(201,168,76,0.6);}
+.fx-amount-unit{font-size:15px;color:rgba(255,255,255,0.5);font-weight:600;min-width:42px;}
+
+/* 矢印 */
+.fx-arrow{text-align:center;font-size:22px;color:rgba(201,168,76,0.5);margin:4px 0;}
+
+/* 下段：結果 */
+.fx-result-value-big{font-size:32px;font-weight:800;color:#c9a84c;line-height:1.1;margin-top:6px;}
+.fx-result-sub{font-size:11px;color:rgba(255,255,255,0.3);margin-top:4px;}
+
+.table-wrap{width:100%;padding:8px 0 16px;}
+.table-svg{width:100%;max-width:360px;display:block;margin:0 auto;}
+.seat-list{display:flex;flex-direction:column;gap:8px;}
+.seat-row{display:flex;align-items:center;gap:10px;background:#2a2a42;border-radius:10px;padding:10px 14px;cursor:pointer;border:1px solid rgba(255,255,255,0.08);}
+.seat-num{width:28px;height:28px;border-radius:50%;background:#c9a84c;color:#1c1c2e;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.seat-preview{flex:1;font-size:12px;color:rgba(255,255,255,0.35);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.seat-preview.has-memo{color:rgba(255,255,255,0.8);}
+.seat-arrow{color:rgba(255,255,255,0.2);font-size:16px;}
+
+/* 収支カレンダー */
+.cal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
+.cal-month{font-size:16px;font-weight:700;color:#c9a84c;}
+.cal-nav-btn{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:8px;color:#e8e0d0;font-size:18px;width:36px;height:36px;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+.cal-weekdays{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;margin-bottom:4px;}
+.cal-weekday{text-align:center;font-size:10px;color:rgba(255,255,255,0.35);padding:4px 0;font-weight:500;}
+.cal-weekday:first-child{color:rgba(255,100,100,0.6);}
+.cal-weekday:last-child{color:rgba(100,150,255,0.6);}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;}
+.cal-day{aspect-ratio:1;border-radius:8px;background:rgba(255,255,255,0.04);display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;border:1px solid transparent;padding:2px;}
+.cal-day.empty{background:transparent;cursor:default;border:none;}
+.cal-day.today{border-color:rgba(201,168,76,0.5);}
+.cal-day.has-data{background:rgba(255,255,255,0.07);}
+.cal-day-num{font-size:12px;font-weight:500;color:rgba(255,255,255,0.6);line-height:1;}
+.cal-day.sun .cal-day-num{color:rgba(255,100,100,0.8);}
+.cal-day.sat .cal-day-num{color:rgba(100,150,255,0.8);}
+.cal-day.today .cal-day-num{color:#c9a84c;font-weight:700;}
+.cal-amount{font-size:9px;font-weight:700;line-height:1.2;margin-top:2px;text-align:center;}
+.cal-amount.win{color:#4a9eff;}
+.cal-amount.lose{color:#ff5555;}
+.summary-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px;}
+.summary-card{background:#2a2a42;border-radius:10px;padding:10px 8px;text-align:center;border:1px solid rgba(255,255,255,0.08);}
+.summary-label{font-size:10px;color:rgba(255,255,255,0.4);margin-bottom:4px;}
+.summary-value{font-size:15px;font-weight:700;}
+.summary-value.win{color:#4a9eff;}
+.summary-value.lose{color:#ff5555;}
+.summary-value.neutral{color:#e8e0d0;}
+
+/* モーダル */
+.modal{position:fixed;inset:0;z-index:300;display:none;align-items:flex-end;justify-content:center;}
+.modal.show{display:flex;}
+.modal-backdrop{position:absolute;inset:0;background:rgba(0,0,0,0.65);}
+.modal-sheet{position:relative;width:100%;max-width:480px;background:#252540;border-radius:20px 20px 0 0;border-top:1px solid rgba(201,168,76,0.4);padding:20px 16px 44px;}
+.modal-title{font-size:15px;font-weight:700;color:#c9a84c;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center;}
+.modal-close{background:rgba(255,255,255,0.1);border:none;border-radius:50%;width:28px;height:28px;color:#e8e0d0;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+.win-lose-btns{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px;}
+.wl-btn{padding:12px;border-radius:10px;border:2px solid transparent;font-size:14px;font-weight:700;cursor:pointer;background:rgba(255,255,255,0.06);}
+.wl-btn.win-btn{color:#4a9eff;border-color:rgba(74,158,255,0.3);}
+.wl-btn.win-btn.selected{background:rgba(74,158,255,0.15);border-color:#4a9eff;}
+.wl-btn.lose-btn{color:#ff5555;border-color:rgba(255,85,85,0.3);}
+.wl-btn.lose-btn.selected{background:rgba(255,85,85,0.15);border-color:#ff5555;}
+.amount-label{font-size:11px;color:rgba(255,255,255,0.5);margin-bottom:6px;}
+.amount-row{display:flex;gap:8px;align-items:center;margin-bottom:14px;}
+.amount-input{flex:1;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.2);border-radius:10px;color:#e8e0d0;font-size:20px;font-weight:700;padding:12px 14px;text-align:right;font-family:-apple-system,sans-serif;}
+.amount-input:focus{outline:none;border-color:rgba(201,168,76,0.6);}
+.amount-unit{font-size:14px;color:rgba(255,255,255,0.5);}
+.text-input{width:100%;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.2);border-radius:10px;color:#e8e0d0;font-size:14px;padding:10px 12px;font-family:-apple-system,sans-serif;margin-bottom:14px;}
+.text-input:focus{outline:none;border-color:rgba(201,168,76,0.5);}
+.textarea-input{width:100%;height:180px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.2);border-radius:10px;color:#e8e0d0;font-size:14px;padding:12px;resize:none;font-family:-apple-system,sans-serif;line-height:1.6;}
+.textarea-input:focus{outline:none;border-color:rgba(201,168,76,0.6);}
+.primary-btn{width:100%;margin-top:12px;padding:14px;border-radius:10px;background:#c9a84c;border:none;color:#1c1c2e;font-size:15px;font-weight:700;cursor:pointer;}
+.secondary-btn{width:100%;margin-top:8px;padding:12px;border-radius:10px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.4);font-size:13px;cursor:pointer;}
+</style>
+</head>
+<body>
+
+<div class="overlay" id="overlay" onclick="closeSidebar()"></div>
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-title">MENU</div>
+  <div class="sidebar-app-name">Poker MANIA</div>
+  <div class="nav-item active" id="nav-odds" onclick="navigate('odds')"><span class="nav-icon">♠</span>NLH 勝率計算</div>
+  <div class="nav-item" id="nav-plo" onclick="navigate('plo')"><span class="nav-icon">🃏</span>PLO 勝率計算</div>
+  <div class="nav-item" id="nav-hh" onclick="window.open('hand_history.html','_self')"><span class="nav-icon">📖</span>ハンドヒストリー</div>
+  <div class="nav-item" id="nav-memo" onclick="navigate('memo')"><span class="nav-icon">📋</span>テーブルメモ</div>
+  <div class="nav-item" id="nav-cal" onclick="navigate('cal')"><span class="nav-icon">📅</span>収支カレンダー</div>
+  <div class="nav-item" id="nav-fx" onclick="navigate('fx')"><span class="nav-icon">💱</span>為替換算</div>
+  <div class="nav-item" id="nav-schedule" onclick="window.open('schedule.html','_self')"><span class="nav-icon">🌏</span>海外スケジュール</div>
+  <div class="nav-item" onclick="window.open('mixed.html','_self')"><span class="nav-icon">🃏</span>ミックスゲーム</div>
+  <div class="nav-item" onclick="window.open('quest/','_self')"><span class="nav-icon">⚔️</span>ポーカークエスト</div>
+  <div class="nav-item" onclick="window.open('guide.html','_self')"><span class="nav-icon">📖</span>ポーカー講座</div>
+  <div class="nav-item" onclick="window.open('blog/','_self')"><span class="nav-icon">📝</span>ブログ</div>
+  <div style="border-top:1px solid rgba(255,255,255,0.06);margin-top:6px;padding-top:6px;">
+    <div class="nav-item" onclick="window.open('privacy.html','_self')"><span class="nav-icon">🔒</span>プライバシーポリシー</div>
+    <div class="nav-item" onclick="window.open('contact.html','_self')"><span class="nav-icon">✉️</span>お問い合わせ</div>
+    <div class="nav-item" onclick="window.open('about.html','_self')"><span class="nav-icon">ℹ️</span>運営者情報</div>
+  </div>
+  <div style="padding:14px 20px;color:rgba(255,255,255,0.25);font-size:12px;border-top:1px solid rgba(255,255,255,0.06);">Thanks❤</div>
+  <a href="https://apps.apple.com/jp/app/%E3%83%9D%E3%82%AB%E3%83%9E%E3%83%8Dr-%E3%83%9D%E3%83%BC%E3%82%AB%E3%83%BC%E5%8F%8E%E6%94%AF%E8%A8%98%E9%8C%B2/id6777601122" target="_blank" style="display:flex;align-items:center;gap:12px;padding:10px 20px;color:rgba(255,255,255,0.5);font-size:15px;font-weight:500;text-decoration:none;"><span style="font-size:20px;">📱</span>ポカマネ</a>
+</div>
+
+<div class="header">
+  <button class="menu-btn" onclick="openSidebar()"><span></span><span></span><span></span></button>
+  <div class="header-title" id="header-title">Poker MANIA</div>
+</div>
+
+<!-- 勝率計算 -->
+<div class="page active" id="page-odds">
+  <div class="section">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
+      <div class="sec-label" style="margin-bottom:0;">HANDS</div>
+      <div style="font-size:10px;color:rgba(255,255,255,0.2);">ダブルタップで選択したカードを消去</div>
+    </div>
+    <div id="players-area"></div>
+  </div>
+  <div class="section">
+    <div class="sec-label">BOARD</div>
+    <div class="board-slots" id="board-slots"></div>
+  </div>
+  <div class="btn-area">
+    <button class="calc-btn" id="calc-btn" onclick="calculate()">勝率を計算</button>
+    <button class="reset-btn" onclick="resetAll()">リセット</button>
+  </div>
+  <div class="picker" id="picker" style="display:none;">
+    <div class="picker-header">
+      <div class="picker-title" id="picker-title">カードを選択</div>
+      <button class="picker-close" onclick="closePicker()">✕</button>
+    </div>
+    <div class="picker-status" id="picker-status"></div>
+    <div class="card-grid" id="card-grid"></div>
+  </div>
+  <div class="calc-note" id="calc-note"></div>
+
+  <div style="margin-top:16px;padding:16px;background:#252540;border-radius:12px;border:1px solid rgba(255,255,255,0.06);">
+    <h2 style="font-size:13px;font-weight:700;color:#c9a84c;margin-bottom:10px;">ポーカー勝率計算ツールとは</h2>
+    <p style="font-size:12px;color:rgba(255,255,255,0.45);line-height:1.8;margin-bottom:10px;">このポーカー勝率計算ツールは、テキサスホールデム（NLH）のハンド勝率をリアルタイムで計算できる無料ツールです。プリフロップからリバーまで、任意のボードカードを入力して正確な勝率を確認できます。2人対戦では完全列挙法により100%正確な勝率を計算。3人以上ではモンテカルロシミュレーション（10万回試行）により高精度な勝率を算出します。</p>
+    <h3 style="font-size:12px;font-weight:700;color:rgba(201,168,76,0.7);margin-bottom:6px;">使い方</h3>
+    <p style="font-size:12px;color:rgba(255,255,255,0.45);line-height:1.8;margin-bottom:10px;">① プレイヤー数を設定 → ② 各プレイヤーのホールカードを選択 → ③ ボードカードを入力（省略可）→ ④「勝率を計算」ボタンを押す。ダブルタップでカードを消去できます。</p>
+    <h3 style="font-size:12px;font-weight:700;color:rgba(201,168,76,0.7);margin-bottom:6px;">こんな場面で使える</h3>
+    <p style="font-size:12px;color:rgba(255,255,255,0.45);line-height:1.8;">・プリフロップのハンド同士の勝率比較（例：AAvsKK）・フロップ後のアウツ確認・ランニングイットトワイスの勝率計算・友人とのホームゲームでのジャッジ。キャッシュゲームでもトーナメントでも使えるポーカー必須ツールです。</p>
+  </div>
+</div>
+
+<!-- PLO勝率計算 -->
+<div class="page" id="page-plo">
+  <div class="section">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
+      <div class="sec-label" style="margin-bottom:0;">PLO HANDS <span style="font-size:9px;color:rgba(255,255,255,0.25);font-weight:400;">（4枚ホールカード）</span></div>
+      <div style="font-size:10px;color:rgba(255,255,255,0.2);">ダブルタップで消去</div>
+    </div>
+    <div id="plo-players-area"></div>
+  </div>
+  <div class="section">
+    <div class="sec-label">BOARD</div>
+    <div class="board-slots" id="plo-board-slots"></div>
+  </div>
+  <div class="btn-area">
+    <button class="calc-btn" id="plo-calc-btn" onclick="ploCalculate()">勝率を計算</button>
+    <button class="reset-btn" onclick="ploResetAll()">リセット</button>
+  </div>
+  <div class="picker" id="plo-picker" style="display:none;">
+    <div class="picker-header">
+      <div class="picker-title" id="plo-picker-title">カードを選択</div>
+      <button class="picker-close" onclick="ploClosePicker()">✕</button>
+    </div>
+    <div class="picker-status" id="plo-picker-status"></div>
+    <div class="card-grid" id="plo-card-grid"></div>
+  </div>
+  <div class="calc-note" id="plo-calc-note"></div>
+
+  <div style="margin-top:16px;padding:16px;background:#252540;border-radius:12px;border:1px solid rgba(255,255,255,0.06);">
+    <h2 style="font-size:13px;font-weight:700;color:#c9a84c;margin-bottom:10px;">PLO勝率計算ツールとは</h2>
+    <p style="font-size:12px;color:rgba(255,255,255,0.45);line-height:1.8;margin-bottom:10px;">PLO（ポット・リミット・オマハ）専用の勝率計算ツールです。4枚のホールカードから必ず2枚・ボードから必ず3枚を使うオマハのルールに完全対応。NLHとは異なる複雑な勝率計算をモンテカルロシミュレーションで高精度に算出します。</p>
+    <h3 style="font-size:12px;font-weight:700;color:rgba(201,168,76,0.7);margin-bottom:6px;">NLHとの違い</h3>
+    <p style="font-size:12px;color:rgba(255,255,255,0.45);line-height:1.8;">PLOはホールカードが4枚のため組み合わせが複雑で、NLHの感覚で勝率を判断すると大きなミスにつながります。このツールで正確な勝率を把握し、より良いプレイ判断に役立ててください。</p>
+  </div>
+</div>
+
+<!-- 為替換算 -->
+<div class="page" id="page-fx">
+  <!-- ステータスバー -->
+  <div class="fx-status-bar">
+    <div>
+      <div class="fx-status-text" id="fx-rate-info">🔄 更新ボタンでレート取得</div>
+      <div class="fx-status-time" id="fx-rate-time"></div>
+    </div>
+    <button class="fx-refresh-btn" onclick="fetchRates()">🔄 更新</button>
+  </div>
+
+  <!-- 上段：入力 -->
+  <div class="fx-row">
+    <div class="fx-row-label">FROM — 入力する通貨</div>
+    <div class="fx-cur-btns" id="fx-from-btns"></div>
+    <div class="fx-amount-wrap">
+      <input class="fx-amount-input" type="number" id="fx-input" placeholder="0" oninput="calcFX()">
+      <div class="fx-amount-unit" id="fx-from-unit">JPY</div>
+    </div>
+  </div>
+
+  <!-- 矢印 -->
+  <div class="fx-arrow">⬇</div>
+
+  <!-- 下段：結果 -->
+  <div class="fx-row">
+    <div class="fx-row-label">TO — 換算先の通貨</div>
+    <div class="fx-cur-btns" id="fx-to-btns"></div>
+    <div class="fx-result-value-big" id="fx-result-value">--</div>
+    <div class="fx-result-sub" id="fx-result-sub"></div>
+  </div>
+</div>
+
+<!-- テーブルメモ -->
+<div class="page" id="page-memo">
+  <div class="section">
+    <div class="sec-label">テーブル — 席をタップしてメモ</div>
+    <div class="table-wrap">
+      <svg class="table-svg" viewBox="0 0 360 280" id="table-svg">
+        <ellipse cx="180" cy="155" rx="155" ry="100" fill="#1a1a1a"/>
+        <ellipse cx="180" cy="155" rx="142" ry="88" fill="#1a5c2a"/>
+        <ellipse cx="180" cy="155" rx="142" ry="88" fill="none" stroke="#c9a84c" stroke-width="2.5"/>
+        <ellipse cx="180" cy="155" rx="128" ry="74" fill="none" stroke="rgba(201,168,76,0.25)" stroke-width="1"/>
+        <rect x="158" y="58" width="44" height="8" rx="4" fill="#1a1a1a"/>
+        <circle cx="180" cy="28" r="14" fill="#3a3a5a" stroke="rgba(201,168,76,0.4)" stroke-width="1.5"/>
+        <text x="180" y="23" text-anchor="middle" fill="rgba(201,168,76,0.9)" font-size="9" font-family="-apple-system,sans-serif" font-weight="600">D</text>
+        <text x="180" y="34" text-anchor="middle" fill="rgba(201,168,76,0.7)" font-size="7" font-family="-apple-system,sans-serif">dealer</text>
+      </svg>
+    </div>
+    <div class="seat-list" id="seat-list"></div>
+  </div>
+</div>
+
+<!-- 収支カレンダー -->
+<div class="page" id="page-cal">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
+  <div style="font-size:11px;color:rgba(201,168,76,0.6);letter-spacing:0.1em;">通貨</div>
+  <div id="cur-btns" style="display:flex;gap:5px;"></div>
+</div>
+<div class="summary-grid" id="summary-grid"></div>
+
+  <!-- 表示切り替えボタン（3つ） -->
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:10px;">
+    <button id="cal-view-btn" onclick="switchCalView('cal')" style="padding:10px;border-radius:8px;background:#c9a84c;border:none;color:#1c1c2e;font-size:12px;font-weight:700;cursor:pointer;">📅 カレンダー</button>
+    <button id="monthly-view-btn" onclick="switchCalView('monthly')" style="padding:10px;border-radius:8px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.5);font-size:12px;font-weight:600;cursor:pointer;">📊 月間</button>
+    <button id="yearly-view-btn" onclick="switchCalView('yearly')" style="padding:10px;border-radius:8px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.5);font-size:12px;font-weight:600;cursor:pointer;">📈 年間</button>
+  </div>
+
+  <!-- カレンダービュー -->
+  <div id="cal-view">
+    <div class="section">
+      <div class="cal-header">
+        <button class="cal-nav-btn" onclick="calPrev()">‹</button>
+        <div class="cal-month" id="cal-month"></div>
+        <button class="cal-nav-btn" onclick="calNext()">›</button>
+      </div>
+      <div class="cal-weekdays">
+        <div class="cal-weekday">日</div><div class="cal-weekday">月</div>
+        <div class="cal-weekday">火</div><div class="cal-weekday">水</div>
+        <div class="cal-weekday">木</div><div class="cal-weekday">金</div>
+        <div class="cal-weekday">土</div>
+      </div>
+      <div class="cal-grid" id="cal-grid"></div>
+    </div>
+  </div>
+
+  <!-- 月間グラフビュー -->
+  <div id="monthly-view" style="display:none;">
+    <div class="section">
+      <div class="cal-header">
+        <button class="cal-nav-btn" onclick="calPrev();renderMonthlyGraph()">‹</button>
+        <div class="cal-month" id="monthly-graph-title"></div>
+        <button class="cal-nav-btn" onclick="calNext();renderMonthlyGraph()">›</button>
+      </div>
+      <div style="font-size:11px;color:rgba(201,168,76,0.7);letter-spacing:0.1em;margin-bottom:10px;">日別収支（棒グラフ）</div>
+      <canvas id="monthly-bar-chart" style="width:100%;height:220px;display:block;margin-bottom:20px;"></canvas>
+      <div style="font-size:11px;color:rgba(201,168,76,0.7);letter-spacing:0.1em;margin-bottom:10px;">累積収支（折れ線）</div>
+      <canvas id="monthly-line-chart" style="width:100%;height:220px;display:block;"></canvas>
+    </div>
+  </div>
+
+  <!-- 年間グラフビュー -->
+  <div id="yearly-view" style="display:none;">
+    <div class="section">
+      <div class="cal-header">
+        <button class="cal-nav-btn" onclick="graphPrev()">‹</button>
+        <div class="cal-month" id="yearly-graph-title"></div>
+        <button class="cal-nav-btn" onclick="graphNext()">›</button>
+      </div>
+      <div style="font-size:11px;color:rgba(201,168,76,0.7);letter-spacing:0.1em;margin-bottom:10px;">月別収支（棒グラフ）</div>
+      <canvas id="yearly-bar-chart" style="width:100%;height:220px;display:block;margin-bottom:20px;"></canvas>
+      <div style="font-size:11px;color:rgba(201,168,76,0.7);letter-spacing:0.1em;margin-bottom:10px;">年間累積収支（折れ線）</div>
+      <canvas id="yearly-line-chart" style="width:100%;height:220px;display:block;"></canvas>
+    </div>
+  </div>
+</div>
+
+<!-- 収支入力モーダル -->
+<div class="modal" id="income-modal">
+  <div class="modal-backdrop" onclick="closeIncomeModal()"></div>
+  <div class="modal-sheet">
+    <div class="modal-title">
+      <span id="income-modal-title">収支を入力</span>
+      <button class="modal-close" onclick="closeIncomeModal()">✕</button>
+    </div>
+    <div class="win-lose-btns">
+      <button class="wl-btn win-btn selected" id="btn-win" onclick="selectType('win')">勝ち ▲</button>
+      <button class="wl-btn lose-btn" id="btn-lose" onclick="selectType('lose')">負け ▼</button>
+    </div>
+    <div class="amount-label">金額</div>
+    <div class="amount-row">
+      <input class="amount-input" type="number" id="amount-input" placeholder="0" min="0">
+      <span class="amount-unit">円</span>
+    </div>
+    <div class="amount-label">プレイ時間</div>
+    <div class="amount-row">
+      <input class="amount-input" type="number" id="hours-input" placeholder="0" min="0" step="0.5" style="font-size:18px;">
+      <span class="amount-unit">時間</span>
+    </div>
+    <input class="text-input" type="text" id="income-memo-input" placeholder="メモ（場所など）">
+    <button class="primary-btn" onclick="saveIncome()">保存</button>
+    <button class="secondary-btn" onclick="clearIncome()">この日の収支を削除</button>
+  </div>
+</div>
+
+
+<div class="modal" id="memo-modal">
+  <div class="modal-backdrop" onclick="closeMemoModal()"></div>
+  <div class="modal-sheet">
+    <div class="modal-title">
+      <span id="memo-modal-title">席のメモ</span>
+      <button class="modal-close" onclick="closeMemoModal()">✕</button>
+    </div>
+    <textarea class="textarea-input" id="memo-textarea" placeholder="スタック・プレイ傾向・特徴など..."></textarea>
+    <button class="primary-btn" onclick="saveMemo()">保存</button>
+    <button class="secondary-btn" onclick="clearMemo()">メモを消去</button>
+  </div>
+</div>
+
+<script>
+// ===== ナビ =====
+function openSidebar(){document.getElementById('sidebar').classList.add('show');document.getElementById('overlay').classList.add('show');}
+function closeSidebar(){document.getElementById('sidebar').classList.remove('show');document.getElementById('overlay').classList.remove('show');}
+function navigate(page){
+  closeSidebar();
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  document.getElementById('page-'+page).classList.add('active');
+  document.getElementById('nav-'+page).classList.add('active');
+  const titles={odds:'♠ NLH 勝率計算',plo:'🃏 PLO 勝率計算',fx:'💱 為替換算',memo:'📋 テーブルメモ',cal:'📅 収支カレンダー'};
+  document.getElementById('header-title').textContent=titles[page];
+  if(page==='memo')renderMemoPage();
+  if(page==='cal'){renderCurrencyBtns();renderCalPage();}
+  if(page==='fx'){initFxPage();if(!fxRates)fetchRates();}
+  if(page==='plo')ploRenderAll();
+}
+
+// ===== 為替換算 =====
+let fxRates=null;
+let fxFrom='JPY',fxTo='USD';
+const CURRENCIES={
+  JPY:{flag:'🇯🇵',label:'円',symbol:'¥',decimals:0},
+  USD:{flag:'🇺🇸',label:'USD',symbol:'$',decimals:2},
+  PHP:{flag:'🇵🇭',label:'ペソ',symbol:'₱',decimals:2},
+  KRW:{flag:'🇰🇷',label:'ウォン',symbol:'₩',decimals:0},
+  TWD:{flag:'🇹🇼',label:'台湾$',symbol:'NT$',decimals:2},
+};
+
+function renderFxButtons(){
+  const keys=Object.keys(CURRENCIES);
+  // FROMボタン
+  document.getElementById('fx-from-btns').innerHTML=keys.map(k=>{
+    const c=CURRENCIES[k];
+    return`<button class="fx-cur-btn ${fxFrom===k?'active':''}" onclick="setFxFrom('${k}')">${c.flag} ${c.label}</button>`;
+  }).join('');
+  // TOボタン
+  document.getElementById('fx-to-btns').innerHTML=keys.map(k=>{
+    const c=CURRENCIES[k];
+    return`<button class="fx-cur-btn ${fxTo===k?'active':''}" onclick="setFxTo('${k}')">${c.flag} ${c.label}</button>`;
+  }).join('');
+  document.getElementById('fx-from-unit').textContent=CURRENCIES[fxFrom].label;
+}
+
+function setFxFrom(cur){fxFrom=cur;renderFxButtons();calcFX();}
+function setFxTo(cur){fxTo=cur;renderFxButtons();calcFX();}
+
+async function fetchRates(){
+  document.getElementById('fx-rate-info').textContent='取得中...';
+  // 複数APIを順番に試す
+  const APIs=[
+    'https://api.exchangerate-api.com/v4/latest/JPY',
+    'https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/jpy.json',
+    'https://latest.currency-api.pages.dev/v1/currencies/jpy.json',
+  ];
+  for(const url of APIs){
+    try{
+      const res=await fetch(url,{signal:AbortSignal.timeout(5000)});
+      if(!res.ok)continue;
+      const data=await res.json();
+      // データ構造の違いを吸収
+      let rates;
+      if(data.rates){rates=data.rates;}
+      else if(data.jpy){rates={USD:data.jpy.usd,PHP:data.jpy.php,KRW:data.jpy.krw,TWD:data.jpy.twd};}
+      else continue;
+      fxRates={
+        JPY:1,
+        USD:parseFloat(rates.USD||rates.usd)||0,
+        PHP:parseFloat(rates.PHP||rates.php)||0,
+        KRW:parseFloat(rates.KRW||rates.krw)||0,
+        TWD:parseFloat(rates.TWD||rates.twd)||0,
+      };
+      if(!fxRates.USD)continue;
+      const now=new Date();
+      document.getElementById('fx-rate-info').textContent='✅ レート取得完了';
+      document.getElementById('fx-rate-time').textContent=`${now.getHours()}:${String(now.getMinutes()).padStart(2,'0')} 更新`;
+      calcFX();return;
+    }catch(e){continue;}
+  }
+  document.getElementById('fx-rate-info').textContent='❌ 取得失敗 — Wi-Fi確認後に再試行';
+  document.getElementById('fx-rate-time').textContent='';
+}
+
+function calcFX(){
+  const val=parseFloat(document.getElementById('fx-input').value)||0;
+  const resEl=document.getElementById('fx-result-value');
+  const subEl=document.getElementById('fx-result-sub');
+  if(!fxRates){
+    resEl.textContent='--';
+    subEl.textContent='上の「更新」ボタンでレートを取得してください';
+    return;
+  }
+  if(val===0){resEl.textContent='--';subEl.textContent='';return;}
+  // FROM→JPY→TO
+  const jpyVal=val/fxRates[fxFrom];
+  const converted=jpyVal*fxRates[fxTo];
+  const toCur=CURRENCIES[fxTo];
+  const fromCur=CURRENCIES[fxFrom];
+  const dispVal=fxTo==='JPY'||fxTo==='KRW'?Math.round(converted).toLocaleString():converted.toFixed(toCur.decimals);
+  resEl.textContent=`${toCur.symbol}${dispVal}`;
+  // レート表示
+  const rate=fxRates[fxTo]/fxRates[fxFrom];
+  const rateDisp=fxTo==='JPY'||fxTo==='KRW'?Math.round(rate).toLocaleString():rate.toFixed(4);
+  subEl.textContent=`1 ${fromCur.label} = ${toCur.symbol}${rateDisp}`;
+}
+
+function initFxPage(){renderFxButtons();calcFX();}
+
+// ===== 勝率計算 (NLH) =====
+const SUIT_DATA=[{s:'♥',color:'#e74c3c'},{s:'♦',color:'#e91e8c'},{s:'♣',color:'#444444'},{s:'♠',color:'#1a1a2e'}];
+const RANKS=['A','K','Q','J','10','9','8','7','6','5','4','3','2'];
+const RV={'2':2,'3':3,'4':4,'5':5,'6':6,'7':7,'8':8,'9':9,'10':10,'J':11,'Q':12,'K':13,'A':14};
+const HN=['ハイカード','ワンペア','ツーペア','スリーカード','ストレート','フラッシュ','フルハウス','フォーカード','ストレートフラッシュ','ロイヤルフラッシュ'];
+const PCOLORS=['#c9a84c','#7eb8d4','#e8a0a0','#90d4a0'];
+
+let numPlayers=2,playerHands=[[null,null],[null,null]],board=[null,null,null,null,null],pickerTarget=null,oddsResult=null;
+let lastTap={slot:null,time:0};
+
+function buildNlhSlots(){
+  const slots=[];
+  for(let p=0;p<numPlayers;p++)for(let c=0;c<2;c++)slots.push({type:'hand',pidx:p,cidx:c});
+  for(let c=0;c<5;c++)slots.push({type:'board',pidx:0,cidx:c});
+  return slots;
+}
+
+function suitColor(s){return(SUIT_DATA.find(x=>x.s===s)||{color:'#111'}).color;}
+function getSlotCard(slot){return slot.type==='hand'?playerHands[slot.pidx][slot.cidx]:board[slot.cidx];}
+function setSlotCard(slot,card){if(slot.type==='hand')playerHands[slot.pidx][slot.cidx]=card;else board[slot.cidx]=card;}
+function usedCards(){const used=new Set();playerHands.forEach(h=>h.forEach(c=>{if(c)used.add(c.r+c.s);}));board.forEach(c=>{if(c)used.add(c.r+c.s);});return used;}
+function remainingDeck(){const used=usedCards(),rem=[];SUIT_DATA.forEach(({s})=>RANKS.forEach(r=>{if(!used.has(r+s))rem.push({r,s});}));return rem;}
+function slotLabel(slot){if(slot.type==='hand')return`P${slot.pidx+1} カード${slot.cidx+1}`;return['F1','F2','F3','ターン','リバー'][slot.cidx];}
+
+function renderPlayers(){
+  const knownBoard=board.filter(c=>c);
+  const slots=buildNlhSlots();
+  let html=playerHands.slice(0,numPlayers).map((h,i)=>{
+    const color=PCOLORS[i];
+    const cards=[0,1].map(ci=>{
+      const sidx=slots.findIndex(s=>s.type==='hand'&&s.pidx===i&&s.cidx===ci);
+      return cardSlotHTML({type:'hand',pidx:i,cidx:ci},sidx);
+    }).join('');
+    let oddsHTML='';
+    if(oddsResult){
+      const wr=oddsResult[i];
+      const winPct=wr.win.toFixed(1),tiePct=wr.tie.toFixed(1);
+      const handName=knownBoard.length>=3?evaluateHand([...h,...knownBoard]):'';
+      oddsHTML=`<div class="p-odds">
+        <div class="p-odds-pct" style="color:${color}">${winPct}%${parseFloat(tiePct)>0?`<span style="font-size:12px;color:rgba(255,255,255,0.4);"> +${tiePct}%</span>`:''}
+        </div>
+        <div class="p-odds-bar-bg"><div class="p-odds-bar-fill" style="width:${Math.min(wr.win+wr.tie,100)}%;background:${color};"></div></div>
+        ${handName?`<div class="p-odds-hand">${handName}</div>`:''}
+        <div class="p-odds-detail">引分 ${tiePct}%</div>
+      </div>`;
+    } else {
+      oddsHTML=`<div class="p-odds"><div class="p-odds-empty">← タップしてカード選択</div></div>`;
+    }
+    return`<div class="player-row"><span class="p-label" style="color:${color}">P${i+1}</span><div class="p-cards">${cards}</div>${oddsHTML}</div>`;
+  }).join('');
+  const maxP=6;
+  if(numPlayers<maxP)html+=`<button onclick="nlhAddPlayer()" style="margin-top:10px;width:100%;padding:10px;border-radius:8px;background:rgba(255,255,255,0.07);border:1px dashed rgba(255,255,255,0.2);color:rgba(255,255,255,0.5);font-size:13px;cursor:pointer;">＋ プレイヤーを追加 (${numPlayers}/${maxP})</button>`;
+  if(numPlayers>2)html+=`<button onclick="nlhRemovePlayer()" style="margin-top:6px;width:100%;padding:8px;border-radius:8px;background:rgba(255,85,85,0.08);border:1px solid rgba(255,85,85,0.2);color:rgba(255,85,85,0.6);font-size:12px;cursor:pointer;">− P${numPlayers} を削除</button>`;
+  document.getElementById('players-area').innerHTML=html;
+}
+
+function cardSlotHTML(slot,sidx){
+  const c=getSlotCard(slot);
+  const isActive=pickerTarget===sidx;
+  if(c)return`<div class="card-slot filled${isActive?' active':''}" style="color:${suitColor(c.s)};" onclick="handleCardTap('hand',${slot.pidx},${slot.cidx},${sidx})"><div class="cr">${c.r}</div><div class="cs">${c.s}</div></div>`;
+  return`<div class="card-slot${isActive?' active':''}" onclick="openPicker(${sidx})">タップ</div>`;
+}
+function renderBoardSlots(){
+  const slots=buildNlhSlots();
+  const labels=['F1','F2','F3','T','R'];
+  document.getElementById('board-slots').innerHTML=board.map((c,i)=>{
+    const sidx=slots.findIndex(s=>s.type==='board'&&s.cidx===i);
+    const isActive=pickerTarget===sidx;
+    if(c)return`<div class="board-slot filled${isActive?' active':''}" style="color:${suitColor(c.s)};" onclick="handleCardTap('board',0,${i},${sidx})"><div class="cr">${c.r}</div><div class="cs">${c.s}</div></div>`;
+    return`<div class="board-slot${isActive?' active':''}" onclick="openPicker(${sidx})">${labels[i]}</div>`;
+  }).join('');
+}
+
+function handleCardTap(type,pidx,cidx,sidx){
+  const now=Date.now();const key=type+pidx+cidx;
+  if(lastTap.slot===key&&now-lastTap.time<400){lastTap={slot:null,time:0};clearSlot(type,pidx,cidx);}
+  else{lastTap={slot:key,time:now};openPicker(sidx);}
+}
+function clearSlot(type,pidx,cidx){
+  if(type==='hand')playerHands[pidx][cidx]=null;else board[cidx]=null;
+  oddsResult=null;document.getElementById('calc-note').textContent='';renderAll();
+}
+function openPicker(sidx){pickerTarget=sidx;document.getElementById('picker').style.display='block';updatePickerUI();document.getElementById('calc-note').textContent='';renderAll();}
+function updatePickerUI(){
+  if(pickerTarget===null)return;
+  const slots=buildNlhSlots();
+  const slot=slots[pickerTarget];
+  document.getElementById('picker-title').textContent=`${slotLabel(slot)} を選択`;
+  const remaining=slots.slice(pickerTarget+1).filter(s=>!getSlotCard(s)).length;
+  document.getElementById('picker-status').textContent=remaining>0?`選択後、次へ自動移動（残り${remaining}枚）`:'最後のカード';
+  renderCardGrid();
+}
+function closePicker(){pickerTarget=null;document.getElementById('picker').style.display='none';renderAll();}
+function renderCardGrid(){
+  const slots=buildNlhSlots();
+  const used=usedCards();
+  if(pickerTarget!==null){const cur=getSlotCard(slots[pickerTarget]);if(cur)used.delete(cur.r+cur.s);}
+  let html='';
+  SUIT_DATA.forEach(({s,color},si)=>{
+    if(si>0)html+=`<div class="suit-gap"></div>`;
+    RANKS.forEach(r=>{
+      const key=r+s,isUsed=used.has(key);
+      html+=`<button class="cg-btn ${isUsed?'used':''}" style="color:${color};" onclick="selectCard('${r}','${s}')" ${isUsed?'disabled':''}><span class="cg-r">${r}</span><span class="cg-s">${s}</span></button>`;
+    });
+  });
+  document.getElementById('card-grid').innerHTML=html;
+}
+function selectCard(r,s){
+  if(pickerTarget===null)return;
+  const slots=buildNlhSlots();
+  setSlotCard(slots[pickerTarget],{r,s});oddsResult=null;
+  let next=null;
+  for(let i=pickerTarget+1;i<slots.length;i++){if(!getSlotCard(slots[i])){next=i;break;}}
+  if(next!==null){pickerTarget=next;updatePickerUI();}else closePicker();
+  renderAll();
+}
+function nlhAddPlayer(){
+  if(numPlayers>=6)return;
+  numPlayers++;playerHands.push([null,null]);oddsResult=null;renderAll();
+}
+function nlhRemovePlayer(){
+  if(numPlayers<=2)return;
+  numPlayers--;playerHands.pop();oddsResult=null;renderAll();
+}
+function renderAll(){renderPlayers();renderBoardSlots();document.getElementById('calc-btn').disabled=!playerHands.slice(0,numPlayers).every(h=>h[0]&&h[1]);}
+function calculate(){
+  const knownBoard=board.filter(c=>c);
+  document.getElementById('calc-note').textContent='計算中...';
+  setTimeout(()=>{
+    const{rates,total,need}=calcExact(knownBoard);oddsResult=rates;
+    const noteMap={0:'完全正確',1:`全${total}パターン列挙`,2:`全${total}パターン列挙`,3:`全${total}パターン列挙`,4:`全${total}パターン列挙`,5:'モンテカルロ 5000試行'};
+    document.getElementById('calc-note').textContent=noteMap[need]||'';
+    renderAll();
+  },20);
+}
+
+function calcExact(knownBoard){
+  const wins=new Array(numPlayers).fill(0),ties=new Array(numPlayers).fill(0);
+  let total=0;const rem=remainingDeck(),need=5-knownBoard.length;
+  function ev(runout){
+    const scores=playerHands.slice(0,numPlayers).map(h=>handScoreArray([...h,...runout]));
+    let best=scores[0];for(let i=1;i<scores.length;i++){if(compareArrays(scores[i],best)>0)best=scores[i];}
+    const winners=scores.map((s,i)=>compareArrays(s,best)===0?i:-1).filter(i=>i>=0);
+    winners.forEach(i=>{if(winners.length===1)wins[i]++;else ties[i]++;});total++;
+  }
+  if(need===0)ev(knownBoard);
+  else if(need===1)for(let i=0;i<rem.length;i++)ev([...knownBoard,rem[i]]);
+  else if(need===2)for(let i=0;i<rem.length;i++)for(let j=i+1;j<rem.length;j++)ev([...knownBoard,rem[i],rem[j]]);
+  else if(need===3)for(let i=0;i<rem.length;i++)for(let j=i+1;j<rem.length;j++)for(let k=j+1;k<rem.length;k++)ev([...knownBoard,rem[i],rem[j],rem[k]]);
+  else if(need===4)for(let i=0;i<rem.length;i++)for(let j=i+1;j<rem.length;j++)for(let k=j+1;k<rem.length;k++)for(let l=k+1;l<rem.length;l++)ev([...knownBoard,rem[i],rem[j],rem[k],rem[l]]);
+  else{for(let t=0;t<5000;t++){for(let i=rem.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[rem[i],rem[j]]=[rem[j],rem[i]];}ev([...knownBoard,...rem.slice(0,5)]);}}
+  return{rates:playerHands.slice(0,numPlayers).map((_,i)=>({win:wins[i]/total*100,tie:ties[i]/total*100})),total,need};
+}
+function resetAll(){
+  playerHands=[[null,null],[null,null]];board=[null,null,null,null,null];numPlayers=2;pickerTarget=null;oddsResult=null;
+  document.getElementById('calc-note').textContent='';document.getElementById('picker').style.display='none';renderAll();
+}
+function handScoreArray(cards){const combos=combinations(cards,5);let best=null;combos.forEach(c=>{const s=scoreHandArray(c);if(!best||compareArrays(s,best)>0)best=s;});return best;}
+function compareArrays(a,b){for(let i=0;i<Math.max(a.length,b.length);i++){const ai=a[i]||0,bi=b[i]||0;if(ai>bi)return 1;if(ai<bi)return -1;}return 0;}
+function scoreHandArray(cards){
+  const ranks=cards.map(c=>RV[c.r]).sort((a,b)=>b-a),suits=cards.map(c=>c.s);
+  const isFlush=suits.every(s=>s===suits[0]),sorted=[...ranks].sort((a,b)=>a-b);
+  const isStr=(sorted[4]-sorted[0]===4&&new Set(sorted).size===5)||(JSON.stringify(sorted)==='[2,3,4,5,14]');
+  const cnt={};ranks.forEach(r=>cnt[r]=(cnt[r]||0)+1);
+  const groups=Object.entries(cnt).map(([r,c])=>({r:parseInt(r),c})).sort((a,b)=>b.c-a.c||b.r-a.r);
+  const vals=groups.map(g=>g.c);let rank=0;
+  if(isFlush&&isStr)rank=sorted[4]===14&&sorted[3]===13?9:8;
+  else if(vals[0]===4)rank=7;else if(vals[0]===3&&vals[1]===2)rank=6;
+  else if(isFlush)rank=5;else if(isStr)rank=4;else if(vals[0]===3)rank=3;
+  else if(vals[0]===2&&vals[1]===2)rank=2;else if(vals[0]===2)rank=1;
+  if(isStr){const top=sorted[0]===14&&sorted[1]===5?5:sorted[4];return[rank,top];}
+  const kickers=[];groups.forEach(g=>{for(let i=0;i<g.c;i++)kickers.push(g.r);});return[rank,...kickers];
+}
+function combinations(arr,k){if(k===0)return[[]];if(arr.length<k)return[];const[f,...rest]=arr;return[...combinations(rest,k-1).map(c=>[f,...c]),...combinations(rest,k)];}
+function evaluateHand(cards){
+  if(cards.length<5)return'';
+  const combos=combinations(cards,5);let bestScore=null;
+  combos.forEach(c=>{const s=scoreHandArray(c);if(!bestScore||compareArrays(s,bestScore)>0)bestScore=s;});
+  return HN[bestScore[0]];
+}
+
+// ===== テーブルメモ =====
+let memos=JSON.parse(localStorage.getItem('poker-memos')||'{}'),currentSeat=null;
+const SEAT_POSITIONS=[{x:308,y:68},{x:340,y:138},{x:318,y:210},{x:252,y:258},{x:180,y:268},{x:108,y:258},{x:42,y:210},{x:20,y:138},{x:52,y:68}];
+function renderTableSVG(){
+  const svg=document.getElementById('table-svg');svg.querySelectorAll('.seat-g').forEach(e=>e.remove());
+  SEAT_POSITIONS.forEach((pos,i)=>{
+    const sn=i+1,hasMemo=memos[sn]&&memos[sn].trim();
+    const g=document.createElementNS('http://www.w3.org/2000/svg','g');g.setAttribute('class','seat-g');g.style.cursor='pointer';g.addEventListener('click',()=>openMemoModal(sn));
+    const chair=document.createElementNS('http://www.w3.org/2000/svg','circle');chair.setAttribute('cx',pos.x);chair.setAttribute('cy',pos.y);chair.setAttribute('r','20');chair.setAttribute('fill','#2a2a42');chair.setAttribute('stroke',hasMemo?'#c9a84c':'rgba(255,255,255,0.2)');chair.setAttribute('stroke-width','2');g.appendChild(chair);
+    if(hasMemo){const inner=document.createElementNS('http://www.w3.org/2000/svg','circle');inner.setAttribute('cx',pos.x);inner.setAttribute('cy',pos.y);inner.setAttribute('r','14');inner.setAttribute('fill','rgba(201,168,76,0.25)');g.appendChild(inner);}
+    const txt=document.createElementNS('http://www.w3.org/2000/svg','text');txt.setAttribute('x',pos.x);txt.setAttribute('y',pos.y+5);txt.setAttribute('text-anchor','middle');txt.setAttribute('fill',hasMemo?'#c9a84c':'rgba(255,255,255,0.7)');txt.setAttribute('font-size','14');txt.setAttribute('font-weight','700');txt.setAttribute('font-family','-apple-system,sans-serif');txt.textContent=sn;g.appendChild(txt);svg.appendChild(g);
+  });
+}
+function renderSeatList(){
+  const list=document.getElementById('seat-list');list.innerHTML='';
+  for(let i=1;i<=9;i++){
+    const memo=memos[i]||'',hasMemo=memo.trim().length>0;
+    const row=document.createElement('div');row.className='seat-row';row.onclick=()=>openMemoModal(i);
+    row.innerHTML=`<div class="seat-num">${i}</div><div class="seat-preview ${hasMemo?'has-memo':''}">${hasMemo?memo.split('\n')[0]:'メモなし'}</div><div class="seat-arrow">›</div>`;
+    list.appendChild(row);
+  }
+}
+function renderMemoPage(){renderTableSVG();renderSeatList();}
+function openMemoModal(sn){currentSeat=sn;document.getElementById('memo-modal-title').textContent=`席 ${sn} のメモ`;document.getElementById('memo-textarea').value=memos[sn]||'';document.getElementById('memo-modal').classList.add('show');setTimeout(()=>document.getElementById('memo-textarea').focus(),150);}
+function closeMemoModal(){document.getElementById('memo-modal').classList.remove('show');currentSeat=null;}
+function saveMemo(){if(currentSeat===null)return;memos[currentSeat]=document.getElementById('memo-textarea').value;localStorage.setItem('poker-memos',JSON.stringify(memos));closeMemoModal();renderMemoPage();}
+function clearMemo(){if(currentSeat===null)return;memos[currentSeat]='';localStorage.setItem('poker-memos',JSON.stringify(memos));document.getElementById('memo-textarea').value='';closeMemoModal();renderMemoPage();}
+
+// ===== 通貨設定 =====
+const CURRENCY_SETTINGS={
+  JPY:{symbol:'¥',label:'円',decimals:0},
+  USD:{symbol:'$',label:'USD',decimals:2},
+  PHP:{symbol:'₱',label:'PHP',decimals:0},
+  TWD:{symbol:'NT$',label:'TWD',decimals:0},
+  KRW:{symbol:'₩',label:'KRW',decimals:0},
+};
+let currentCurrency='JPY';
+function monthKey(){return`${calYear}-${String(calMonth+1).padStart(2,'0')}`;}
+function loadCurrencyForMonth(){
+  currentCurrency=localStorage.getItem('poker-currency-'+monthKey())||'JPY';
+}
+function setCurrency(cur){
+  currentCurrency=cur;
+  localStorage.setItem('poker-currency-'+monthKey(),cur);
+  renderCurrencyBtns();
+  updateAmountUnit();
+  renderCalPage();
+}
+function renderCurrencyBtns(){
+  const el=document.getElementById('cur-btns');
+  if(!el)return;
+  el.innerHTML=Object.keys(CURRENCY_SETTINGS).map(k=>{
+    const c=CURRENCY_SETTINGS[k];
+    const active=k===currentCurrency;
+    return`<button onclick="setCurrency('${k}')" style="padding:6px 10px;border-radius:14px;font-size:11px;font-weight:600;border:1.5px solid ${active?'#c9a84c':'rgba(255,255,255,0.15)'};background:${active?'rgba(201,168,76,0.15)':'transparent'};color:${active?'#c9a84c':'rgba(255,255,255,0.5)'};cursor:pointer;">${c.symbol} ${c.label}</button>`;
+  }).join('');
+}
+function updateAmountUnit(){
+  const sym=CURRENCY_SETTINGS[currentCurrency].symbol;
+  document.querySelectorAll('.amount-unit').forEach(el=>{if(el.textContent!=='時間')el.textContent=sym;});
+}
+
+// ===== 収支カレンダー =====
+let incomeData=JSON.parse(localStorage.getItem('poker-income')||'{}'),calYear=new Date().getFullYear(),calMonth=new Date().getMonth(),currentDateKey=null,currentType='win';
+function dateKey(y,m,d){return`${y}-${String(m+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;}
+let calViewMode='cal';
+let graphYear=new Date().getFullYear();
+
+function graphPrev(){graphYear--;renderYearlyGraph();}
+function graphNext(){graphYear++;renderYearlyGraph();}
+
+function switchCalView(mode){
+  calViewMode=mode;
+  ['cal','monthly','yearly'].forEach(m=>{
+    const v=document.getElementById(m+'-view')||document.getElementById(m==='cal'?'cal-view':m+'-view');
+    if(v)v.style.display=m===mode?'block':'none';
+  });
+  document.getElementById('cal-view').style.display=mode==='cal'?'block':'none';
+  document.getElementById('monthly-view').style.display=mode==='monthly'?'block':'none';
+  document.getElementById('yearly-view').style.display=mode==='yearly'?'block':'none';
+  const btns={cal:'cal-view-btn',monthly:'monthly-view-btn',yearly:'yearly-view-btn'};
+  Object.entries(btns).forEach(([m,id])=>{
+    const btn=document.getElementById(id);
+    if(!btn)return;
+    const active=m===mode;
+    btn.style.background=active?'#c9a84c':'rgba(255,255,255,0.08)';
+    btn.style.color=active?'#1c1c2e':'rgba(255,255,255,0.5)';
+    btn.style.border=active?'none':'1px solid rgba(255,255,255,0.15)';
+  });
+  if(mode==='monthly')setTimeout(()=>renderMonthlyGraph(),50);
+  if(mode==='yearly')setTimeout(()=>renderYearlyGraph(),50);
+}
+
+function renderMonthlyGraph(){
+  const mn=['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'];
+  const el=document.getElementById('monthly-graph-title');
+  if(el)el.textContent=`${calYear}年 ${mn[calMonth]}`;
+
+  const lastDate=new Date(calYear,calMonth+1,0).getDate();
+  const allDays=[],dailyAmts=[];
+  for(let d=1;d<=lastDate;d++){
+    const key=dateKey(calYear,calMonth,d);
+    const data=incomeData[key];
+    allDays.push(d);
+    dailyAmts.push(data?(data.type==='win'?data.amount:-data.amount):null);
+  }
+
+  // 最初のデータがある日を始点に
+  const firstIdx=dailyAmts.findIndex(v=>v!==null);
+  const days=firstIdx>=0?allDays.slice(firstIdx):allDays;
+  const amts=firstIdx>=0?dailyAmts.slice(firstIdx):dailyAmts;
+
+  // 累積
+  let cumul=0;
+  const cumulAmts=amts.map(v=>{if(v!==null)cumul+=v;return v!==null?cumul:null;});
+
+  drawChart('monthly-bar-chart',days,amts,'bar');
+  drawChart('monthly-line-chart',days,cumulAmts,'line');
+}
+
+function renderYearlyGraph(){
+  const el=document.getElementById('yearly-graph-title');
+  if(el)el.textContent=`${graphYear}年`;
+
+  const monthLabels=['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'];
+  const monthlyAmts=[];
+  for(let m=0;m<12;m++){
+    const prefix=`${graphYear}-${String(m+1).padStart(2,'0')}`;
+    let net=0,hasData=false;
+    Object.keys(incomeData).forEach(k=>{
+      if(k.startsWith(prefix)){
+        const d=incomeData[k];
+        if(d){hasData=true;net+=d.type==='win'?d.amount:-d.amount;}
+      }
+    });
+    monthlyAmts.push(hasData?net:null);
+  }
+
+  // 最初のデータがある月を始点に
+  const firstIdx=monthlyAmts.findIndex(v=>v!==null);
+  const labels=firstIdx>=0?monthLabels.slice(firstIdx):monthLabels;
+  const amts=firstIdx>=0?monthlyAmts.slice(firstIdx):monthlyAmts;
+
+  // 累積
+  let cumul=0;
+  const cumulAmts=amts.map(v=>{if(v!==null)cumul+=v;return v!==null?cumul:null;});
+
+  drawChart('yearly-bar-chart',labels,amts,'bar');
+  drawChart('yearly-line-chart',labels,cumulAmts,'line');
+}
+
+function drawChart(id,labels,values,type){
+  const canvas=document.getElementById(id);
+  if(!canvas)return;
+  const W=canvas.offsetWidth||320;
+  const H=220;
+  canvas.width=W*2;canvas.height=H*2;
+  canvas.style.width=W+'px';canvas.style.height=H+'px';
+  const ctx=canvas.getContext('2d');
+  ctx.scale(2,2);
+
+  const pad={t:24,r:14,b:36,l:60};
+  const cw=W-pad.l-pad.r,ch=H-pad.t-pad.b;
+  const n=labels.length;
+
+  // 背景
+  ctx.fillStyle='rgba(255,255,255,0.02)';
+  ctx.fillRect(0,0,W,H);
+
+  const nonNull=values.filter(v=>v!==null);
+  if(!nonNull.length){
+    ctx.fillStyle='rgba(255,255,255,0.25)';
+    ctx.font='13px Arial';ctx.textAlign='center';
+    ctx.fillText('データがありません',W/2,H/2);return;
+  }
+
+  const maxV=Math.max(...nonNull,0);
+  const minV=Math.min(...nonNull,0);
+  const range=maxV-minV||Math.abs(maxV)||1;
+
+  // Y軸グリッドライン（5本）
+  for(let i=0;i<=4;i++){
+    const v=minV+(maxV-minV)*i/4;
+    const y=pad.t+ch*(1-(v-minV)/range);
+    ctx.strokeStyle='rgba(255,255,255,0.07)';
+    ctx.lineWidth=1;
+    ctx.setLineDash([3,3]);
+    ctx.beginPath();ctx.moveTo(pad.l,y);ctx.lineTo(pad.l+cw,y);ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.fillStyle='rgba(255,255,255,0.4)';
+    ctx.font='10px Arial';ctx.textAlign='right';
+    const label=Math.abs(v)>=10000?`${(v/10000).toFixed(1)}万`:`${v>=0?'+':''}${Math.round(v)}`;
+    ctx.fillText(label,pad.l-5,y+4);
+  }
+
+  // ゼロライン（強調）
+  const zeroY=pad.t+ch*(1-(-minV)/range);
+  ctx.strokeStyle='rgba(255,255,255,0.3)';
+  ctx.lineWidth=1.5;
+  ctx.beginPath();ctx.moveTo(pad.l,zeroY);ctx.lineTo(pad.l+cw,zeroY);ctx.stroke();
+
+  // X軸ラベル
+  ctx.fillStyle='rgba(255,255,255,0.45)';
+  ctx.font='10px Arial';ctx.textAlign='center';
+  labels.forEach((lb,i)=>{
+    const x=n===1?pad.l+cw/2:pad.l+cw*(i/(n-1));
+    // 多すぎる場合は間引き
+    if(n<=12||i===0||i===n-1||i%Math.ceil(n/8)===0){
+      ctx.fillText(lb,x,H-pad.b+14);
+    }
+  });
+
+  if(type==='bar'){
+    const barW=Math.max(cw/n*0.6,3);
+    labels.forEach((_,i)=>{
+      const v=values[i];if(v===null)return;
+      const x=n===1?pad.l+cw/2:pad.l+cw*(i/(n-1));
+      const bh=Math.abs(v)/range*ch;
+      const y=v>=0?zeroY-bh:zeroY;
+      const grad=ctx.createLinearGradient(0,y,0,y+bh);
+      if(v>=0){grad.addColorStop(0,'rgba(74,158,255,0.9)');grad.addColorStop(1,'rgba(74,158,255,0.4)');}
+      else{grad.addColorStop(0,'rgba(255,85,85,0.4)');grad.addColorStop(1,'rgba(255,85,85,0.9)');}
+      ctx.fillStyle=grad;
+      ctx.beginPath();
+      const r=Math.min(3,barW/2);
+      if(v>=0){ctx.moveTo(x-barW/2+r,y);ctx.lineTo(x+barW/2-r,y);ctx.arcTo(x+barW/2,y,x+barW/2,y+r,r);ctx.lineTo(x+barW/2,y+bh);ctx.lineTo(x-barW/2,y+bh);ctx.arcTo(x-barW/2,y,x-barW/2+r,y,r);}
+      else{ctx.moveTo(x-barW/2,y);ctx.lineTo(x+barW/2,y);ctx.lineTo(x+barW/2,y+bh-r);ctx.arcTo(x+barW/2,y+bh,x+barW/2-r,y+bh,r);ctx.lineTo(x-barW/2+r,y+bh);ctx.arcTo(x-barW/2,y+bh,x-barW/2,y+bh-r,r);ctx.lineTo(x-barW/2,y);}
+      ctx.closePath();ctx.fill();
+      // 値ラベル
+      ctx.fillStyle=v>=0?'rgba(74,158,255,0.9)':'rgba(255,85,85,0.9)';
+      ctx.font='9px Arial';ctx.textAlign='center';
+      const lbl=Math.abs(v)>=10000?`${(v/10000).toFixed(1)}万`:`${v>=0?'+':''}${Math.round(v)}`;
+      ctx.fillText(lbl,x,v>=0?y-3:y+bh+10);
+    });
+  } else {
+    // 折れ線
+    const grad=ctx.createLinearGradient(0,pad.t,0,pad.t+ch);
+    grad.addColorStop(0,'rgba(201,168,76,0.15)');
+    grad.addColorStop(1,'rgba(201,168,76,0)');
+
+    // エリア塗り
+    ctx.beginPath();
+    let first=true;
+    const pts=[];
+    labels.forEach((_,i)=>{
+      const v=values[i];if(v===null)return;
+      const x=n===1?pad.l+cw/2:pad.l+cw*(i/(n-1));
+      const y=pad.t+ch*(1-(v-minV)/range);
+      pts.push({x,y});
+      if(first){ctx.moveTo(x,y);first=false;}else ctx.lineTo(x,y);
+    });
+    if(pts.length>1){
+      ctx.lineTo(pts[pts.length-1].x,zeroY);
+      ctx.lineTo(pts[0].x,zeroY);
+      ctx.closePath();ctx.fillStyle=grad;ctx.fill();
+    }
+
+    // 線
+    ctx.beginPath();first=true;
+    labels.forEach((_,i)=>{
+      const v=values[i];if(v===null)return;
+      const x=n===1?pad.l+cw/2:pad.l+cw*(i/(n-1));
+      const y=pad.t+ch*(1-(v-minV)/range);
+      if(first){ctx.moveTo(x,y);first=false;}else ctx.lineTo(x,y);
+    });
+    ctx.strokeStyle='#c9a84c';ctx.lineWidth=2.5;ctx.lineJoin='round';ctx.stroke();
+
+    // ポイント＋値ラベル
+    labels.forEach((_,i)=>{
+      const v=values[i];if(v===null)return;
+      const x=n===1?pad.l+cw/2:pad.l+cw*(i/(n-1));
+      const y=pad.t+ch*(1-(v-minV)/range);
+      ctx.fillStyle=v>=0?'#4a9eff':'#ff5555';
+      ctx.beginPath();ctx.arc(x,y,4,0,Math.PI*2);ctx.fill();
+      ctx.fillStyle=v>=0?'rgba(74,158,255,0.9)':'rgba(255,85,85,0.9)';
+      ctx.font='9px Arial';ctx.textAlign='center';
+      const lbl=Math.abs(v)>=10000?`${(v/10000).toFixed(1)}万`:`${v>=0?'+':''}${Math.round(v)}`;
+      ctx.fillText(lbl,x,y-7);
+    });
+  }
+}
+
+function calPrev(){calMonth--;if(calMonth<0){calMonth=11;calYear--;}renderCalPage();}
+function calNext(){calMonth++;if(calMonth>11){calMonth=0;calYear++;}renderCalPage();}
+function renderCalPage(){
+  loadCurrencyForMonth();
+  renderCurrencyBtns();
+  renderSummary();
+  const mn=['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'];
+  document.getElementById('cal-month').textContent=`${calYear}年 ${mn[calMonth]}`;
+  const grid=document.getElementById('cal-grid');grid.innerHTML='';
+  const firstDay=new Date(calYear,calMonth,1).getDay(),lastDate=new Date(calYear,calMonth+1,0).getDate();
+  const todayKey=dateKey(new Date().getFullYear(),new Date().getMonth(),new Date().getDate());
+  for(let i=0;i<firstDay;i++){const el=document.createElement('div');el.className='cal-day empty';grid.appendChild(el);}
+  for(let d=1;d<=lastDate;d++){
+    const key=dateKey(calYear,calMonth,d),data=incomeData[key],dow=(firstDay+d-1)%7;
+    const el=document.createElement('div');
+    let cls='cal-day';if(dow===0)cls+=' sun';if(dow===6)cls+=' sat';if(key===todayKey)cls+=' today';if(data)cls+=' has-data';
+    el.className=cls;el.onclick=()=>openIncomeModal(key,d);
+    const numEl=document.createElement('div');numEl.className='cal-day-num';numEl.textContent=d;el.appendChild(numEl);
+    if(data){const amtEl=document.createElement('div');const isWin=data.type==='win';amtEl.className=`cal-amount ${isWin?'win':'lose'}`;const amt=Math.abs(data.amount);const sym=CURRENCY_SETTINGS[currentCurrency].symbol;amtEl.textContent=`${isWin?'+':'-'}${sym}${amt>=10000?Math.round(amt/1000)+'k':amt}`;el.appendChild(amtEl);}
+    grid.appendChild(el);
+  }
+  if(calViewMode==='monthly')setTimeout(()=>renderMonthlyGraph(),50);
+  if(calViewMode==='yearly')setTimeout(()=>renderYearlyGraph(),50);
+}
+function renderSummary(){
+  const sym=CURRENCY_SETTINGS[currentCurrency].symbol;
+  const mk=Object.keys(incomeData).filter(k=>k.startsWith(`${calYear}-${String(calMonth+1).padStart(2,'0')}`));
+  let tw=0,tl=0,days=0,totalHours=0;
+  mk.forEach(k=>{const d=incomeData[k];if(!d)return;days++;if(d.type==='win')tw+=d.amount;else tl+=d.amount;totalHours+=d.hours||0;});
+  const net=tw-tl;
+  const hourly=totalHours>0?Math.round(net/totalHours):null;
+  const fmtAmt=v=>`${sym}${Math.abs(v).toLocaleString()}`;
+  document.getElementById('summary-grid').innerHTML=`
+    <div class="summary-card"><div class="summary-label">月間収支</div><div class="summary-value ${net>0?'win':net<0?'lose':'neutral'}">${net>=0?'+':'-'}${fmtAmt(net)}</div></div>
+    <div class="summary-card"><div class="summary-label">プレイ日数</div><div class="summary-value neutral">${days}日 / ${totalHours.toFixed(1)}h</div></div>
+    <div class="summary-card"><div class="summary-label">時給</div><div class="summary-value ${hourly===null?'neutral':hourly>=0?'win':'lose'}">${hourly===null?'--':(hourly>=0?'+':'-')+fmtAmt(hourly)}/h</div></div>
+    <div class="summary-card"><div class="summary-label">日平均収支</div><div class="summary-value ${net>0?'win':net<0?'lose':'neutral'}">${days>0?(net>=0?'+':'-')+fmtAmt(net/days):'--'}</div></div>`;
+}
+function openIncomeModal(key,day){
+  currentDateKey=key;const data=incomeData[key];
+  const mn=['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'];
+  document.getElementById('income-modal-title').textContent=`${calYear}年${mn[calMonth]}${day}日`;
+  if(data){selectType(data.type);document.getElementById('amount-input').value=data.amount;document.getElementById('hours-input').value=data.hours||'';document.getElementById('income-memo-input').value=data.memo||'';}
+  else{selectType('win');document.getElementById('amount-input').value='';document.getElementById('hours-input').value='';document.getElementById('income-memo-input').value='';}
+  document.getElementById('income-modal').classList.add('show');setTimeout(()=>document.getElementById('amount-input').focus(),150);
+}
+function closeIncomeModal(){document.getElementById('income-modal').classList.remove('show');currentDateKey=null;}
+function selectType(type){currentType=type;document.getElementById('btn-win').classList.toggle('selected',type==='win');document.getElementById('btn-lose').classList.toggle('selected',type==='lose');}
+function saveIncome(){if(!currentDateKey)return;incomeData[currentDateKey]={type:currentType,amount:parseInt(document.getElementById('amount-input').value)||0,hours:parseFloat(document.getElementById('hours-input').value)||0,memo:document.getElementById('income-memo-input').value};localStorage.setItem('poker-income',JSON.stringify(incomeData));closeIncomeModal();renderCalPage();}
+function clearIncome(){if(!currentDateKey)return;delete incomeData[currentDateKey];localStorage.setItem('poker-income',JSON.stringify(incomeData));closeIncomeModal();renderCalPage();}
+
+// ===== PLO 勝率計算 =====
+const PLO_COLORS=PCOLORS;
+let ploNumPlayers=2;
+let ploPlayerHands=[[null,null,null,null],[null,null,null,null]];
+let ploBoard=[null,null,null,null,null];
+let ploPickerTarget=null;
+let ploOddsResult=null;
+let ploLastTap={slot:null,time:0};
+
+function buildPloSlots(){
+  const slots=[];
+  for(let p=0;p<ploNumPlayers;p++)for(let c=0;c<4;c++)slots.push({type:'hand',pidx:p,cidx:c});
+  for(let c=0;c<5;c++)slots.push({type:'board',pidx:0,cidx:c});
+  return slots;
+}
+function getPloSlotCard(slot){return slot.type==='hand'?ploPlayerHands[slot.pidx][slot.cidx]:ploBoard[slot.cidx];}
+function setPloSlotCard(slot,card){if(slot.type==='hand')ploPlayerHands[slot.pidx][slot.cidx]=card;else ploBoard[slot.cidx]=card;}
+function ploUsedCards(){
+  const used=new Set();
+  ploPlayerHands.forEach(h=>h.forEach(c=>{if(c)used.add(c.r+c.s);}));
+  ploBoard.forEach(c=>{if(c)used.add(c.r+c.s);});
+  return used;
+}
+function ploRemainingDeck(){
+  const used=ploUsedCards(),rem=[];
+  SUIT_DATA.forEach(({s})=>RANKS.forEach(r=>{if(!used.has(r+s))rem.push({r,s});}));
+  return rem;
+}
+
+// PLOハンド評価: ホール2枚×ボード3枚の組み合わせで最強を返す
+function ploHandScore(holeCards,boardCards){
+  const holeCombos=combinations(holeCards,2);
+  const boardCombos=combinations(boardCards,3);
+  let best=null;
+  holeCombos.forEach(h=>{
+    boardCombos.forEach(b=>{
+      const s=scoreHandArray([...h,...b]);
+      if(!best||compareArrays(s,best)>0)best=s;
+    });
+  });
+  return best;
+}
+function ploEvaluateHandName(holeCards,boardCards){
+  if(boardCards.length<3)return'';
+  const s=ploHandScore(holeCards,boardCards);
+  return s?HN[s[0]]:'';
+}
+
+function ploCalcOdds(knownBoard){
+  const wins=new Array(ploNumPlayers).fill(0);
+  const ties=new Array(ploNumPlayers).fill(0);
+  let total=0;
+  const rem=ploRemainingDeck();
+  const need=5-knownBoard.length;
+
+  function ev(runout){
+    const fullBoard=[...knownBoard,...runout];
+    const scores=ploPlayerHands.slice(0,ploNumPlayers).map(h=>ploHandScore(h,fullBoard));
+    if(scores.some(s=>!s))return;
+    let best=scores[0];
+    for(let i=1;i<scores.length;i++){if(compareArrays(scores[i],best)>0)best=scores[i];}
+    const winners=scores.map((s,i)=>compareArrays(s,best)===0?i:-1).filter(i=>i>=0);
+    winners.forEach(i=>{if(winners.length===1)wins[i]++;else ties[i]++;});
+    total++;
+  }
+
+  if(need===0){ev([]);}
+  else if(need===1){for(let i=0;i<rem.length;i++)ev([rem[i]]);}
+  else if(need===2){for(let i=0;i<rem.length;i++)for(let j=i+1;j<rem.length;j++)ev([rem[i],rem[j]]);}
+  else{
+    // need>=3: モンテカルロ 5000試行
+    for(let t=0;t<5000;t++){
+      for(let i=rem.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[rem[i],rem[j]]=[rem[j],rem[i]];}
+      ev(rem.slice(0,need));
+    }
+  }
+  if(total===0)return null;
+  return ploPlayerHands.slice(0,ploNumPlayers).map((_,i)=>({win:wins[i]/total*100,tie:ties[i]/total*100}));
+}
+
+function ploCardSlotHTML(slot,sidx){
+  const c=getPloSlotCard(slot);
+  const isActive=ploPickerTarget===sidx;
+  if(c)return`<div class="card-slot filled${isActive?' active':''}" style="color:${suitColor(c.s)};" onclick="ploHandleCardTap('${slot.type}',${slot.pidx},${slot.cidx},${sidx})"><div class="cr">${c.r}</div><div class="cs">${c.s}</div></div>`;
+  return`<div class="card-slot${isActive?' active':''}" onclick="ploOpenPicker(${sidx})">タップ</div>`;
+}
+
+function ploRenderPlayers(){
+  const slots=buildPloSlots();
+  const knownBoard=ploBoard.filter(c=>c);
+  let html=ploPlayerHands.slice(0,ploNumPlayers).map((h,i)=>{
+    const color=PLO_COLORS[i];
+    let cards='';
+    for(let ci=0;ci<4;ci++){
+      const sidx=slots.findIndex(s=>s.type==='hand'&&s.pidx===i&&s.cidx===ci);
+      cards+=ploCardSlotHTML({type:'hand',pidx:i,cidx:ci},sidx);
+    }
+    let oddsHTML='';
+    if(ploOddsResult){
+      const wr=ploOddsResult[i];
+      const winPct=wr.win.toFixed(1),tiePct=wr.tie.toFixed(1);
+      const handName=knownBoard.length>=3?ploEvaluateHandName(h,knownBoard):'';
+      oddsHTML=`<div class="p-odds">
+        <div class="p-odds-pct" style="color:${color}">${winPct}%${parseFloat(tiePct)>0?`<span style="font-size:12px;color:rgba(255,255,255,0.4);"> +${tiePct}%</span>`:''}
+        </div>
+        <div class="p-odds-bar-bg"><div class="p-odds-bar-fill" style="width:${Math.min(wr.win+wr.tie,100)}%;background:${color};"></div></div>
+        ${handName?`<div class="p-odds-hand">${handName}</div>`:''}
+        <div class="p-odds-detail">引分 ${tiePct}%</div>
+      </div>`;
+    } else {
+      oddsHTML=`<div class="p-odds"><div class="p-odds-empty">← カード4枚を選択</div></div>`;
+    }
+    return`<div class="player-row" style="flex-wrap:wrap;row-gap:6px;">
+      <span class="p-label" style="color:${color}">P${i+1}</span>
+      <div class="p-cards" style="flex-wrap:wrap;gap:4px;">${cards}</div>
+      ${oddsHTML}
+    </div>`;
+  }).join('');
+
+  const maxP=4;
+  if(ploNumPlayers<maxP)html+=`<button onclick="ploAddPlayer()" style="margin-top:10px;width:100%;padding:10px;border-radius:8px;background:rgba(255,255,255,0.07);border:1px dashed rgba(255,255,255,0.2);color:rgba(255,255,255,0.5);font-size:13px;cursor:pointer;">＋ プレイヤーを追加 (${ploNumPlayers}/${maxP})</button>`;
+  if(ploNumPlayers>2)html+=`<button onclick="ploRemovePlayer()" style="margin-top:6px;width:100%;padding:8px;border-radius:8px;background:rgba(255,85,85,0.08);border:1px solid rgba(255,85,85,0.2);color:rgba(255,85,85,0.6);font-size:12px;cursor:pointer;">− P${ploNumPlayers} を削除</button>`;
+  document.getElementById('plo-players-area').innerHTML=html;
+}
+
+function ploRenderBoardSlots(){
+  const slots=buildPloSlots();
+  const labels=['F1','F2','F3','T','R'];
+  document.getElementById('plo-board-slots').innerHTML=ploBoard.map((c,i)=>{
+    const sidx=slots.findIndex(s=>s.type==='board'&&s.cidx===i);
+    const isActive=ploPickerTarget===sidx;
+    if(c)return`<div class="board-slot filled${isActive?' active':''}" style="color:${suitColor(c.s)};" onclick="ploHandleCardTap('board',0,${i},${sidx})"><div class="cr">${c.r}</div><div class="cs">${c.s}</div></div>`;
+    return`<div class="board-slot${isActive?' active':''}" onclick="ploOpenPicker(${sidx})">${labels[i]}</div>`;
+  }).join('');
+}
+
+function ploRenderAll(){
+  ploRenderPlayers();
+  ploRenderBoardSlots();
+  const allFilled=ploPlayerHands.slice(0,ploNumPlayers).every(h=>h[0]&&h[1]&&h[2]&&h[3]);
+  document.getElementById('plo-calc-btn').disabled=!allFilled;
+}
+
+function ploHandleCardTap(type,pidx,cidx,sidx){
+  const now=Date.now();
+  const key=type+pidx+cidx;
+  if(ploLastTap.slot===key&&now-ploLastTap.time<400){
+    ploLastTap={slot:null,time:0};
+    ploClearSlot(type,pidx,cidx);
+  } else {
+    ploLastTap={slot:key,time:now};
+    ploOpenPicker(sidx);
+  }
+}
+function ploClearSlot(type,pidx,cidx){
+  if(type==='hand')ploPlayerHands[pidx][cidx]=null;
+  else ploBoard[cidx]=null;
+  ploOddsResult=null;
+  document.getElementById('plo-calc-note').textContent='';
+  ploRenderAll();
+}
+
+function ploOpenPicker(sidx){
+  ploPickerTarget=sidx;
+  document.getElementById('plo-picker').style.display='block';
+  ploUpdatePickerUI();
+  document.getElementById('plo-calc-note').textContent='';
+  ploRenderAll();
+}
+function ploUpdatePickerUI(){
+  if(ploPickerTarget===null)return;
+  const slots=buildPloSlots();
+  const slot=slots[ploPickerTarget];
+  const lbl=slot.type==='hand'?`P${slot.pidx+1} カード${slot.cidx+1}`:['F1','F2','F3','ターン','リバー'][slot.cidx];
+  document.getElementById('plo-picker-title').textContent=`${lbl} を選択`;
+  const remaining=slots.slice(ploPickerTarget+1).filter(s=>!getPloSlotCard(s)).length;
+  document.getElementById('plo-picker-status').textContent=remaining>0?`選択後、次へ自動移動（残り${remaining}枚）`:'最後のカード';
+  ploRenderCardGrid();
+}
+function ploClosePicker(){ploPickerTarget=null;document.getElementById('plo-picker').style.display='none';ploRenderAll();}
+function ploRenderCardGrid(){
+  const used=ploUsedCards();
+  const slots=buildPloSlots();
+  if(ploPickerTarget!==null){const cur=getPloSlotCard(slots[ploPickerTarget]);if(cur)used.delete(cur.r+cur.s);}
+  let html='';
+  SUIT_DATA.forEach(({s,color},si)=>{
+    if(si>0)html+=`<div class="suit-gap"></div>`;
+    RANKS.forEach(r=>{
+      const key=r+s,isUsed=used.has(key);
+      html+=`<button class="cg-btn ${isUsed?'used':''}" style="color:${color};" onclick="ploSelectCard('${r}','${s}')" ${isUsed?'disabled':''}><span class="cg-r">${r}</span><span class="cg-s">${s}</span></button>`;
+    });
+  });
+  document.getElementById('plo-card-grid').innerHTML=html;
+}
+function ploSelectCard(r,s){
+  if(ploPickerTarget===null)return;
+  const slots=buildPloSlots();
+  setPloSlotCard(slots[ploPickerTarget],{r,s});
+  ploOddsResult=null;
+  let next=null;
+  for(let i=ploPickerTarget+1;i<slots.length;i++){if(!getPloSlotCard(slots[i])){next=i;break;}}
+  if(next!==null){ploPickerTarget=next;ploUpdatePickerUI();}else ploClosePicker();
+  ploRenderAll();
+}
+function ploAddPlayer(){
+  if(ploNumPlayers>=4)return;
+  ploNumPlayers++;
+  ploPlayerHands.push([null,null,null,null]);
+  ploOddsResult=null;
+  ploRenderAll();
+}
+function ploRemovePlayer(){
+  if(ploNumPlayers<=2)return;
+  ploNumPlayers--;
+  ploPlayerHands.pop();
+  ploOddsResult=null;
+  ploRenderAll();
+}
+function ploCalculate(){
+  const knownBoard=ploBoard.filter(c=>c);
+  document.getElementById('plo-calc-note').textContent='計算中...';
+  setTimeout(()=>{
+    const need=5-knownBoard.length;
+    ploOddsResult=ploCalcOdds(knownBoard);
+    const note=need>=3?'モンテカルロ 5000試行':need<=2?'全ランアウト列挙':'完全正確';
+    document.getElementById('plo-calc-note').textContent=note;
+    ploRenderAll();
+  },20);
+}
+function ploResetAll(){
+  ploNumPlayers=2;
+  ploPlayerHands=[[null,null,null,null],[null,null,null,null]];
+  ploBoard=[null,null,null,null,null];
+  ploPickerTarget=null;ploOddsResult=null;
+  document.getElementById('plo-calc-note').textContent='';
+  document.getElementById('plo-picker').style.display='none';
+  ploRenderAll();
+}
+
+renderAll();
+renderCurrencyBtns();
+updateAmountUnit();
+</script>
+
+<footer style="border-top:1px solid rgba(201,168,76,0.2);margin-top:8px;padding:22px 16px 40px;text-align:center;font-family:-apple-system,sans-serif;">
+  <a href="index.html" style="color:rgba(201,168,76,0.85);font-size:12px;text-decoration:none;margin:0 5px;">ホーム</a><span style="color:rgba(255,255,255,0.25);">·</span><a href="guide.html" style="color:rgba(201,168,76,0.85);font-size:12px;text-decoration:none;margin:0 5px;">ポーカー講座</a><span style="color:rgba(255,255,255,0.25);">·</span><a href="privacy.html" style="color:rgba(201,168,76,0.85);font-size:12px;text-decoration:none;margin:0 5px;">プライバシーポリシー</a><span style="color:rgba(255,255,255,0.25);">·</span><a href="contact.html" style="color:rgba(201,168,76,0.85);font-size:12px;text-decoration:none;margin:0 5px;">お問い合わせ</a><span style="color:rgba(255,255,255,0.25);">·</span><a href="about.html" style="color:rgba(201,168,76,0.85);font-size:12px;text-decoration:none;margin:0 5px;">運営者情報</a>
+  <div style="margin-top:12px;font-size:11px;color:rgba(255,255,255,0.3);">© 2026 Poker MANIA</div>
+</footer>
+
+</body>
+</html>

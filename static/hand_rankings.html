@@ -1,0 +1,322 @@
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1294748320155117"
+     crossorigin="anonymous"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ポーカーの役の強さ一覧【早見表】ロイヤルフラッシュから順に解説 | Poker MANIA</title>
+<meta name="description" content="ポーカー(テキサスホールデム)の役の強さを強い順に早見表で解説。ロイヤルフラッシュからハイカードまで10種類の役の内容・例・作りやすさ、引き分け時のキッカーの考え方、よくある勘違いまで初心者向けにわかりやすくまとめました。">
+<meta name="keywords" content="ポーカー,役,強さ,順番,一覧,早見表,役一覧,ロイヤルフラッシュ,テキサスホールデム,キッカー,フラッシュ,ストレート">
+<link rel="canonical" href="https://poker-mania.jp/hand_rankings.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Poker MANIA">
+<meta property="og:title" content="ポーカーの役の強さ一覧【早見表】ロイヤルフラッシュから順に解説">
+<meta property="og:description" content="ポーカーの役の強さを強い順に早見表で解説。10種類の役の内容・例、引き分け時のキッカーの考え方、よくある勘違いまで初心者向けにまとめました。">
+<meta property="og:url" content="https://poker-mania.jp/hand_rankings.html">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:#1c1c2e;font-family:-apple-system,sans-serif;color:#e8e0d0;min-height:100vh;line-height:1.7;}
+.header{position:sticky;top:0;z-index:50;background:#1c1c2e;border-bottom:1px solid rgba(201,168,76,0.2);padding:12px 16px;display:flex;align-items:center;gap:10px;}
+.header-title{font-size:16px;font-weight:700;color:#c9a84c;}
+.back-link{background:rgba(255,255,255,0.08);border-radius:8px;color:rgba(255,255,255,0.6);font-size:12px;padding:6px 10px;text-decoration:none;}
+.hero{padding:32px 16px 24px;border-bottom:1px solid rgba(255,255,255,0.06);}
+.hero-badge{display:inline-block;background:rgba(201,168,76,0.15);border:1px solid rgba(201,168,76,0.4);border-radius:20px;font-size:11px;font-weight:700;color:#c9a84c;padding:4px 12px;letter-spacing:0.1em;margin-bottom:12px;}
+.hero-title{font-size:24px;font-weight:800;color:#e8e0d0;margin-bottom:8px;line-height:1.3;}
+.hero-title span{color:#c9a84c;}
+.hero-sub{font-size:13px;color:rgba(255,255,255,0.45);line-height:1.6;}
+.toc{margin:16px 16px;background:#252540;border-radius:12px;padding:14px 16px;border:1px solid rgba(255,255,255,0.08);max-width:760px;}
+.toc-title{font-size:11px;font-weight:700;color:rgba(201,168,76,0.7);letter-spacing:0.12em;margin-bottom:10px;}
+.toc-list{display:flex;flex-direction:column;gap:6px;}
+.toc-item{font-size:13px;color:rgba(201,168,76,0.8);text-decoration:none;display:flex;align-items:center;gap:8px;}
+.toc-item::before{content:'›';color:#c9a84c;font-size:16px;}
+.content{max-width:760px;margin:0 auto;padding:0 16px 40px;}
+.section{margin-top:28px;}
+.section-title{font-size:17px;font-weight:800;color:#c9a84c;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid rgba(201,168,76,0.2);display:flex;align-items:center;gap:8px;}
+.prose{font-size:14px;color:rgba(255,255,255,0.75);line-height:1.9;margin-bottom:12px;}
+.prose strong{color:#e8e0d0;font-weight:700;}
+.prose a{color:#c9a84c;text-decoration:underline;}
+.hand-table{width:100%;border-collapse:collapse;margin:12px 0;}
+.hand-table th{background:rgba(201,168,76,0.1);color:#c9a84c;font-size:11px;font-weight:700;padding:8px 10px;text-align:left;}
+.hand-table td{padding:10px 10px;font-size:13px;border-bottom:1px solid rgba(255,255,255,0.06);color:rgba(255,255,255,0.75);}
+.hand-table tr:last-child td{border-bottom:none;}
+.hand-table .rank{color:#c9a84c;font-weight:700;}
+.hand-table .best{background:rgba(201,168,76,0.06);}
+.point-box{background:#252540;border-radius:12px;padding:14px 16px;margin:12px 0;border-left:3px solid #c9a84c;}
+.point-box-title{font-size:12px;font-weight:700;color:#c9a84c;margin-bottom:8px;}
+.point-list{display:flex;flex-direction:column;gap:7px;}
+.point-item{font-size:13px;color:rgba(255,255,255,0.7);display:flex;gap:8px;line-height:1.5;}
+.point-item::before{content:'▸';color:#c9a84c;flex-shrink:0;margin-top:1px;}
+.warn-box{background:rgba(255,80,80,0.08);border-radius:12px;padding:14px 16px;margin:12px 0;border-left:3px solid #e85555;}
+.warn-box-title{font-size:12px;font-weight:700;color:#e85555;margin-bottom:8px;}
+.warn-list{display:flex;flex-direction:column;gap:7px;}
+.warn-item{font-size:13px;color:rgba(255,255,255,0.7);display:flex;gap:8px;line-height:1.5;}
+.warn-item::before{content:'✕';color:#e85555;flex-shrink:0;}
+.flow{display:flex;flex-direction:column;gap:0;}
+.flow-step{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.05);}
+.flow-step:last-child{border-bottom:none;}
+.flow-num{width:28px;height:28px;border-radius:50%;background:#c9a84c;color:#1c1c2e;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;}
+.flow-title{font-size:14px;font-weight:700;color:#e8e0d0;margin-bottom:4px;}
+.flow-desc{font-size:13px;color:rgba(255,255,255,0.55);line-height:1.6;}
+.divider{height:1px;background:rgba(255,255,255,0.06);margin:24px 0;}
+.next-games{margin-top:28px;background:#252540;border-radius:12px;padding:16px;border:1px solid rgba(255,255,255,0.08);}
+.next-games-title{font-size:12px;font-weight:700;color:rgba(201,168,76,0.7);letter-spacing:0.1em;margin-bottom:12px;}
+.game-chips{display:flex;flex-wrap:wrap;gap:8px;}
+.game-chip{padding:8px 14px;border-radius:20px;font-size:12px;font-weight:700;border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.4);text-decoration:none;display:inline-block;}
+.game-chip.current{border-color:#c9a84c;color:#c9a84c;background:rgba(201,168,76,0.1);}
+.faq-q{font-size:14px;font-weight:700;color:#e8e0d0;margin-top:16px;margin-bottom:6px;}
+.faq-q::before{content:'Q. ';color:#c9a84c;}
+.faq-a{font-size:14px;color:rgba(255,255,255,0.72);line-height:1.85;}
+.faq-a::before{content:'A. ';color:rgba(201,168,76,0.7);font-weight:700;}
+.cta-box{background:linear-gradient(135deg,rgba(201,168,76,0.14),rgba(201,168,76,0.04));border:1px solid rgba(201,168,76,0.3);border-radius:12px;padding:16px;margin:20px 0;text-align:center;}
+.cta-box a{display:inline-block;margin-top:8px;background:#c9a84c;color:#1c1c2e;border-radius:9px;font-size:13px;font-weight:800;padding:10px 20px;text-decoration:none;}
+.site-footer{border-top:1px solid rgba(201,168,76,0.2);margin-top:8px;padding:24px 16px 40px;text-align:center;}
+.site-footer a{color:rgba(201,168,76,0.85);font-size:12px;text-decoration:none;margin:0 6px;}
+.site-footer .copy{display:block;margin-top:12px;font-size:11px;color:rgba(255,255,255,0.3);}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <a href="guide.html" class="back-link">← Poker MANIA</a>
+  <div class="header-title">🃏 役の強さ</div>
+</header>
+
+<div class="hero">
+  <span class="hero-badge">HAND RANKING</span>
+  <h1 class="hero-title">ポーカーの<span>役の強さ一覧</span><br>ロイヤルフラッシュから順に解説</h1>
+  <p class="hero-sub">テキサスホールデムの10種類の役を、強い順に早見表でまとめました。各役の内容と例、引き分け時のキッカーの考え方、初心者がつまずきやすい勘違いまで、標準ルールにもとづいてわかりやすく解説します。</p>
+</div>
+
+<nav class="toc">
+  <div class="toc-title">目次</div>
+  <div class="toc-list">
+    <a href="#s1" class="toc-item">ポーカーの「役」とは(5枚で作る)</a>
+    <a href="#s2" class="toc-item">役の強さ一覧(強い順・早見表)</a>
+    <a href="#s3" class="toc-item">各役の補足解説</a>
+    <a href="#s4" class="toc-item">引き分け・キッカーの考え方</a>
+    <a href="#s5" class="toc-item">よくある勘違い</a>
+    <a href="#s6" class="toc-item">作りやすさ・珍しさの感覚</a>
+    <a href="#s7" class="toc-item">よくある質問(FAQ)</a>
+  </div>
+</nav>
+
+<main class="content">
+
+  <section class="section" id="s1">
+    <h2 class="section-title">ポーカーの「役」とは</h2>
+    <p class="prose">ポーカーの勝敗は、最終的に手元で完成した<strong>「役(ハンド)」の強さ</strong>で決まります。役とは、トランプ5枚の組み合わせによって作られるランク(順位)のことです。テキサスホールデムでは、自分だけに配られる手札2枚と、テーブル中央に共有される5枚のコミュニティカードの合計7枚の中から、<strong>もっとも強くなる5枚を選んで</strong>役を作ります。7枚すべてを使うわけではなく、あくまで最良の5枚の組み合わせがそのプレイヤーの役になります。</p>
+    <p class="prose">役の強さには決まった序列があり、世界共通の標準ルールでは全部で<strong>10種類</strong>に分類されます。もっとも強いのがロイヤルフラッシュ、もっとも弱いのがハイカード(役なし)です。ショーダウン(手札を見せ合う場面)では、より上位の役を持つプレイヤーがポットを獲得します。まずはこの序列を頭に入れることが、ポーカー上達の第一歩です。</p>
+    <p class="prose">なお、役の順位は「その役が完成する確率」と密接に関係しています。作るのが難しく珍しい組み合わせほど強い役として扱われる、と理解しておくと序列を覚えやすくなります。</p>
+  </section>
+
+  <section class="section" id="s2">
+    <h2 class="section-title">役の強さ一覧(強い順)</h2>
+    <p class="prose">以下が、ポーカーの役を強い順に並べた早見表です。上にあるほど強く、下にいくほど弱くなります。まずはこの表全体を眺めて、大まかな順番を掴んでください。</p>
+    <table class="hand-table">
+      <thead>
+        <tr>
+          <th>順位</th>
+          <th>役名</th>
+          <th>内容</th>
+          <th>例</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="best">
+          <td class="rank">1</td>
+          <td><strong>ロイヤルフラッシュ</strong><br>Royal Flush</td>
+          <td>同じスートの A-K-Q-J-10</td>
+          <td>♠A ♠K ♠Q ♠J ♠10</td>
+        </tr>
+        <tr>
+          <td class="rank">2</td>
+          <td><strong>ストレートフラッシュ</strong><br>Straight Flush</td>
+          <td>同じスートで数字が5枚連続</td>
+          <td>♥9 ♥8 ♥7 ♥6 ♥5</td>
+        </tr>
+        <tr>
+          <td class="rank">3</td>
+          <td><strong>フォーカード</strong>(クアッズ)<br>Four of a Kind</td>
+          <td>同じ数字が4枚</td>
+          <td>♠K ♥K ♦K ♣K + 任意</td>
+        </tr>
+        <tr>
+          <td class="rank">4</td>
+          <td><strong>フルハウス</strong><br>Full House</td>
+          <td>スリーカード+ワンペア</td>
+          <td>♠Q ♥Q ♦Q + ♣7 ♠7</td>
+        </tr>
+        <tr>
+          <td class="rank">5</td>
+          <td><strong>フラッシュ</strong><br>Flush</td>
+          <td>同じスートが5枚(連続でなくてよい)</td>
+          <td>♦A ♦J ♦8 ♦5 ♦2</td>
+        </tr>
+        <tr>
+          <td class="rank">6</td>
+          <td><strong>ストレート</strong><br>Straight</td>
+          <td>数字が5枚連続(スートはバラバラ)</td>
+          <td>♠8 ♥7 ♦6 ♣5 ♠4</td>
+        </tr>
+        <tr>
+          <td class="rank">7</td>
+          <td><strong>スリーカード</strong>(セット/トリップス)<br>Three of a Kind</td>
+          <td>同じ数字が3枚</td>
+          <td>♠9 ♥9 ♦9 + 任意2枚</td>
+        </tr>
+        <tr>
+          <td class="rank">8</td>
+          <td><strong>ツーペア</strong><br>Two Pair</td>
+          <td>ペアが2組</td>
+          <td>♠J ♥J + ♦4 ♣4 + 任意</td>
+        </tr>
+        <tr>
+          <td class="rank">9</td>
+          <td><strong>ワンペア</strong><br>One Pair</td>
+          <td>同じ数字が2枚</td>
+          <td>♠A ♥A + 任意3枚</td>
+        </tr>
+        <tr>
+          <td class="rank">10</td>
+          <td><strong>ハイカード</strong><br>High Card</td>
+          <td>どの役も成立せず、最も高いカードで勝負</td>
+          <td>♠A ♥J ♦8 ♣5 ♠2</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+<!-- Google AdSense: in-content (slot 2184231625) -->
+<div style="max-width:728px;margin:28px auto;padding:0 4px;box-sizing:border-box;text-align:center;">
+  <div style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:1px;margin-bottom:4px;">スポンサーリンク</div>
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1294748320155117" data-ad-slot="2184231625" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+  <section class="section" id="s3">
+    <h2 class="section-title">各役の補足解説</h2>
+    <p class="prose"><strong>ロイヤルフラッシュ</strong>は、同じスートの A・K・Q・J・10 がそろった、ポーカー最強の役です。実質的にはストレートフラッシュの中で最も数字が高いものであり、これに負ける役は存在しません。生涯で一度出れば幸運と言われるほど珍しい役です。</p>
+    <p class="prose"><strong>ストレートフラッシュ</strong>は、同じスートで数字が5枚連続した役です。たとえば ♥9-♥8-♥7-♥6-♥5 のような形。ストレートとフラッシュを同時に満たす非常に強力な役で、ほぼ負けることはありません。連続する数字の中で一番上のカードが高いほど強くなります。</p>
+    <p class="prose"><strong>フォーカード(クアッズ)</strong>は、同じ数字が4枚そろった役です。K が4枚なら「Kのフォーカード」。残りの1枚(キッカー)は役の成立には関係しませんが、まれに引き分けの判定に使われます。実戦ではほぼ勝ちが確定する強さです。</p>
+    <p class="prose"><strong>フルハウス</strong>は、スリーカードとワンペアを同時に持つ役です。Q3枚と7の2枚なら「クイーン・オーバー・セブン」。まずスリーカード部分の数字で強弱が決まり、そこが同じならペア部分の数字で比較します。中〜上位の強い役として、勝負どころで狙いたいハンドです。</p>
+    <p class="prose"><strong>フラッシュ</strong>は、同じスートのカードが5枚そろった役です。数字が連続している必要はありません。強さは含まれる<strong>最も高いカード</strong>から順に比較し、一番上が同じなら次に高いカードで判定していきます。スートの種類そのものに強弱はない点に注意しましょう。</p>
+    <p class="prose"><strong>ストレート</strong>は、スートを問わず数字が5枚連続した役です。8-7-6-5-4 のような形。強さは連続の中で一番上のカードで決まります。Aは「A-K-Q-J-10」の最上位としても、「5-4-3-2-A」の最下位としても使えます。</p>
+    <p class="prose"><strong>スリーカード(セット/トリップス)</strong>は、同じ数字が3枚そろった役です。手札のペアにボードの1枚が重なった形を「セット」、ボードのペアに手札の1枚が重なった形を「トリップス」と呼び分けることもあります。数字が高いほど強くなります。</p>
+    <p class="prose"><strong>ツーペア</strong>は、ペアが2組そろった役です。まず<strong>高いほうのペア</strong>で比較し、そこが同じなら低いほうのペア、さらに同じなら5枚目のキッカーで決着します。実戦で頻繁に登場する、勝負の分かれ目になりやすい役です。</p>
+    <p class="prose"><strong>ワンペア</strong>は、同じ数字が2枚そろっただけの役です。成立しやすい分、単体では強くありません。同じペア同士なら、残り3枚のキッカーを高いほうから順に比べて優劣を決めます。</p>
+    <p class="prose"><strong>ハイカード</strong>は、上記のどの役も成立しなかった状態です。「役なし」とも呼ばれ、最も高いカードから順に比較して勝負します。5枚すべてが同じ場合のみ引き分けになります。</p>
+  </section>
+
+  <section class="section" id="s4">
+    <h2 class="section-title">引き分け・キッカーの考え方</h2>
+    <p class="prose">同じ役同士が対戦したとき、どちらが勝つかは細かなルールで決まります。基本の考え方を押さえておきましょう。</p>
+    <div class="point-box">
+      <div class="point-box-title">同じ役同士の優劣を決める順番</div>
+      <div class="point-list">
+        <div class="point-item"><strong>まず役を構成するカードで比較</strong>。ワンペア同士ならペアの数字、ストレート同士なら一番上の数字、フラッシュ同士なら最も高いカードを比べます。</div>
+        <div class="point-item"><strong>そこが同じならキッカーで比較</strong>。キッカーとは、役を作らなかった残りのカードのこと。高いほうから1枚ずつ比べていきます。</div>
+        <div class="point-item"><strong>5枚すべてが同じランクなら引き分け(スプリット)</strong>。ポットを等分します。スートの違いは順位に影響しません。</div>
+      </div>
+    </div>
+    <p class="prose">たとえば、両者ともに A のワンペアだったとします。ペア部分は同点なので、次は残り3枚のキッカーを高いほうから比較します。一方が K・7・4、もう一方が Q・9・5 を持っていれば、最初の K が Q に勝つため、K を持つプレイヤーの勝ちです。</p>
+    <p class="prose">テキサスホールデムでは、<strong>ボード(共有カード)5枚だけで最強の役が完成してしまう</strong>ケースもあります。この場合、両プレイヤーの手札が役の改善に一切関与しなければ、全員がボードの役を共有することになり引き分けです。「自分の手札を1枚でも使ったほうが強くなるか」を常に確認するのが、勝敗を正しく読むコツです。</p>
+  </section>
+
+  <section class="section" id="s5">
+    <h2 class="section-title">よくある勘違い</h2>
+    <p class="prose">初心者がつまずきやすいポイントを、標準ルールにもとづいて整理します。ここを間違えると勝敗の判断を誤るので注意してください。</p>
+    <div class="warn-box">
+      <div class="warn-box-title">こんな勘違いに注意</div>
+      <div class="warn-list">
+        <div class="warn-item"><strong>「フラッシュはストレートより弱い」と思ってしまう</strong> — 正しくはフラッシュのほうが強いです。同じスート5枚をそろえるほうが、数字の連続をそろえるより難しいためです。</div>
+        <div class="warn-item"><strong>スートに強弱があると思っている</strong> — スペード・ハート・ダイヤ・クラブに順位の差はありません。フラッシュ同士の勝負も、スートの種類ではなくカードの数字で決まります。</div>
+        <div class="warn-item"><strong>A は常に一番強いと思い込む</strong> — ストレートでは A は最上位(A-K-Q-J-10)にも最下位(5-4-3-2-A、通称ホイール)にもなります。ただし K-A-2 のように「またぐ」つなぎ方はできません。</div>
+        <div class="warn-item"><strong>Q-K-A-2-3 をストレートだと数える</strong> — A を挟んで折り返す並びはストレートになりません。連続はあくまで一方向です。</div>
+        <div class="warn-item"><strong>ペアが多いほど強いと考える</strong> — 6枚以上でペアを重ねても役は5枚で判定します。「スリーペア」という役は存在しません。</div>
+      </div>
+    </div>
+    <p class="prose">とくに<strong>ホイール(A-2-3-4-5)</strong>は覚えておきたい形です。この並びでは A が「1」として扱われ、ストレートの中では最も弱いストレートになります。同じスートでそろえば「スチールホイール」と呼ばれるストレートフラッシュにもなります。</p>
+  </section>
+
+  <section class="section" id="s6">
+    <h2 class="section-title">作りやすさ・珍しさの感覚</h2>
+    <p class="prose">役の順位は完成のしにくさに対応しています。正確な確率は状況によって変わりますが、大まかな「出やすさの感覚」をつかんでおくと、盤面を読むときの直感が働きやすくなります。</p>
+    <div class="flow">
+      <div class="flow-step">
+        <div class="flow-num">A</div>
+        <div>
+          <div class="flow-title">非常に稀にしか出ない役</div>
+          <div class="flow-desc">ロイヤルフラッシュ・ストレートフラッシュ・フォーカードは、実戦でもめったにお目にかかりません。完成すればほぼ勝ちが確定する、最上位グループです。</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">B</div>
+        <div>
+          <div class="flow-title">狙って作る強い役</div>
+          <div class="flow-desc">フルハウス・フラッシュ・ストレートは、条件がそろえば十分に狙える強い役です。多くの局面で勝負を仕掛けられる、頼れる中〜上位グループと言えます。</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">C</div>
+        <div>
+          <div class="flow-title">よくできる基本の役</div>
+          <div class="flow-desc">スリーカード・ツーペア・ワンペアは、実戦で頻繁に登場します。とくにワンペアやツーペアは日常的に手にする役で、勝敗の大半はこのあたりで決まります。</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">D</div>
+        <div>
+          <div class="flow-title">役なしの状態</div>
+          <div class="flow-desc">ハイカードは、何の役も完成しなかった状態です。相手も同様に役なしのときだけ、カードの高さで勝負が決まります。</div>
+        </div>
+      </div>
+    </div>
+    <p class="prose">この感覚が身につくと、「ボードにスートが3枚並んだらフラッシュを警戒する」「ペアの盤面ではフルハウスやフォーカードの可能性を疑う」といった、一歩進んだ読みができるようになります。</p>
+  </section>
+
+<!-- Google AdSense: in-content (slot 2184231625) -->
+<div style="max-width:728px;margin:28px auto;padding:0 4px;box-sizing:border-box;text-align:center;">
+  <div style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:1px;margin-bottom:4px;">スポンサーリンク</div>
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1294748320155117" data-ad-slot="2184231625" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+  <section class="section" id="s7">
+    <h2 class="section-title">よくある質問(FAQ)</h2>
+
+    <div class="faq-q">ポーカーで一番強い役は何ですか?</div>
+    <p class="faq-a">最強の役はロイヤルフラッシュ(同じスートの A-K-Q-J-10)です。これに勝る役は存在せず、複数人が同時に作ることも実質ありません。次に強いのがストレートフラッシュ、その次がフォーカードと続きます。</p>
+
+    <div class="faq-q">フラッシュとストレート、どちらが強いですか?</div>
+    <p class="faq-a">フラッシュのほうが強いです。同じスートを5枚そろえるほうが、数字を連続させるより難易度が高いため、順位も上に設定されています。したがってフラッシュとストレートがぶつかれば、必ずフラッシュの勝ちです。</p>
+
+    <div class="faq-q">同じ役同士だった場合はどう決まりますか?</div>
+    <p class="faq-a">まず役を構成するカードの数字で比較し、それも同じならキッカー(役を作らなかった残りのカード)を高いほうから1枚ずつ比べます。5枚すべてが同ランクの場合のみ引き分けとなり、ポットを等分します。</p>
+
+    <div class="faq-q">スート(マーク)に強い・弱いはありますか?</div>
+    <p class="faq-a">標準ルールでは、スペード・ハート・ダイヤ・クラブに強弱はありません。フラッシュ同士の勝負もスートではなくカードの数字で決まります。「スペードが一番強い」といったルールは通常のポーカーには存在しません。</p>
+
+    <div class="faq-q">A(エース)は一番強いカードですか?</div>
+    <p class="faq-a">多くの場面で最強のカードですが、ストレートに限っては例外があります。A は最上位(A-K-Q-J-10)としても、最下位(5-4-3-2-A、ホイール)としても使えます。後者では A は実質「1」として扱われる点を覚えておきましょう。</p>
+  </section>
+
+  <div class="next-games">
+    <div class="next-games-title">関連記事</div>
+    <div class="game-chips">
+      <a href="holdem_rules.html" class="game-chip">ルール</a>
+      <a href="starting_hands.html" class="game-chip">スターティングハンド</a>
+      <a href="position.html" class="game-chip">ポジション</a>
+      <a href="pot_odds.html" class="game-chip">ポットオッズ</a>
+      <a href="glossary.html" class="game-chip">用語集</a>
+      <a href="guide.html" class="game-chip">講座トップ</a>
+    </div>
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <a href="index.html">ホーム</a>·<a href="guide.html">ポーカー講座</a>·<a href="privacy.html">プライバシーポリシー</a>·<a href="contact.html">お問い合わせ</a>·<a href="about.html">運営者情報</a>
+  <span class="copy">© 2026 Poker MANIA</span>
+</footer>
+
+</body>
+</html>
