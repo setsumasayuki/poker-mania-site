@@ -35,13 +35,11 @@
       }
     });
 
-    // ② 囲みボックス（緑）— スペック等をまとめて囲む
+    // ② 囲みボックス（緑）
     CMS.registerEditorComponent({
       id: "greenbox",
       label: "囲みボックス（緑）",
-      fields: [
-        { name: "text", label: "内容（改行で複数行OK）", widget: "text" }
-      ],
+      fields: [ { name: "text", label: "内容（改行で複数行OK）", widget: "text" } ],
       pattern: /^<div class="pbox">([\s\S]*?)<\/div>$/,
       fromBlock: function (m) { return { text: (m[1] || '').replace(/<br\s*\/?>/g, "\n") }; },
       toBlock: function (o) { return '<div class="pbox">' + (o.text || '').replace(/\r?\n/g, "<br>") + '</div>'; },
@@ -50,26 +48,28 @@
       }
     });
 
-    // ③ 大きい文字
+    // ③ テキスト（サイズ・色）— WordPress風に px と色を指定
     CMS.registerEditorComponent({
-      id: "bigtext",
-      label: "大きい文字",
-      fields: [ { name: "text", label: "文章", widget: "string" } ],
-      pattern: /^<p class="ptext-lg">([\s\S]*?)<\/p>$/,
-      fromBlock: function (m) { return { text: m[1] }; },
-      toBlock: function (o) { return '<p class="ptext-lg">' + (o.text || '') + '</p>'; },
-      toPreview: function (o) { return '<p style="font-size:18px;font-weight:700;color:#2b2b30;">' + (o.text || '') + '</p>'; }
-    });
-
-    // ④ 小さい文字
-    CMS.registerEditorComponent({
-      id: "smalltext",
-      label: "小さい文字",
-      fields: [ { name: "text", label: "文章", widget: "string" } ],
-      pattern: /^<p class="ptext-sm">([\s\S]*?)<\/p>$/,
-      fromBlock: function (m) { return { text: m[1] }; },
-      toBlock: function (o) { return '<p class="ptext-sm">' + (o.text || '') + '</p>'; },
-      toPreview: function (o) { return '<p style="font-size:13px;color:#6f6a61;">' + (o.text || '') + '</p>'; }
+      id: "styledtext",
+      label: "テキスト（サイズ・色）",
+      fields: [
+        { name: "text", label: "文章", widget: "string" },
+        { name: "size", label: "文字サイズ（px：10〜60）", widget: "number", default: 16, value_type: "int", min: 10, max: 60, step: 1 },
+        { name: "color", label: "文字色", widget: "color", default: "#3c3c44", allowInput: true },
+        { name: "bold", label: "太字にする", widget: "boolean", default: false, required: false }
+      ],
+      pattern: /^<p class="ptxt" style="font-size:(\d+)px;color:([^;"]*);font-weight:(\d+)">([\s\S]*?)<\/p>$/,
+      fromBlock: function (m) {
+        return { size: parseInt(m[1], 10), color: m[2], bold: m[3] === "700", text: m[4] };
+      },
+      toBlock: function (o) {
+        var weight = o.bold ? "700" : "400";
+        return '<p class="ptxt" style="font-size:' + (o.size || 16) + 'px;color:' + (o.color || '#3c3c44') + ';font-weight:' + weight + '">' + (o.text || '') + '</p>';
+      },
+      toPreview: function (o) {
+        var weight = o.bold ? "700" : "400";
+        return '<p style="font-size:' + (o.size || 16) + 'px;color:' + (o.color || '#3c3c44') + ';font-weight:' + weight + ';line-height:1.5;">' + (o.text || '') + '</p>';
+      }
     });
   </script>
 </body>
