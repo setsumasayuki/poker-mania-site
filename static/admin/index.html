@@ -6,9 +6,41 @@
   <title>Poker MANIA 管理画面</title>
 </head>
 <body>
-  <!-- ログイン（Netlify Identity） -->
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   <!-- 管理画面本体（Decap CMS） -->
   <script src="https://unpkg.com/decap-cms@^3.3.3/dist/decap-cms.js"></script>
+  <script>
+    // 本文で使える「画像（サイズ選択）」ブロック
+    CMS.registerEditorComponent({
+      id: "sizedimage",
+      label: "画像（サイズ選択）",
+      fields: [
+        { name: "src", label: "画像", widget: "image" },
+        { name: "alt", label: "説明（任意）", widget: "string", required: false },
+        {
+          name: "size",
+          label: "サイズ",
+          widget: "select",
+          default: "480",
+          options: [
+            { label: "小（300px）", value: "300" },
+            { label: "中（480px）", value: "480" },
+            { label: "大（680px）", value: "680" },
+            { label: "全幅", value: "full" }
+          ]
+        }
+      ],
+      pattern: /^<img src="(.*?)" alt="(.*?)" class="pimg pimg-(.*?)">$/,
+      fromBlock: function (match) {
+        return { src: match[1], alt: match[2], size: match[3] };
+      },
+      toBlock: function (obj) {
+        return '<img src="' + (obj.src || '') + '" alt="' + (obj.alt || '') + '" class="pimg pimg-' + (obj.size || '480') + '">';
+      },
+      toPreview: function (obj) {
+        var w = obj.size === 'full' ? '100%' : (obj.size || '480') + 'px';
+        return '<img src="' + (obj.src || '') + '" alt="' + (obj.alt || '') + '" style="max-width:' + w + ';width:100%;height:auto;border-radius:10px;display:block;margin:10px auto;">';
+      }
+    });
+  </script>
 </body>
 </html>

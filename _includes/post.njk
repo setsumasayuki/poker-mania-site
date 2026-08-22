@@ -30,15 +30,21 @@ html,body{background:#ffffff;font-family:-apple-system,"Hiragino Kaku Gothic Pro
 .content{max-width:720px;margin:0 auto;padding:8px 16px 40px;}
 
 /* Markdownから生成される本文のスタイル */
-.post-body{font-size:15px;color:#3c3c44;line-height:1.95;}
-.post-body p{margin:0 0 14px;}
+.post-body{font-size:15px;color:#3c3c44;line-height:1.8;}
+.post-body p{margin:0 0 8px;}
 .post-body strong{color:#1f1f24;font-weight:700;}
 .post-body a{color:#1b5e3f;text-decoration:underline;word-break:break-all;}
-.post-body h2{font-size:19px;font-weight:800;color:#1b5e3f;margin:30px 0 14px;padding-bottom:8px;border-bottom:2px solid #cfe6d9;}
-.post-body h3{font-size:16px;font-weight:800;color:#2b2b30;margin:22px 0 6px;}
-.post-body ul,.post-body ol{margin:0 0 14px;padding-left:1.4em;}
-.post-body li{margin-bottom:6px;}
+.post-body h2{font-size:19px;font-weight:800;color:#1b5e3f;margin:26px 0 12px;padding-bottom:8px;border-bottom:2px solid #cfe6d9;}
+.post-body h3{font-size:16px;font-weight:800;color:#2b2b30;margin:18px 0 6px;}
+.post-body ul,.post-body ol{margin:0 0 10px;padding-left:1.4em;}
+.post-body li{margin-bottom:4px;}
 .post-body img{max-width:100%;height:auto;border-radius:10px;margin:12px 0;display:block;}
+/* 画像サイズ選択（管理画面の「画像（サイズ選択）」で入る） */
+.post-body img.pimg{margin:14px auto;}
+.post-body img.pimg-300{max-width:300px;width:100%;}
+.post-body img.pimg-480{max-width:480px;width:100%;}
+.post-body img.pimg-680{max-width:680px;width:100%;}
+.post-body img.pimg-full{max-width:100%;width:100%;}
 .post-body blockquote{margin:14px 0;padding:10px 14px;background:#f1f7f3;border-left:3px solid #2f8a5b;border-radius:8px;color:#55524b;}
 .post-body hr{border:none;border-top:1px solid #ece7d9;margin:22px 0;}
 .post-body table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13.5px;}
