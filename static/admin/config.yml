@@ -1,5 +1,6 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: setsumasayuki/poker-mania-site
   branch: main
 
 media_folder: "static/blog/images"
