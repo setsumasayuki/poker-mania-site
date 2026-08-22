@@ -9,7 +9,7 @@
   <!-- 管理画面本体（Decap CMS） -->
   <script src="https://unpkg.com/decap-cms@^3.3.3/dist/decap-cms.js"></script>
   <script>
-    // 本文で使える「画像（サイズ選択）」ブロック
+    // ① 画像（サイズ選択）
     CMS.registerEditorComponent({
       id: "sizedimage",
       label: "画像（サイズ選択）",
@@ -17,10 +17,7 @@
         { name: "src", label: "画像", widget: "image" },
         { name: "alt", label: "説明（任意）", widget: "string", required: false },
         {
-          name: "size",
-          label: "サイズ",
-          widget: "select",
-          default: "480",
+          name: "size", label: "サイズ", widget: "select", default: "480",
           options: [
             { label: "小（300px）", value: "300" },
             { label: "中（480px）", value: "480" },
@@ -30,16 +27,49 @@
         }
       ],
       pattern: /^<img src="(.*?)" alt="(.*?)" class="pimg pimg-(.*?)">$/,
-      fromBlock: function (match) {
-        return { src: match[1], alt: match[2], size: match[3] };
-      },
-      toBlock: function (obj) {
-        return '<img src="' + (obj.src || '') + '" alt="' + (obj.alt || '') + '" class="pimg pimg-' + (obj.size || '480') + '">';
-      },
-      toPreview: function (obj) {
-        var w = obj.size === 'full' ? '100%' : (obj.size || '480') + 'px';
-        return '<img src="' + (obj.src || '') + '" alt="' + (obj.alt || '') + '" style="max-width:' + w + ';width:100%;height:auto;border-radius:10px;display:block;margin:10px auto;">';
+      fromBlock: function (m) { return { src: m[1], alt: m[2], size: m[3] }; },
+      toBlock: function (o) { return '<img src="' + (o.src || '') + '" alt="' + (o.alt || '') + '" class="pimg pimg-' + (o.size || '480') + '">'; },
+      toPreview: function (o) {
+        var w = o.size === 'full' ? '100%' : (o.size || '480') + 'px';
+        return '<img src="' + (o.src || '') + '" alt="' + (o.alt || '') + '" style="max-width:' + w + ';width:100%;height:auto;border-radius:10px;display:block;margin:10px auto;">';
       }
+    });
+
+    // ② 囲みボックス（緑）— スペック等をまとめて囲む
+    CMS.registerEditorComponent({
+      id: "greenbox",
+      label: "囲みボックス（緑）",
+      fields: [
+        { name: "text", label: "内容（改行で複数行OK）", widget: "text" }
+      ],
+      pattern: /^<div class="pbox">([\s\S]*?)<\/div>$/,
+      fromBlock: function (m) { return { text: (m[1] || '').replace(/<br\s*\/?>/g, "\n") }; },
+      toBlock: function (o) { return '<div class="pbox">' + (o.text || '').replace(/\r?\n/g, "<br>") + '</div>'; },
+      toPreview: function (o) {
+        return '<div style="background:#f1f7f3;border:1px solid #dcebe2;border-left:3px solid #2f8a5b;border-radius:8px;padding:10px 14px;font-size:13.5px;color:#55524b;line-height:1.85;">' + (o.text || '').replace(/\r?\n/g, "<br>") + '</div>';
+      }
+    });
+
+    // ③ 大きい文字
+    CMS.registerEditorComponent({
+      id: "bigtext",
+      label: "大きい文字",
+      fields: [ { name: "text", label: "文章", widget: "string" } ],
+      pattern: /^<p class="ptext-lg">([\s\S]*?)<\/p>$/,
+      fromBlock: function (m) { return { text: m[1] }; },
+      toBlock: function (o) { return '<p class="ptext-lg">' + (o.text || '') + '</p>'; },
+      toPreview: function (o) { return '<p style="font-size:18px;font-weight:700;color:#2b2b30;">' + (o.text || '') + '</p>'; }
+    });
+
+    // ④ 小さい文字
+    CMS.registerEditorComponent({
+      id: "smalltext",
+      label: "小さい文字",
+      fields: [ { name: "text", label: "文章", widget: "string" } ],
+      pattern: /^<p class="ptext-sm">([\s\S]*?)<\/p>$/,
+      fromBlock: function (m) { return { text: m[1] }; },
+      toBlock: function (o) { return '<p class="ptext-sm">' + (o.text || '') + '</p>'; },
+      toPreview: function (o) { return '<p style="font-size:13px;color:#6f6a61;">' + (o.text || '') + '</p>'; }
     });
   </script>
 </body>
