@@ -9,6 +9,24 @@
   <!-- 管理画面本体（Decap CMS） -->
   <script src="https://unpkg.com/decap-cms@^3.3.3/dist/decap-cms.js"></script>
   <script>
+    // プレビュー画面にサイトのデザイン（緑の見出しテンプレ等）を反映
+    CMS.registerPreviewStyle(
+      'body{font-family:-apple-system,"Hiragino Kaku Gothic ProN",Meiryo,sans-serif;color:#33333a;line-height:1.8;padding:16px;max-width:720px;margin:0 auto;background:#ffffff;}' +
+      'p{margin:0 0 8px;}' +
+      'strong{color:#1f1f24;font-weight:700;}' +
+      'a{color:#1b5e3f;}' +
+      'h1{font-size:22px;font-weight:800;color:#1b5e3f;margin:26px 0 12px;line-height:1.35;}' +
+      'h2{font-size:19px;font-weight:800;color:#1b5e3f;margin:26px 0 12px;padding-bottom:8px;border-bottom:2px solid #cfe6d9;}' +
+      'h3{font-size:16px;font-weight:800;color:#2b2b30;margin:18px 0 6px;}' +
+      'h4{font-size:14px;font-weight:800;color:#2f7d57;margin:16px 0 6px;}' +
+      'ul,ol{margin:0 0 10px;padding-left:1.4em;} li{margin-bottom:4px;}' +
+      'img{max-width:100%;height:auto;border-radius:10px;margin:12px 0;display:block;}' +
+      'img.pimg{margin:14px auto;} img.pimg-300{max-width:300px;width:100%;} img.pimg-480{max-width:480px;width:100%;} img.pimg-680{max-width:680px;width:100%;} img.pimg-full{max-width:100%;width:100%;}' +
+      '.pbox{background:#f1f7f3;border:1px solid #dcebe2;border-left:3px solid #2f8a5b;border-radius:8px;padding:10px 14px;margin:10px 0;font-size:13.5px;color:#55524b;line-height:1.85;}' +
+      '.ptxt{margin:0 0 10px;line-height:1.5;}',
+      { raw: true }
+    );
+
     // ① 画像（サイズ選択）
     CMS.registerEditorComponent({
       id: "sizedimage",
@@ -48,7 +66,7 @@
       }
     });
 
-    // ③ テキスト（サイズ・色）— WordPress風に px と色を指定
+    // ③ テキスト（サイズ・色）
     CMS.registerEditorComponent({
       id: "styledtext",
       label: "テキスト（サイズ・色）",
