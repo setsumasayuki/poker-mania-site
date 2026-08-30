@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://poker-mania.jp/sitemap.xml
