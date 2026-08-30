@@ -3,6 +3,9 @@ backend:
   repo: setsumasayuki/poker-mania-site
   branch: main
 
+# 下書き保存を有効化（下書き / レビュー中 / 承認済み の段階が使える）
+publish_mode: editorial_workflow
+
 media_folder: "static/blog/images"
 public_folder: "/blog/images"
 
