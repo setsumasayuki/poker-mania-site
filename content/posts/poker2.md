@@ -7,7 +7,7 @@ description: |-
   ポーカーは人を見下す性質がある一方、リスペクトも大切です。
   そのバランスがポーカープレイヤーの質だと思います。
 ---
-
+<img src="/blog/images/018f21b8-d79d-40b8-a14b-f38864cfde76.png" alt="" class="pimg pimg-480">
 
 
 
