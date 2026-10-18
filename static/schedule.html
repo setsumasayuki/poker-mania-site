@@ -114,6 +114,7 @@ html,body{background:#1c1c2e;font-family:-apple-system,sans-serif;color:#e8e0d0;
 </div>
 
 <div class="year-tabs">
+  <button class="year-tab" onclick="setYear(2027)" id="tab-2027">2027</button>
   <button class="year-tab active" onclick="setYear(2026)" id="tab-2026">2026</button>
   <button class="year-tab" onclick="setYear(2025)" id="tab-2025">2025</button>
 </div>
@@ -237,6 +238,13 @@ const EVENTS = {
     {id:'2026-76',name:'APC Taipei IV 2026',tour:'Other',country:'TWN',city:'台北 CTP Asia Poker Arena',start:'2026-12-09',end:'2026-12-20',gtd:'TBA',url:'https://somuchpoker.com/events-calendar/apc/2026/apc-taipei-iv-2026'},
     {id:'2026-77',name:'AJPC Samurai Circuit – Incheon 2026 III',tour:'Other',country:'KOR',city:'仁川',start:'2026-12-04',end:'2026-12-13',gtd:'TBA',url:'https://somuchpoker.com/events-calendar/ajpc/2026/ajpc-samurai-circuit-incheon-2026-iii'},
     {id:'2026-78',name:'The Olympus Return – GOP Jeju 2026',tour:'GOP',country:'KOR',city:'済州 LES A Casino',start:'2026-12-14',end:'2026-12-23',gtd:'TBA',url:'https://somuchpoker.com/events-calendar/gop/2026/the-olympus-return-gop-jeju-2026'},
+    {id:'2026-79',name:'WPT Seoul 2026',tour:'WPT',country:'KOR',city:'仁川 Inspire Casino',start:'2026-10-30',end:'2026-11-09',gtd:'TBA',url:'https://somuchpoker.com/events-calendar/wpt/2026/wpt-seoul-2026'},
+  ],
+  2027: [
+    {id:'2027-01',name:'WPT Cambodia 2027',tour:'WPT',country:'KHM',city:'プノンペン NagaWorld',start:'2027-01-12',end:'2027-02-02',gtd:'TBA',url:'https://somuchpoker.com/events-calendar/wpt/2027/wpt-cambodia-2027'},
+    {id:'2027-02',name:'Manila Super Series 26',tour:'APPT',country:'PHL',city:'マニラ Okada Manila',start:'2027-01-22',end:'2027-01-30',gtd:'TBA',url:'https://somuchpoker.com/events-calendar/pslive/2027/manila-super-series-26'},
+    {id:'2027-03',name:'Manila Megastack 26',tour:'APPT',country:'PHL',city:'マニラ Okada Manila',start:'2027-02-22',end:'2027-03-07',gtd:'TBA',url:'https://somuchpoker.com/events-calendar/pslive/2027/manila-megastack-26'},
+    {id:'2027-04',name:'JOPT 2027 Osaka #01',tour:'Other',country:'JPN',city:'大阪',start:'2027-03-18',end:'2027-03-22',gtd:'TBA',url:'https://somuchpoker.com/events-calendar/jopt/2027/jopt-2027-osaka-01'},
   ],
   2025: [
     {id:'2025-01',name:'APT Manila Classic 2025',tour:'APT',country:'PHL',city:'マニラ',start:'2025-02-07',end:'2025-02-16',gtd:'TBA',url:'https://www.theasianpokertour.com/series/apt-manila-classic-2025/events'},
@@ -398,7 +406,7 @@ function cycleStatus(id) {
 }
 
 function openDetail(id) {
-  const e = (EVENTS[2026] || []).concat(EVENTS[2025] || []).find(ev => ev.id === id);
+  const e = (EVENTS[2026] || []).concat(EVENTS[2025] || []).concat(EVENTS[2027] || []).find(ev => ev.id === id);
   if (!e) return;
   selectedEvent = e;
 
